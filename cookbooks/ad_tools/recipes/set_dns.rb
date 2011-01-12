@@ -1,4 +1,4 @@
-begin
+#begin
 require 'rubygems'
 require 'rest_connection'
 
@@ -16,6 +16,6 @@ mnt_utils_set_dns do
 end
 
 node[:ad_tools_dns_set] = true
-rescue LoadError
-  raise "The rest_connection ruby gem is required, but not available.  DNS was not set.  Please run a recipe which installs rest_connection, such as utils::install_rest_connection_gem from - https://github.com/rgeyer/cookbooks"
-end
+#rescue LoadError
+#  raise "The rest_connection ruby gem is required, but not available.  DNS was not set.  Please run a recipe which installs rest_connection, such as utils::install_rest_connection_gem from - https://github.com/rgeyer/cookbooks"
+#end
