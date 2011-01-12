@@ -1,0 +1,107 @@
+[SQLSERVER2008]
+INSTANCEID="<%= node[:db_mssql][:install_config][:instance] %>"
+ACTION="<%= node[:db_mssql][:install_config][:action] %>"
+FEATURES=<%= node[:db_mssql][:install_config][:features] %>
+HELP="False"
+INDICATEPROGRESS="False"
+QUIET="True"
+QUIETSIMPLE="False"
+
+; Specifies that Setup should install into WOW64. This command line argument is not supported on an IA64 or a 32-bit system.
+X86="False"
+
+; Specifies the path to the installation media folder where setup.exe is located.
+MEDIASOURCE="E:\"
+
+; Specify if errors can be reported to Microsoft to improve future SQL Server releases. Specify 1 or True to enable and 0 or False to disable this feature.
+ERRORREPORTING="False"
+
+INSTALLSHAREDDIR="<%= node[:db_mssql][:install_config][:program_dir] %>"
+INSTALLSHAREDWOWDIR="<%= node[:db_mssql][:install_config][:program_dir_wow64] %>"
+INSTANCEDIR="<%= node[:db_mssql][:install_config][:program_dir] %>"
+
+SQMREPORTING="False"
+
+INSTANCENAME="<%= node[:db_mssql][:install_config][:instance] %>"
+
+; Agent account name
+AGTSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+
+; Auto-start service after installation.
+AGTSVCSTARTUPTYPE="Manual"
+
+; Startup type for Integration Services.
+ISSVCSTARTUPTYPE="Automatic"
+
+; Account for Integration Services: Domain\User or system account.
+ISSVCACCOUNT="NT AUTHORITY\NetworkService"
+
+; Controls the service startup type setting after the service has been created.
+ASSVCSTARTUPTYPE="Automatic"
+
+; The collation to be used by Analysis Services.
+ASCOLLATION="Latin1_General_CI_AS"
+
+; The location for the Analysis Services data files.
+ASDATADIR="Data"
+
+; The location for the Analysis Services log files.
+ASLOGDIR="Log"
+
+; The location for the Analysis Services backup files.
+ASBACKUPDIR="Backup"
+
+; The location for the Analysis Services temporary files.
+ASTEMPDIR="Temp"
+
+; The location for the Analysis Services configuration files.
+ASCONFIGDIR="Config"
+
+; Specifies whether or not the MSOLAP provider is allowed to run in process.
+ASPROVIDERMSOLAP="1"
+
+; Startup type for the SQL Server service.
+SQLSVCSTARTUPTYPE="Automatic"
+
+; Level to enable FILESTREAM feature at (0, 1, 2 or 3).
+FILESTREAMLEVEL="0"
+
+; Set to "1" to enable RANU for SQL Server Express.
+ENABLERANU="False"
+
+; Specifies a Windows collation or an SQL collation to use for the Database Engine.
+SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"
+
+; Account for SQL Server service: Domain\User or system account.
+SQLSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+
+; Windows account(s) to provision as SQL Server system administrators.
+SQLSYSADMINACCOUNTS="ESTRATEGY\ryan.geyer"
+
+; The default is Windows Authentication. Use "SQL" for Mixed Mode Authentication.
+SECURITYMODE="<%= node[:db_mssql][:security_mode] %>"
+
+; The Database Engine root data directory.
+INSTALLSQLDATADIR="D:"
+
+; Default directory for the Database Engine backup files.
+SQLBACKUPDIR="D:\Backup"
+
+; Default directory for the Database Engine user databases.
+SQLUSERDBDIR="D:\Data"
+
+; Directory for Database Engine TempDB files.
+SQLTEMPDBDIR="D:\Data"
+
+; Provision current user as a Database Engine system administrator for SQL Server 2008 Enterprise.
+ADDCURRENTUSERASSQLADMIN="False"
+
+; Specify 0 to disable or 1 to enable the TCP/IP protocol.
+TCPENABLED="1"
+
+; Specify 0 to disable or 1 to enable the Named Pipes protocol.
+NPENABLED="0"
+BROWSERSVCSTARTUPTYPE="Disabled"
+RSSVCSTARTUPTYPE="Automatic"
+RSINSTALLMODE="FilesOnlyMode"
+FTSVCACCOUNT="NT AUTHORITY\LOCAL SERVICE"

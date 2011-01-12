@@ -1,0 +1,76 @@
+{
+  "license": "Apache v2.0",
+  "suggestions": {
+  },
+  "dependencies": {
+    "db_sqlserver": [
+
+    ]
+  },
+  "conflicting": {
+  },
+  "long_description": "Microsoft SQL 2008 Enterprise Bits",
+  "description": "Microsoft SQL 2008 Enterprise Bits",
+  "providing": {
+  },
+  "platforms": {
+  },
+  "version": "0.0.1",
+  "maintainer": "Ryan J. Geyer",
+  "recipes": {
+    "db_mssql::install": "Installs Microsoft SQL 2008 Enterprise Server with specified options",
+    "db_mssql::default": "Runs db_mssql::install",
+    "db_mssql::add_sysadmin": "Adds a user (or group) as a sysadmin for the entire server"
+  },
+  "replacing": {
+  },
+  "maintainer_email": "rgeyer@its.jnj.com",
+  "name": "db_mssql",
+  "groupings": {
+  },
+  "attributes": {
+    "db_mssql/server_name": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::add_sysadmin"
+      ],
+      "display_name": "SQL Server instance network name",
+      "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
+    },
+    "db_mssql/sysadmin_user": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::add_sysadmin"
+      ],
+      "display_name": "Sysadmin Username or Group",
+      "description": "The username or group name to make a sysadmin"
+    },
+    "db_mssql/security_mode": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+        "Windows",
+        "SQL"
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::default",
+        "db_mssql::install"
+      ],
+      "display_name": "What type of logins the server will accept.  Only Active Directory logins if set to 'Windows', mixed mode if set to 'SQL'",
+      "description": "What type of logins the server will accept.  Only Active Directory logins if set to 'Windows', mixed mode if set to 'SQL'"
+    }
+  },
+  "recommendations": {
+  }
+}

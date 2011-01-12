@@ -1,0 +1,8 @@
+[DCINSTALL]
+UserName=<%= @node[:ad_tools][:admin_user] %>
+UserDomain=<%= @node[:ad_tools][:admin_domain] %>
+Password=<%= @node[:ad_tools][:admin_pass] %>
+AdministratorPassword=<%= @node[:utilities][:admin_password] %>
+RemoveApplicationPartitions=yes
+RemoveDNSDelegation=no
+RebootOnCompletion=yes

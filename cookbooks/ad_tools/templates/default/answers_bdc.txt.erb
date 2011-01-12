@@ -1,0 +1,10 @@
+[DCINSTALL]
+UserName=<%= @node[:ad_tools][:admin_user] %>
+UserDomain=<%= @node[:ad_tools][:admin_domain] %>
+Password=<%= @node[:ad_tools][:admin_pass] %>
+ReplicaDomainDNSName=<%= @node[:ad_tools][:domain_name] %>
+ReplicaOrNewDomain=Replica
+InstallDNS=Yes
+ConfirmGC=Yes
+SafeModeAdminPassword=<%= @node[:ad_tools][:admin_pass] %>
+RebootOnCompletion=Yes

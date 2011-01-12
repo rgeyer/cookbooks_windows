@@ -1,0 +1,6 @@
+= Windows program files path (RS Sandbox)
+Ruby Exe path - http://stackoverflow.com/questions/213368/how-can-i-reliably-discover-the-full-path-of-the-ruby-executable
+flaccid: yeah, require 'rbconfig'; RUBY = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install_name']).sub(/.*\s.*/m, '"\&"') works
+[6:54pm] flaccid: hmm in the env we have RS_GIT_EXE RS_GEM RS_GIT_HOME but not the former
+[7:00pm] flaccid: rgeyer: http://dpaste.org/6qNZ/
+[7:05pm] flaccid: RS_SANDBOX_HOME:  C:\PROGRA~2\RIGHTS~1\SandBox, RS_SANDBOX_INSTALL_HOME:  C:\PROGRA~2\RIGHTS~1\SandBox

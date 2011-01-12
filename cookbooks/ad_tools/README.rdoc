@@ -1,0 +1,2 @@
+= TODO
+* set_dns seems to blow up when it's included in boot, but not operational..

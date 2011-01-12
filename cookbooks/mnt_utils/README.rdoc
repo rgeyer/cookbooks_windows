@@ -1,0 +1,3 @@
+= TODO
+* Make it possible to run windows update in a loop with reboots until no updates are available.  Both for boot & operational
+* Tweak the reporting mechanism(s) for windows update.  I.E. Print output to rightscale console or chef log, and allow the email details to be configurable with chef attributes

@@ -1,0 +1,147 @@
+{
+  "license": "Apache v2.0",
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "conflicting": {
+  },
+  "long_description": "Random useful bits of code",
+  "description": "Random useful bits of code",
+  "providing": {
+    "mnt_utils_set_dns(dns_list)": [
+
+    ]
+  },
+  "platforms": {
+  },
+  "version": "0.0.1",
+  "maintainer": "Ryan J. Geyer",
+  "recipes": {
+    "mnt_utils::set_hostname": "Sets the system's hostname to match the nickname in the RightScale dashboard",
+    "mnt_utils::reboot": "Reboots the system",
+    "mnt_utils::install_windowsupdates": "Downloads and installs all pending windows updates for the server",
+    "mnt_utils::helloworld": "A recipe which should always work, used as a control test",
+    "mnt_utils::set_dns": "Sets the DNS search list ot the provided CSV list",
+    "mnt_utils::install_bginfo": "Installs the BGInfo tool and sets it to run on each user login",
+    "mnt_utils::default": "Just for experimentation right now",
+    "mnt_utils::install_scom_agent": "Installs the Microsoft System Center Operations Manager (SCOM) agent using settings from active directory",
+    "mnt_utils::install_roles_and_features": "Installs one or many Windows 2008 roles and features using the mnt_utils::features_and_roles_list as input."
+  },
+  "replacing": {
+  },
+  "maintainer_email": "rgeyer@its.jnj.com",
+  "name": "mnt_utils",
+  "groupings": {
+  },
+  "attributes": {
+    "mnt_utils/scom_share_subdir": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "",
+      "type": "string",
+      "recipes": [
+        "mnt_utils::install_scom_agent"
+      ],
+      "display_name": "SCOM Share Subdirectory",
+      "description": "The subdirectory of the share (if any) which contains the SCOM agent install files.  If your SCOM Share UNC Path is \\fileserverSCOMShare, and this is InstallationFilesAgent the full UNC path will be \\fileserverSCOMShareInstallationFilesAgent"
+    },
+    "mnt_utils/scom_share_pass": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "mnt_utils::install_scom_agent"
+      ],
+      "display_name": "SCOM Share Password",
+      "description": "The password of a user who has permissions to access the share which contains the SCOM agent."
+    },
+    "mnt_utils/features_and_roles_list": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "",
+      "type": "string",
+      "recipes": [
+        "mnt_utils::install_roles_and_features"
+      ],
+      "display_name": "Windows 2008 Features & Roles",
+      "description": "A CSV list of features and roles to install.  To view the list of available roles and features run 'servermanagercmd -query' on a Windows 2008 server instance"
+    },
+    "mnt_utils/scom_share_unc": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "mnt_utils::install_scom_agent"
+      ],
+      "display_name": "SCOM Share UNC Path",
+      "description": "The UNC path of the share containing the SCOM agent installers.  Example: \\fileserverSCOMShare"
+    },
+    "mnt_utils/scom_share_user": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "mnt_utils::install_scom_agent"
+      ],
+      "display_name": "SCOM Share Username",
+      "description": "The username of a user who has permissions to access the share which contains the SCOM agent."
+    },
+    "mnt_utils/rs_uuid": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "mnt_utils::default"
+      ],
+      "display_name": "ENV RS_INSTANCE_UUID Value",
+      "description": "Just set this to the RS_INSTANCE_UUID ENV value"
+    },
+    "mnt_utils/rs_server_name": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "mnt_utils::set_hostname"
+      ],
+      "display_name": "RightScale dashboard nickname",
+      "description": "The RightScale dashboard nickname, this should be set to ENV:RS_SERVER_NAME"
+    },
+    "mnt_utils/dns_list": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "mnt_utils::set_dns"
+      ],
+      "display_name": "A comma separated list of IPV4 addresses of DNS servers",
+      "description": "A comma separated list of IPV4 addresses of DNS servers"
+    }
+  },
+  "recommendations": {
+  }
+}
