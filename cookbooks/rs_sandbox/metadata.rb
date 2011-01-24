@@ -5,4 +5,4 @@ description      "Installs/Configures rs_sandbox"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-provides "rs_sandbox_exec(code)"
+provides "rs_sandbox_exec(:code)"
