@@ -1,7 +1,8 @@
-maintainer "Ryan J. Geyer"
-maintainer_email "rgeyer@its.jnj.com"
+maintainer       "Ryan J. Geyer"
+maintainer_email "me@ryangeyer.com"
+license          IO.read(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'LICENSE')))
 description "Random useful bits of code"
-long_description "Random useful bits of code"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 name "mnt_utils"
 version "0.0.1"
 
@@ -16,6 +17,7 @@ recipe "mnt_utils::install_windowsupdates", "Downloads and installs all pending 
 recipe "mnt_utils::install_roles_and_features", "Installs one or many Windows 2008 roles and features using the mnt_utils::features_and_roles_list as input."
 recipe "mnt_utils::reboot", "Reboots the system"
 recipe "mnt_utils::install_scom_agent", "Installs the Microsoft System Center Operations Manager (SCOM) agent using settings from active directory"
+recipe "mnt_utils::determine_architecture", "Sets some node attributes based on the processor architecture of the node (x86 or x64)"
 
 attribute "mnt_utils/dns_list",
   :display_name => "A comma separated list of IPV4 addresses of DNS servers",

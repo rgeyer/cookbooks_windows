@@ -2,6 +2,8 @@
 # Need to get rightlink setup with the correct credentials to be able to continue running
 # RightLink service - Needs AD service account?
 
+include_recipe "mnt_utils::determine_architecture"
+
 ntds_dir = "C:\\Windows\\NTDS"
 
 log "Hostname Set is #{@node[:mnt_utils_hostname_set]}"

@@ -3,6 +3,8 @@ $admin_domain = Get-NewResource admin_domain
 $admin_pass = Get-NewResource admin_pass
 $domain_name = Get-NewResource domain_name
 
+$binpath = Get-ChefNode mnt_utils, system32_dir
+
 $ansStream = [System.IO.StreamWriter] "C:\answers.txt"
 $ansStream.WriteLine("[DCINSTALL]")
 $ansStream.WriteLine("UserName=$admin_user")
@@ -16,5 +18,5 @@ $ansStream.WriteLine("SafeModeAdminPassword=$admin_pass")
 $ansStream.WriteLine("RebootOnCompletion=Yes")
 $ansStream.close()
 Write-Output("***Starting the DCPromo.exe process")
-start-process -FilePath "$env:windir\Sysnative\dcpromo.exe" -ArgumentList /answer:C:\answers.txt -Wait
+start-process -FilePath "$binpath\dcpromo.exe" -ArgumentList /answer:C:\answers.txt -Wait
 del "C:\answers.txt"
