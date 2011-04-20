@@ -7,6 +7,7 @@ template answers_file do
 end
 
 ad_tools_ad "Demote server from DC role" do
+  answers_file answers_file
   action :unattended_dcpromo
 end
 

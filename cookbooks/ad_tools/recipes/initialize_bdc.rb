@@ -20,6 +20,7 @@ if(@node[:mnt_utils_hostname_set] && @node[:mnt_utils_dns_set] && !@node[:ad_bdc
   include_recipe "ad_tools::change_rightlink_service_account"
 
   ad_tools_ad "Promote Server To BDC" do
+    answers_file answers_file
     action :unattended_dcpromo
   end
 
