@@ -18,5 +18,5 @@
 node[:mnt_utils][:arch] = `echo %PROCESSOR_ARCHITECTURE%`.strip
 node[:mnt_utils][:system32_dir] = node[:mnt_utils][:arch] =~ /x86/ ? ::File.join(ENV["windir"], "system32") : ::File.join(ENV["windir"], "Sysnative")
 
-Chef::log.info("The processor architecture of this Windows instance is #{node[:mnt_utils][:arch]}")
-Chef::log.info("All 32bit built in windows executables can be found at #{node[:mnt_utils][:system32_dir]}")
+Chef::Log.info("The processor architecture of this Windows instance is #{node[:mnt_utils][:arch]}")
+Chef::Log.info("All 32bit built in windows executables can be found at #{node[:mnt_utils][:system32_dir]}")
