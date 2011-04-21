@@ -12,7 +12,6 @@ log "Default ad_bdc_init is #{@node[:ad_bdc_initialized]}"
 log "Should run this script is #{@node[:mnt_utils_hostname_set] && @node[:mnt_utils_dns_set] && !@node[:ad_bdc_initialized]}"
 
 if(@node[:mnt_utils_hostname_set] && @node[:mnt_utils_dns_set] && !@node[:ad_bdc_initialized])
-  log "Entered if other scripts run"
   answers_file = "C:\\answers.txt"
 
   template answers_file do

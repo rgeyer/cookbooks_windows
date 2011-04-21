@@ -46,12 +46,4 @@ EOF
     source(powershell_script)
     notifies :reboot, resources(:mnt_utils_system => "Reboot System")
   end
-
-  ruby_block "Set done and check for reboot only after powershell resource is run" do
-    block do
-      if node[:mnt_utils_hostname_reboot]
-        node[:mnt_utils_hostname_reboot] = false
-      end
-    end
-  end
 end

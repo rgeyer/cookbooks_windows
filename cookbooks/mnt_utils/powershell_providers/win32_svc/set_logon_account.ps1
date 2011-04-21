@@ -17,15 +17,9 @@ if ( (!$service_account_user) -and (!$service_account_pass) ) {
   Write-Output("Changed from blank")
 } else { Write-Output("The user creds remained blank") }
 
-Write-Output("Past the conditional statement")
-
 $service="name='$service_name'"
 
-Write-Output("The service WMI search is $service")
-
 $svc=Get-WmiObject win32_service -computer $computer -filter $service
-
-Write-Output("Service object is $svc")
 
 #if ($restart_service.ToLower() -eq "true") { $svc.StopService() }
 if ($svc) {
@@ -34,5 +28,5 @@ if ($svc) {
   $inParams["StartPassword"] = $service_account_pass
   $svc.invokeMethod("Change",$inParams,$null)
 }
-else { Write-Output("I no can getting the svc") }
+else { Write-Output("Unable to find a service named $service_name") }
 #if ($restart_service.ToLower() -eq "true") { $svc.StartService() }
