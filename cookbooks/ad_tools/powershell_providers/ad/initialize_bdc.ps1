@@ -3,7 +3,7 @@ $admin_domain = Get-NewResource admin_domain
 $admin_pass = Get-NewResource admin_pass
 $domain_name = Get-NewResource domain_name
 
-$binpath = Get-ChefNode mnt_utils, system32_dir
+$binpath = Get-ChefNode rjg_utils, system32_dir
 
 $ansStream = [System.IO.StreamWriter] "C:\answers.txt"
 $ansStream.WriteLine("[DCINSTALL]")

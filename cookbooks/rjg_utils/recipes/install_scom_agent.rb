@@ -3,10 +3,10 @@
 
 powershell "Install SCOM Agent" do
   powershell =<<'EOF'
-$share_unc = get-chefnode mnt_utils, scom_share_unc
-$agent_dir_path = get-chefnode mnt_utils, scom_share_subdir
-$user = get-chefnode mnt_utils, scom_share_user
-$pass = get-chefnode mnt_utils, scom_share_pass
+$share_unc = get-chefnode rjg_utils, scom_share_unc
+$agent_dir_path = get-chefnode rjg_utils, scom_share_subdir
+$user = get-chefnode rjg_utils, scom_share_user
+$pass = get-chefnode rjg_utils, scom_share_pass
 
 $net_obj = $(New-Object -ComObject WScript.Network)
 $net_obj.MapNetworkDrive("X:", $share_unc, $false, $user, $pass)

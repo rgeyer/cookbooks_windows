@@ -1,10 +1,10 @@
-unless node[:mnt_utils_hostname_set]
-  mnt_utils_system "Reboot System" do
+unless node[:rjg_utils_hostname_set]
+  rjg_utils_system "Reboot System" do
     action :nothing
   end
 
   powershell "Set the computer hostname to the same as the RightScale nickname" do
-    parameters({'RS_SERVER_NAME' => node[:mnt_utils][:rs_server_name]})
+    parameters({'RS_SERVER_NAME' => node[:rjg_utils][:rs_server_name]})
 
     powershell_script = <<'EOF'
 # The regex cleans things up so all is well.
@@ -21,7 +21,7 @@ write-output("About to compare hostnames $($NewComputerName) == $($CurrentComput
 
 if( $NewComputerName.CompareTo($CurrentComputerName) -eq 0 ) {
   write-output("The hostname was already set to $($NewComputerName), hostname was not changed")
-  set-chefnode mnt_utils_hostname_reboot -BooleanValue $false
+  set-chefnode rjg_utils_hostname_reboot -BooleanValue $false
 } else {
   $programFilesPath = "C:\Program Files"
   echo "The progam files dir is set to $programFilesPath"
@@ -38,12 +38,12 @@ if( $NewComputerName.CompareTo($CurrentComputerName) -eq 0 ) {
   $computerinfo = Get-WmiObject -class win32_computersystem
   $computerinfo.Rename($NewComputerName)
 
-  set-chefnode mnt_utils_hostname_reboot -BooleanValue $true
-  set-chefnode mnt_utils_hostname_set -BooleanValue $true
+  set-chefnode rjg_utils_hostname_reboot -BooleanValue $true
+  set-chefnode rjg_utils_hostname_set -BooleanValue $true
 }
 EOF
 
     source(powershell_script)
-    notifies :reboot, resources(:mnt_utils_system => "Reboot System")
+    notifies :reboot, resources(:rjg_utils_system => "Reboot System")
   end
 end

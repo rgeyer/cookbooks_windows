@@ -1,9 +1,9 @@
-include_recipe "mnt_utils::determine_architecture"
+include_recipe "rjg_utils::determine_architecture"
 
 powershell "Installs the CSV list of windows features and roles" do
   powershell_script = <<'EOF'
-  $roleAndFeatureAry = get-chefnode mnt_utils,features_and_roles_list
-  $binpath = Get-ChefNode mnt_utils, system32_dir
+  $roleAndFeatureAry = get-chefnode rjg_utils,features_and_roles_list
+  $binpath = Get-ChefNode rjg_utils, system32_dir
 
   write-output("The role and feature list was $($roleAndFeatureAry)")
   $argList = @("-install")
@@ -17,4 +17,4 @@ powershell "Installs the CSV list of windows features and roles" do
 #  }
 EOF
   source(powershell_script)
-end unless node[:mnt_utils][:features_and_roles_list] == ""
+end unless node[:rjg_utils][:features_and_roles_list] == ""

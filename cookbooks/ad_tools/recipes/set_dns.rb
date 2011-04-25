@@ -11,7 +11,7 @@ end
 node[:ad_tools_dns_list] = private_ips.join(',')
 Chef::Log.info("This is the dns list #{node[:ad_tools_dns_list]}")
 
-mnt_utils_set_dns do
+rjg_utils_set_dns do
   dns_list node[:ad_tools_dns_list]
 end
 

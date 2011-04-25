@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mnt_utils
+# Cookbook Name:: rjg_utils
 # Recipe:: determine_architecture
 #
 #  Copyright 2011 Ryan J. Geyer
@@ -15,8 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-node[:mnt_utils][:arch] = `echo %PROCESSOR_ARCHITECTURE%`.strip
-node[:mnt_utils][:system32_dir] = node[:mnt_utils][:arch] =~ /x86/ ? ::File.join(ENV["windir"], "system32") : ::File.join(ENV["windir"], "Sysnative")
+node[:rjg_utils][:arch] = `echo %PROCESSOR_ARCHITECTURE%`.strip
+node[:rjg_utils][:system32_dir] = node[:rjg_utils][:arch] =~ /x86/ ? ::File.join(ENV["windir"], "system32") : ::File.join(ENV["windir"], "Sysnative")
 
-Chef::Log.info("The processor architecture of this Windows instance is #{node[:mnt_utils][:arch]}")
-Chef::Log.info("All 32bit built in windows executables can be found at #{node[:mnt_utils][:system32_dir]}")
+Chef::Log.info("The processor architecture of this Windows instance is #{node[:rjg_utils][:arch]}")
+Chef::Log.info("All 32bit built in windows executables can be found at #{node[:rjg_utils][:system32_dir]}")

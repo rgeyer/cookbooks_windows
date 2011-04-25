@@ -14,7 +14,7 @@ recipe "ad_tools::change_rightlink_service_account", "Changes the service accoun
 recipe "ad_tools::set_dns", "Sets the dns server(s) to the internal IP's of the domain controllers.  Assumes that the domain controllers, and the server this recipe is run on are in the same EC2 cloud."
 
 depends "utilities"
-depends "mnt_utils"
+depends "rjg_utils"
 
 attribute "utilities/admin_password",
   :display_name => "New administrator password",

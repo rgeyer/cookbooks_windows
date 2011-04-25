@@ -1,4 +1,4 @@
-if(node[:mnt_utils_hostname_set] && node[:ad_tools_dns_set] && !node[:ad_tools_joined_domain])
+if(node[:rjg_utils_hostname_set] && node[:ad_tools_dns_set] && !node[:ad_tools_joined_domain])
   Chef::Log.info("The hostname has been set, the DNS has been set, and now we can join the domain.")
   # 1. Retrieve inputs
   domain   = node[:ad_tools][:domain_name]
@@ -20,7 +20,7 @@ if(node[:mnt_utils_hostname_set] && node[:ad_tools_dns_set] && !node[:ad_tools_j
 
   node[:ad_tools_joined_domain] = true
 
-  mnt_utils_system "Reboot System" do
+  rjg_utils_system "Reboot System" do
     action :reboot
   end
 end

@@ -1,4 +1,4 @@
-define :mnt_utils_reboot, :foo => nil do
+define :rjg_utils_reboot, :foo => nil do
 
   powershell "Reboots the system" do
 

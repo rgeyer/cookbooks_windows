@@ -1,6 +1,6 @@
 # Handy DCPROMO answer file templates http://support.microsoft.com/kb/947034
 
-include_recipe "mnt_utils::determine_architecture"
+include_recipe "rjg_utils::determine_architecture"
 
 answers_file = "C:\\answers.txt"
 

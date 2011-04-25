@@ -2,16 +2,16 @@
 # Need to get rightlink setup with the correct credentials to be able to continue running
 # RightLink service - Needs AD service account?
 
-include_recipe "mnt_utils::determine_architecture"
+include_recipe "rjg_utils::determine_architecture"
 
 ntds_dir = "C:\\Windows\\NTDS"
 
-log "Hostname Set is #{@node[:mnt_utils_hostname_set]}"
-log "DNS Set is #{@node[:mnt_utils_dns_set]}"
+log "Hostname Set is #{@node[:rjg_utils_hostname_set]}"
+log "DNS Set is #{@node[:rjg_utils_dns_set]}"
 log "Default ad_bdc_init is #{@node[:ad_bdc_initialized]}"
-log "Should run this script is #{@node[:mnt_utils_hostname_set] && @node[:mnt_utils_dns_set] && !@node[:ad_bdc_initialized]}"
+log "Should run this script is #{@node[:rjg_utils_hostname_set] && @node[:rjg_utils_dns_set] && !@node[:ad_bdc_initialized]}"
 
-if(@node[:mnt_utils_hostname_set] && @node[:mnt_utils_dns_set] && !@node[:ad_bdc_initialized])
+if(@node[:rjg_utils_hostname_set] && @node[:rjg_utils_dns_set] && !@node[:ad_bdc_initialized])
   answers_file = "C:\\answers.txt"
 
   template answers_file do

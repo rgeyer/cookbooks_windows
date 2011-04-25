@@ -1,4 +1,4 @@
-define :mnt_utils_set_dns, :dns_list => nil do
+define :rjg_utils_set_dns, :dns_list => nil do
   powershell "Sets the DNS search list to the provided CSV list" do
     parameters({'DNS_LIST' => params[:dns_list]})
 
