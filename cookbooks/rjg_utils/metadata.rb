@@ -25,9 +25,9 @@ attribute "rjg_utils/dns_list",
   :recipes => [ "rjg_utils::set_dns" ],
   :required => "required"
 
-attribute "rjg_utils/rs_server_name",
-  :display_name => "RightScale dashboard nickname",
-  :description => "The RightScale dashboard nickname, this should be set to ENV:RS_SERVER_NAME",
+attribute "rjg_utils/hostname",
+  :display_name => "Hostname",
+  :description => "The desired hostname for the instance",
   :recipes => [ "rjg_utils::set_hostname" ],
   :required => "required"
 

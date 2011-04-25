@@ -41,19 +41,6 @@
       "description": "Just set this to the RS_INSTANCE_UUID ENV value",
       "display_name": "ENV RS_INSTANCE_UUID Value"
     },
-    "rjg_utils/rs_server_name": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "rjg_utils::set_hostname"
-      ],
-      "description": "The RightScale dashboard nickname, this should be set to ENV:RS_SERVER_NAME",
-      "display_name": "RightScale dashboard nickname"
-    },
     "rjg_utils/dns_list": {
       "required": "required",
       "calculated": false,
@@ -93,6 +80,19 @@
       ],
       "description": "The subdirectory of the share (if any) which contains the SCOM agent install files.  If your SCOM Share UNC Path is \\fileserverSCOMShare, and this is InstallationFilesAgent the full UNC path will be \\fileserverSCOMShareInstallationFilesAgent",
       "display_name": "SCOM Share Subdirectory"
+    },
+    "rjg_utils/hostname": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::set_hostname"
+      ],
+      "description": "The desired hostname for the instance",
+      "display_name": "Hostname"
     },
     "rjg_utils/scom_share_unc": {
       "required": "required",

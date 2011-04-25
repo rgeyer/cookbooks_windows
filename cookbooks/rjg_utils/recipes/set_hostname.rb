@@ -4,11 +4,11 @@ unless node[:rjg_utils_hostname_set]
   end
 
   powershell "Set the computer hostname to the same as the RightScale nickname" do
-    parameters({'RS_SERVER_NAME' => node[:rjg_utils][:rs_server_name]})
+    parameters({'HOSTNAME' => node[:rjg_utils][:hostname]})
 
     powershell_script = <<'EOF'
 # The regex cleans things up so all is well.
-$NewComputerName = $env:RS_SERVER_NAME -replace "[^0-9a-zA-Z_]","-"
+$NewComputerName = $env:HOSTNAME -replace "[^0-9a-zA-Z_]","-"
 $NewComputerName = $NewComputerName.ToUpper()
 # Shorten it to 16 characters
 if($NewComputerName.length -gt 16) {
