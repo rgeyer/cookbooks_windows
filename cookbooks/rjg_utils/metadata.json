@@ -49,7 +49,7 @@
       ],
       "type": "string",
       "recipes": [
-        "rjg_utils::install_scom_agent"
+        "rjg_utils::install_bginfo"
       ],
       "description": "The S3 bucket containing rjg_utils/bginfo_s3_file",
       "display_name": "BGInfo Zip S3 bucket"
@@ -128,7 +128,7 @@
       ],
       "type": "string",
       "recipes": [
-        "rjg_utils::install_scom_agent"
+        "rjg_utils::install_bginfo"
       ],
       "description": "The full S3 key to a zip file containing a login.bgi file, and any files which it depends upon (I.E. like images)",
       "display_name": "BGInfo Zip S3 file"
@@ -182,7 +182,7 @@
       "default": "false",
       "type": "string",
       "recipes": [
-        "rjg_utils::install_scom_agent"
+        "rjg_utils::install_bginfo"
       ],
       "description": "A boolean indicating if a zip file containing a custom bginfo configuration should be download from S3.  If true rjg_utils/bginfo_s3_file and rjg_utils/bginfo_s3_bucket must be set",
       "display_name": "Custom BGInfo?"

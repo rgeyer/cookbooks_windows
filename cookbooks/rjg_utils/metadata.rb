@@ -70,20 +70,20 @@ attribute "rjg_utils/scom_share_subdir",
 attribute "rjg_utils/custom_bginfo",
   :display_name => "Custom BGInfo?",
   :description => "A boolean indicating if a zip file containing a custom bginfo configuration should be download from S3.  If true rjg_utils/bginfo_s3_file and rjg_utils/bginfo_s3_bucket must be set",
-  :recipes => ["rjg_utils::install_scom_agent"],
+  :recipes => ["rjg_utils::install_bginfo"],
   :choice => ["true", "false"],
   :default => "false"
 
 attribute "rjg_utils/bginfo_s3_file",
   :display_name => "BGInfo Zip S3 file",
   :description => "The full S3 key to a zip file containing a login.bgi file, and any files which it depends upon (I.E. like images)",
-  :recipes => ["rjg_utils::install_scom_agent"],
+  :recipes => ["rjg_utils::install_bginfo"],
   :required => "optional"
 
 attribute "rjg_utils/bginfo_s3_bucket",
   :display_name => "BGInfo Zip S3 bucket",
   :description => "The S3 bucket containing rjg_utils/bginfo_s3_file",
-  :recipes => ["rjg_utils::install_scom_agent"],
+  :recipes => ["rjg_utils::install_bginfo"],
   :required => "optional"
 
 attribute "aws/access_key_id",
