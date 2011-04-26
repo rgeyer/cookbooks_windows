@@ -27,7 +27,7 @@ powershell "Install BGInfo & add to startup items" do
   #Copy-Item "$env:ATTACHMENTS_PATH\*" "$env:BGINFO_PATH"
   $command='cmd /c 7z x -y "'+$env:BGINFO_ZIP+'" -o"'+$env:BGINFO_PATH+'""'
   $command_ouput=invoke-expression $command
-  if (!($command_ouput -match 'Everything is Ok')
+  if (!($command_ouput -match 'Everything is Ok'))
   {
       echo $command_ouput
       Write-Error "Error: Unzipping failed"
