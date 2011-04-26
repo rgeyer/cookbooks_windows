@@ -4,7 +4,7 @@ programFilesPath = "C:\\Program Files (x86)" if ::File.directory? "C:\\Program F
 bginfo_path = "#{programFilesPath}\\BGInfo"
 startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
 attachments_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'install_bginfo'))
-login_bgi_file = ::File.join(bginfo_path, 'login.bgi')
+login_bgi_file = ::File.join(bginfo_path, 'logon.bgi')
 
 #bginfo_dl_uri = "http://download.sysinternals.com/Files/BgInfo.zip"
 

@@ -76,7 +76,7 @@ attribute "rjg_utils/custom_bginfo",
 
 attribute "rjg_utils/bginfo_s3_file",
   :display_name => "BGInfo Zip S3 file",
-  :description => "The full S3 key to a zip file containing a login.bgi file, and any files which it depends upon (I.E. like images)",
+  :description => "The full S3 key to a zip file containing a logon.bgi file, and any files which it depends upon (I.E. like images)",
   :recipes => ["rjg_utils::install_bginfo"],
   :required => "optional"
 

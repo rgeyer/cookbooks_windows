@@ -130,7 +130,7 @@
       "recipes": [
         "rjg_utils::install_bginfo"
       ],
-      "description": "The full S3 key to a zip file containing a login.bgi file, and any files which it depends upon (I.E. like images)",
+      "description": "The full S3 key to a zip file containing a logon.bgi file, and any files which it depends upon (I.E. like images)",
       "display_name": "BGInfo Zip S3 file"
     },
     "rjg_utils/hostname": {
