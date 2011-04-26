@@ -66,3 +66,34 @@ attribute "rjg_utils/scom_share_subdir",
   :description => "The subdirectory of the share (if any) which contains the SCOM agent install files.  If your SCOM Share UNC Path is \\fileserver\SCOMShare, and this is InstallationFiles\Agent the full UNC path will be \\fileserver\SCOMShare\InstallationFiles\Agent",
   :recipes => ["rjg_utils::install_scom_agent"],
   :default => ""
+
+attribute "rjg_utils/custom_bginfo",
+  :display_name => "Custom BGInfo?",
+  :description => "A boolean indicating if a zip file containing a custom bginfo configuration should be download from S3.  If true rjg_utils/bginfo_s3_file and rjg_utils/bginfo_s3_bucket must be set",
+  :recipes => ["rjg_utils::install_scom_agent"],
+  :choice => ["true", "false"],
+  :default => "false"
+
+attribute "rjg_utils/bginfo_s3_file",
+  :display_name => "BGInfo Zip S3 file",
+  :description => "The full S3 key to a zip file containing a login.bgi file, and any files which it depends upon (I.E. like images)",
+  :recipes => ["rjg_utils::install_scom_agent"],
+  :required => "optional"
+
+attribute "rjg_utils/bginfo_s3_bucket",
+  :display_name => "BGInfo Zip S3 bucket",
+  :description => "The S3 bucket containing rjg_utils/bginfo_s3_file",
+  :recipes => ["rjg_utils::install_scom_agent"],
+  :required => "optional"
+
+attribute "aws/access_key_id",
+  :display_name => "Access Key Id",
+  :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+  :recipes => ["rjg_utils::install_bginfo"],
+  :required => "required"
+
+attribute "aws/secret_access_key",
+  :display_name => "Secret Access Key",
+  :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+  :recipes => ["rjg_utils::install_bginfo"],
+  :required => "required"
