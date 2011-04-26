@@ -19,7 +19,7 @@ end if !File.directory? bginfo_path
 
 powershell "Install BGInfo & add to startup items" do
   parameters({
-    'BGINFO_ZIP' => ::File.join(attachments_path, 'BGInfo.exe'),
+    'BGINFO_ZIP' => ::File.join(attachments_path, 'BGInfo.zip'),
     'BGINFO_PATH' => bginfo_path
   })
 
