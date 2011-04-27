@@ -1,5 +1,4 @@
 programFilesPath = "C:\\Program Files"
-programFilesPath = "C:\\Program Files (x86)" if ::File.directory? "C:\\Program Files (x86)"
 
 bginfo_path = "#{programFilesPath}\\BGInfo"
 startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
