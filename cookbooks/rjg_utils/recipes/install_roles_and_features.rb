@@ -1,3 +1,6 @@
+
+# A list of available roles & features by their names http://technet.microsoft.com/en-us/library/cc748918(WS.10).aspx
+
 include_recipe "rjg_utils::determine_architecture"
 
 powershell "Installs the CSV list of windows features and roles" do
