@@ -45,7 +45,9 @@ powershell "Rename the backup file to something standard" do
   parameters({'BACKUP_DIR' => backup_dir, 'BACKUP_FILENAME' => backup_filepath})
 
   ps_code = <<-EOF
-Move-Item $env:BACKUP_DIR+"*.zip" $env:BACKUP_FILENAME
+$file_to_move = $env:BACKUP_DIR+"*.zip"
+Write-Output "Moving $file_to_move to $env:BACKUP_FILENAME
+Move-Item "$file_to_move" "$env:BACKUP_FILENAME""
   EOF
 
   source(ps_code)
