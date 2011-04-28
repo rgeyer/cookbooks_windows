@@ -23,7 +23,7 @@ backup_filepath = ::File.join(backup_dir,backup_filename)
 
 directory backup_dir do
   recursive true
-  action :create
+  action [:delete, :create]
 end
 
 # Create a full backup, then transaction log backup of the target database
@@ -45,9 +45,13 @@ powershell "Rename the backup file to something standard" do
   parameters({'BACKUP_DIR' => backup_dir, 'BACKUP_FILENAME' => backup_filepath})
 
   ps_code = <<-EOF
-$file_to_move = $env:BACKUP_DIR+"*.zip"
-Write-Output "Moving $file_to_move to $env:BACKUP_FILENAME
-Move-Item "$file_to_move" "$env:BACKUP_FILENAME""
+$backup_dir_contents = Get-ChildItem $env:BACKUP_DIR -filter "*.zip"
+if($file_count.Count -eq 1)
+{
+  $file_to_move = $backup_dir_contents[0]
+  Write-Output "Moving $file_to_move to $env:BACKUP_FILENAME
+  Move-Item "$file_to_move" "$env:BACKUP_FILENAME""
+}
   EOF
 
   source(ps_code)
