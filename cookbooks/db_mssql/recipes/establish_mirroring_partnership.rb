@@ -18,6 +18,8 @@
 # Working from these steps http://weblogs.sqlteam.com/tarad/archive/2007/02/13/60091.aspx
 
 backup_dir = "C:/tmp/sql_mirror_backup/"
+backup_filename = "#{node[:db_mssql][:database_name]}.zip"
+backup_filepath = ::File.join(backup_dir,backup_filename)
 
 directory backup_dir do
   recursive true
@@ -38,13 +40,24 @@ db_sqlserver_database node[:db_mssql][:database_name] do
   action :backup
 end
 
+# TODO: can't use node['backupfilename'] or node[:backupfilename] because they are evaulated at compile time.. Shit..
+powershell "Rename the backup file to something standard" do
+  parameters({'BACKUP_DIR' => backup_dir, 'BACKUP_FILENAME' => backup_filepath})
+
+  ps_code = <<-EOF
+Move-Item $env:BACKUP_DIR+"*.zip" $env:BACKUP_FILENAME
+  EOF
+
+  source(ps_code)
+end
+
 # Upload the full backup and transaction log backup (in a zip file) to S3 for the mirror server to fetch
 rjg_aws_s3 "Upload database backup to S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:s3][:bucket_backups]
-  s3_file "mirror/#{node['backupfilename']}"
-  file_path ::File.join(backup_dir, node['backupfilename'])
+  s3_file "mirror/#{backup_filename}"
+  file_path backup_filepath
   action :put
   notifies :delete, resources(:directory => backup_dir), :immediately
 end
@@ -55,7 +68,7 @@ remote_recipe "Initialize the mirror" do
   attributes({
     :db_sqlserver => node[:db_sqlserver],
     :db_mssql => node[:db_mssql].merge({
-      :mirror_backup_file => node['backupfilename'],
+      :mirror_backup_file => backup_filename,
       :mirror_partner => node[:db_mssql][:nickname]
     }),
     :aws => node[:aws],
