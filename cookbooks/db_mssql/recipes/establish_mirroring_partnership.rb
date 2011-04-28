@@ -46,19 +46,20 @@ rjg_aws_s3 "Upload database backup to S3" do
   s3_file "mirror/#{node[:backupfilename]}"
   file_path ::File.join(backup_dir, node[:backupfilename])
   action :put
+  notifies :delete, resources(:directory => backup_dir), :immediately
 end
 
 # Tell the mirror server to get all setup
 remote_recipe "Initialize the mirror" do
   recipe "db_mssql::initialize_mirror"
-  attributes({ :db_mssql => { :database_name => node[:db_mssql][:database_name] }
-
-             })
+  attributes({
+    :db_sqlserver => node[:db_sqlserver],
+    :db_mssql => node[:db_mssql].merge({
+      :mirror_backup_file => node[:backupfilename],
+      :mirror_partner => node[:db_mssql][:nickname]
+    }),
+    :aws => node[:aws],
+    :s3 => node[:s3]
+  })
   recipents_tags ["mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}"]
-end
-
-# Nuke the backup files
-directory backup_dir do
-  recursive true
-  action :delete
 end
