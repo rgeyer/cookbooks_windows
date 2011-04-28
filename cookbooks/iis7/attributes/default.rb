@@ -1,1 +1,1 @@
-default[:iis7][:appcmd_path] =
+default[:iis7][:appcmd_path] = ''
