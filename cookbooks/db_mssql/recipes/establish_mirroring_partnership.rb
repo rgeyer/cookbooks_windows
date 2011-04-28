@@ -74,5 +74,5 @@ remote_recipe "Initialize the mirror" do
     :aws => node[:aws],
     :s3 => node[:s3]
   })
-  recipents_tags ["mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}"]
+  recipients_tags ["mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}"]
 end

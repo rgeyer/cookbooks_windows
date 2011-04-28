@@ -14,7 +14,7 @@
   "replacing": {
   },
   "maintainer_email": "me@ryangeyer.com",
-  "description": "Microsoft SQL 2008 Enterprise Bits",
+  "description": "Microsoft SQL 2008 (Standard & Express) Bits",
   "version": "0.0.1",
   "groupings": {
   },
