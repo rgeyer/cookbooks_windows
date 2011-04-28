@@ -190,6 +190,9 @@
   "recommendations": {
   },
   "dependencies": {
+    "rjg_aws": [
+
+    ],
     "db_sqlserver": [
 
     ]
