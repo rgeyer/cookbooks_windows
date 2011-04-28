@@ -43,8 +43,8 @@ rjg_aws_s3 "Upload database backup to S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:s3][:bucket_backups]
-  s3_file "mirror/#{node[:backupfilename]}"
-  file_path ::File.join(backup_dir, node[:backupfilename])
+  s3_file "mirror/#{node['backupfilename']}"
+  file_path ::File.join(backup_dir, node['backupfilename'])
   action :put
   notifies :delete, resources(:directory => backup_dir), :immediately
 end
@@ -55,7 +55,7 @@ remote_recipe "Initialize the mirror" do
   attributes({
     :db_sqlserver => node[:db_sqlserver],
     :db_mssql => node[:db_mssql].merge({
-      :mirror_backup_file => node[:backupfilename],
+      :mirror_backup_file => node['backupfilename'],
       :mirror_partner => node[:db_mssql][:nickname]
     }),
     :aws => node[:aws],
