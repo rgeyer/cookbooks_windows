@@ -17,9 +17,21 @@
 
 # Working from these steps http://weblogs.sqlteam.com/tarad/archive/2007/02/13/60091.aspx
 
+require 'yaml'
+
 backup_dir = "C:/tmp/sql_mirror_backup/"
 backup_filename = "#{node[:db_mssql][:database_name]}.zip"
 backup_filepath = ::File.join(backup_dir,backup_filename)
+
+remote_hash = {
+  :db_sqlserver => node[:db_sqlserver],
+  :db_mssql => node[:db_mssql].merge({
+    :mirror_backup_file => backup_filename,
+    :mirror_partner => node[:db_mssql][:nickname]
+  }),
+  :aws => node[:aws],
+  :s3 => node[:s3]
+}
 
 directory backup_dir do
   recursive true
@@ -78,17 +90,12 @@ rjg_aws_s3 "Upload database backup to S3" do
   notifies :delete, resources(:directory => backup_dir), :immediately
 end
 
+Chef::Log.info("Sending the following inputs/attributes to the remote recipe")
+Chef::Log.info(remote_hash.to_yaml)
+
 # Tell the mirror server to get all setup
 remote_recipe "Initialize the mirror" do
   recipe "db_mssql::initialize_mirror"
-  attributes({
-    :db_sqlserver => node[:db_sqlserver],
-    :db_mssql => node[:db_mssql].merge({
-      :mirror_backup_file => backup_filename,
-      :mirror_partner => node[:db_mssql][:nickname]
-    }),
-    :aws => node[:aws],
-    :s3 => node[:s3]
-  })
+  attributes(remote_hash)
   recipients_tags ["mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}"]
 end
