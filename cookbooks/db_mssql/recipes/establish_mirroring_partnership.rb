@@ -46,7 +46,12 @@ powershell "Rename the backup file to something standard" do
 
   ps_code = <<-EOF
 $backup_dir_contents = Get-ChildItem $env:BACKUP_DIR -filter "*.zip"
-if($backup_dir_contents.Count -eq 1)
+$file_count - $backup_dir_contets.Count
+
+# Get-ChildItem returns a System.IO.FileSystemInfo if there is only one file in a directory, which is our desired
+# state when we run this script.
+
+if($file_count -eq $null)
 {
   $file_to_move = $backup_dir_contents[0]
   Write-Output "Moving $file_to_move to $env:BACKUP_FILENAME
@@ -54,7 +59,7 @@ if($backup_dir_contents.Count -eq 1)
 }
 else
 {
-  Write-Output "Found $backup_dir_contents.Count items in $env:BACKUP_DIR - No files were moved!"
+  Write-Output "Found $file_count items in $env:BACKUP_DIR - No files were moved!"
   foreach($file in $backup_dir_contents) { Write-Output "Found $_" }
 }
   EOF
