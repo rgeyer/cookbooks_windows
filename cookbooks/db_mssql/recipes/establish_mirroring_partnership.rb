@@ -16,6 +16,7 @@
 #  limitations under the License.
 
 # Working from these steps http://weblogs.sqlteam.com/tarad/archive/2007/02/13/60091.aspx
+# Something more up-to-date and with powershell examples http://nexus.realtimepublishers.com/content/?tip=how-to-configure-data-mirroring-in-sql-server-2008-with-windows-powershell
 
 require 'yaml'
 
