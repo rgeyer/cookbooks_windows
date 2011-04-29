@@ -13,6 +13,7 @@ recipe "db_mssql::default", "Tags the server instance with a nickname so it can 
 recipe "db_mssql::add_sysadmin", "Adds a user (or group) as a sysadmin for the entire server"
 recipe "db_mssql::establish_mirroring_partnership", "To be run from the server containing the database to be mirroed.  This server will become the principal in the relationship."
 recipe "db_mssql::initialize_mirror", "Downloads a full, and transaction log backup (created by the principal server) from S3.  The backup is restored with NORECOVERY and mirroring is configured.  This is usually intended to be called remotely by the principal server when db_mssql::establish_mirroring_partnership is used."
+recipe "db_mssql::initialize_principal", "Causes the principal server to create a mirror partnership with the mirror.  The mirror configuration is high-performance (asynchronous).  This is usually intended to be called remotely by the mirror server when db_mssql::initialize_mirror is used."
 
 attribute "db_mssql/sysadmin_user",
   :display_name => "Sysadmin Username or Group",
