@@ -19,17 +19,17 @@
 
 require 'yaml'
 
-Chef::Log.info("Received the following as input attributes")
-Chef::Log.info("db_sqlserver <---->"+node[:db_sqlserver].to_yaml)
-Chef::Log.info("db_mssql <---->"+node[:db_mssql].to_yaml)
-Chef::Log.info("db_aws <---->"+node[:aws].to_yaml)
-Chef::Log.info("db_s3 <---->"+node[:s3].to_yaml)
+#Chef::Log.info("Received the following as input attributes")
+#Chef::Log.info("db_sqlserver <---->"+node[:db_sqlserver].to_yaml)
+#Chef::Log.info("db_mssql <---->"+node[:db_mssql].to_yaml)
+#Chef::Log.info("db_aws <---->"+node[:aws].to_yaml)
+#Chef::Log.info("db_s3 <---->"+node[:s3].to_yaml)
 
 backup_dir = "C:/tmp/sql_mirror_backup/"
 
 directory backup_dir do
   recursive true
-  action :create
+  action [:delete, :create]
 end
 
 aws_s3 "Download backup from S3" do
@@ -43,7 +43,7 @@ end
 
 # TODO: This pattern (zipping and unzipping files) is repeated a lot, should probably be captured in a LWRP or a definition
 powershell "Unzip the backup file" do
-  parameters({'ZIP_FILE' => ::File.join(backup_dir, node[:db_mssql][:mirror_backup_file]), 'DEST_DIR' => backup_dir})
+  parameters({'ZIP_FILE' => ::File.join(backup_dir, "mirror", node[:db_mssql][:mirror_backup_file]), 'DEST_DIR' => backup_dir})
 
   ps_code = <<-EOF
 $command='cmd /c 7z x -y "'+$env:ZIP_FILE+'" -o"'+$env:DEST_DIR+'""'
@@ -65,7 +65,6 @@ db_sqlserver_database node[:db_mssql][:database_name] do
   existing_backup_file_name_pattern node[:db_sqlserver][:backup][:existing_backup_file_name_pattern]
   server_name node[:db_sqlserver][:server_name]
   force_restore true
-
-  action :restore
   notifies :delete, resources(:directory => backup_dir), :immediately
+  action :restore
 end

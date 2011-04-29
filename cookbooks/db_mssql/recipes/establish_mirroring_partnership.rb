@@ -24,13 +24,18 @@ backup_filename = "#{node[:db_mssql][:database_name]}.zip"
 backup_filepath = ::File.join(backup_dir,backup_filename)
 
 remote_hash = {
-  :db_sqlserver => node[:db_sqlserver],
-  :db_mssql => node[:db_mssql].merge({
+  :db_mssql => {
+    :database_name => node[:db_mssql][:database_name],
     :mirror_backup_file => backup_filename,
     :mirror_partner => node[:db_mssql][:nickname]
-  }),
-  :aws => node[:aws],
-  :s3 => node[:s3]
+  },
+  :aws => {
+    :access_key_id => node[:aws][:access_key_id],
+    :secret_access_key => node[:aws][:secret_access_key]
+  },
+  :s3 => {
+    :bucket_backups => node[:s3][:bucket_backups]
+  }
 }
 
 directory backup_dir do
@@ -86,8 +91,8 @@ aws_s3 "Upload database backup to S3" do
   s3_bucket node[:s3][:bucket_backups]
   s3_file "mirror/#{backup_filename}"
   file_path backup_filepath
-  action :put
   notifies :delete, resources(:directory => backup_dir), :immediately
+  action :put
 end
 
 Chef::Log.info("Sending the following inputs/attributes to the remote recipe")
