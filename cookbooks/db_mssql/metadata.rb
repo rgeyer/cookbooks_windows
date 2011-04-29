@@ -34,7 +34,7 @@ attribute "db_mssql/nickname",
 attribute "db_mssql/database_name",
   :display_name => "SQL Database Name",
   :description => "The name of the database to perform the action on",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
   :required => "required"
 
 attribute "db_mssql/mirror_partner",
@@ -43,11 +43,37 @@ attribute "db_mssql/mirror_partner",
   :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
   :required => "required"
 
+attribute "db_mssql/mirror_partner_ip",
+  :display_name => "SQL Mirror Partner IP/Hostname",
+  :description => "The ip address (or hostname) of the opposite side of the mirroring partnership.",
+  :recipes => ["db_mssql::initialize_mirror","db_mssql::initialize_principal"],
+  :required => "required"
+
+attribute "db_mssql/my_ip_for_mirroring_partner",
+  :display_name => "SQL Mirror My IP",
+  :description => "The ip address (or hostname) that partners connecting to this node should use.  This should be set to something like $env:EC2_PUBLIC_IPV4",
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::default"],
+  :required => "required"
+
 attribute "db_mssql/mirror_backup_file",
   :display_name => "SQL Mirror Backup File",
   :description => "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner",
   :recipes => ["db_mssql::initialize_mirror"],
   :required => "required"
+
+attribute "db_mssql/mirror_listen_port",
+  :display_name => "SQL Mirroring Endpoint Port",
+  :description => "The port that the mirroring endpoint will listen on",
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
+  :required => "optional",
+  :default => "5022"
+
+attribute "db_mssql/mirror_listen_ip",
+  :display_name => "SQL Mirror Endpoint Listener IP",
+  :description => "The IP address(es) that the mirroring endpoint will listen on.  Defaults to 'ALL' but any option defined in the 'TCP Protocol Option' section of (http://technet.microsoft.com/en-us/library/ms181591.aspx) is acceptable",
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :required => "optional",
+  :default => "ALL"
 
 # AWS copy/paste
 attribute "aws/access_key_id",
@@ -66,7 +92,7 @@ attribute "aws/secret_access_key",
 attribute "db_sqlserver/server_name",
   :display_name => "SQL Server instance network name",
   :description => "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
   :required => "required"
 
 attribute "db_sqlserver/backup/backup_file_name_format",

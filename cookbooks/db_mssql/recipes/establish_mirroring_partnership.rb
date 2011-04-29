@@ -28,7 +28,11 @@ remote_hash = {
   :db_mssql => {
     :database_name => node[:db_mssql][:database_name],
     :mirror_backup_file => backup_filename,
-    :mirror_partner => node[:db_mssql][:nickname]
+    :mirror_partner => node[:db_mssql][:nickname],
+    :mirror_partner_ip => node[:db_mssql][:my_ip_for_mirroring_partner],
+    :mirror_listen_port => node[:db_mssql][:mirror_listen_port]
+# Let the mirror server define it's own listen ip, since we might want it to only listen on a local IP, which we don't know here
+#    :mirror_listen_ip => node[:db_mssql][:mirror_listen_ip]
   },
   :aws => {
     :access_key_id => node[:aws][:access_key_id],
@@ -96,7 +100,20 @@ aws_s3 "Upload database backup to S3" do
   action :put
 end
 
-Chef::Log.info("Sending the following inputs/attributes to the remote recipe")
+powershell "Prepare the mirroring endpoint" do
+  parameters({
+    'SERVER' => node[:db_sqlserver][:server_name],
+    'ENDPOINT_NAME' => 'mirror_endpoint',
+    'LISTEN_PORT' => node[:db_mssql][:mirror_listen_port],
+    'LISTEN_IP' => node[:db_mssql][:mirror_listen_ip]
+  })
+
+  source_file_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'create_mirroring_endpoint.ps1'))
+
+  source_path(source_file_path)
+end
+
+Chef::Log.info("Sending the following inputs/attributes to db_mssql::initialize_mirror on the first server with the tag - mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}")
 Chef::Log.info(remote_hash.to_yaml)
 
 # Tell the mirror server to get all setup
@@ -104,4 +121,5 @@ remote_recipe "Initialize the mirror" do
   recipe "db_mssql::initialize_mirror"
   attributes(remote_hash)
   recipients_tags ["mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}"]
+  scope :single
 end

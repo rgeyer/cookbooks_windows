@@ -19,11 +19,14 @@
 
 require 'yaml'
 
-#Chef::Log.info("Received the following as input attributes")
-#Chef::Log.info("db_sqlserver <---->"+node[:db_sqlserver].to_yaml)
-#Chef::Log.info("db_mssql <---->"+node[:db_mssql].to_yaml)
-#Chef::Log.info("db_aws <---->"+node[:aws].to_yaml)
-#Chef::Log.info("db_s3 <---->"+node[:s3].to_yaml)
+remote_hash = {
+  :db_mssql => {
+    :database_name => node[:db_mssql][:database_name],
+    :mirror_partner => node[:db_mssql][:nickname],
+    :mirror_partner_ip => node[:db_mssql][:my_ip_for_mirroring_partner],
+    :mirror_listen_port => node[:db_mssql][:mirror_listen_port]
+  }
+}
 
 backup_dir = "C:/tmp/sql_mirror_backup/"
 
@@ -69,3 +72,36 @@ db_sqlserver_database node[:db_mssql][:database_name] do
   #notifies :delete, resources(:directory => backup_dir), :immediately
   action :restore
 end
+
+powershell "Prepare the mirroring endpoint" do
+  parameters({
+    'SERVER' => node[:db_sqlserver][:server_name],
+    'ENDPOINT_NAME' => 'mirror_endpoint',
+    'LISTEN_PORT' => node[:db_mssql][:mirror_listen_port],
+    'LISTEN_IP' => node[:db_mssql][:mirror_listen_ip]
+  })
+
+  source_file_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'create_mirroring_endpoint.ps1'))
+
+  source_path(source_file_path)
+end
+
+# Partner up with the primary/principal server
+db_sqlserver_database node[:db_mssql][:database_name] do
+  server_name node[:db_sqlserver][:server_name]
+  commands ["ALTER DATABASE #{node[:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:db_mssql][:mirror_partner_ip]}:#{node[:db_mssql][:mirror_listen_port]}'"]
+  action :run_command
+end
+
+Chef::Log.info("Sending the following inputs/attributes to db_mssql::initialize_principal on the first server with the tag - mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}")
+Chef::Log.info(remote_hash.to_yaml)
+
+# Tell the principal server to reciprocate and hook up with me!
+remote_recipe "Initialize the principal" do
+  recipe "db_mssql::initialize_principal"
+  attributes(remote_hash)
+  recipients_tags ["mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}"]
+  scope :single
+end
+
+right_link_tag "mssql_server:mirror_for_db=#{node[:db_mssql][:database_name]}"

@@ -16,3 +16,4 @@
 #  limitations under the License.
 
 right_link_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}"
+right_link_tag "mssql_server:my_ip_for_mirroring_partner=#{node[:db_mssql][:my_ip_for_mirroring_partner]}"
