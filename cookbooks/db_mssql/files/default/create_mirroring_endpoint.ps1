@@ -29,7 +29,7 @@ if($count -gt 0)
     if($endpoint_name -ne $env:ENDPOINT_NAME)
     {
         Write-Warning "Deleting all existing mirroring endpoints!"
-        $cmd.CommandText = "TRUNCATE TABLE master.sys.database_mirroring_endpoints"
+        $cmd.CommandText = "DROP ENDPOINT $endpoint_name"
         $cmd.ExecuteNonQuery()
     }
     else
@@ -54,3 +54,5 @@ CREATE ENDPOINT {0}
     FOR DATA_MIRRORING(ROLE=PARTNER, AUTHENTICATION=WINDOWS NEGOTIATE, ENCRYPTION=REQUIRED ALGORITHM RC4)
 "@ -f $env:ENDPOINT_NAME, $env:LISTEN_PORT, $env:LISTEN_IP
 $create_cmd.ExecuteNonQuery()
+
+Return 0
