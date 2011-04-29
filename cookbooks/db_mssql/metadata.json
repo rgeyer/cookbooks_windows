@@ -144,6 +144,19 @@
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
       "display_name": "Access Key Id"
     },
+    "db_mssql/mirror_backup_file": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::initialize_mirror"
+      ],
+      "description": "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner",
+      "display_name": "SQL Mirror Backup File"
+    },
     "db_sqlserver/backup/backups_to_keep": {
       "required": "required",
       "calculated": false,

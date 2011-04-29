@@ -17,6 +17,11 @@
 
 # Working from these steps http://weblogs.sqlteam.com/tarad/archive/2007/02/13/60091.aspx
 
+require 'yaml'
+
+Chef::Log.info("Received the following as input attributes")
+Chef::Log.info(node.to_yaml)
+
 backup_dir = "C:/tmp/sql_mirror_backup/"
 
 directory backup_dir do

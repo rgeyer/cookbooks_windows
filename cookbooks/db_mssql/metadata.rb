@@ -43,6 +43,12 @@ attribute "db_mssql/mirror_partner",
   :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
   :required => "required"
 
+attribute "db_mssql/mirror_backup_file",
+  :display_name => "SQL Mirror Backup File",
+  :description => "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner",
+  :recipes => ["db_mssql::initialize_mirror"],
+  :required => "required"
+
 # AWS copy/paste
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
