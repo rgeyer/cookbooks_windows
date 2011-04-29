@@ -80,7 +80,7 @@ else
 end
 
 # Upload the full backup and transaction log backup (in a zip file) to S3 for the mirror server to fetch
-rjg_aws_s3 "Upload database backup to S3" do
+aws_s3 "Upload database backup to S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:s3][:bucket_backups]

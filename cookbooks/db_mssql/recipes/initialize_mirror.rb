@@ -32,12 +32,12 @@ directory backup_dir do
   action :create
 end
 
-rjg_aws_s3 "Download backup from S3" do
+aws_s3 "Download backup from S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:s3][:bucket_backups]
   s3_file "mirror/#{node[:db_mssql][:mirror_backup_file]}"
-  file_path ::File.join(backup_dir, node[:db_mssql][:mirror_backup_file])
+  download_dir backup_dir
   action :get
 end
 
