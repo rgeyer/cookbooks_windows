@@ -20,10 +20,10 @@
 require 'yaml'
 
 Chef::Log.info("Received the following as input attributes")
-Chef::Log.info(node[:db_sqlserver].to_yaml)
-Chef::Log.info(node[:db_mssql].to_yaml)
-Chef::Log.info(node[:aws].to_yaml)
-Chef::Log.info(node[:s3].to_yaml)
+Chef::Log.info("db_sqlserver <---->"+node[:db_sqlserver].to_yaml)
+Chef::Log.info("db_mssql <---->"+node[:db_mssql].to_yaml)
+Chef::Log.info("db_aws <---->"+node[:aws].to_yaml)
+Chef::Log.info("db_s3 <---->"+node[:s3].to_yaml)
 
 backup_dir = "C:/tmp/sql_mirror_backup/"
 
