@@ -65,6 +65,7 @@ db_sqlserver_database node[:db_mssql][:database_name] do
   existing_backup_file_name_pattern node[:db_sqlserver][:backup][:existing_backup_file_name_pattern]
   server_name node[:db_sqlserver][:server_name]
   force_restore true
-  notifies :delete, resources(:directory => backup_dir), :immediately
+  restore_norecovery true
+  #notifies :delete, resources(:directory => backup_dir), :immediately
   action :restore
 end
