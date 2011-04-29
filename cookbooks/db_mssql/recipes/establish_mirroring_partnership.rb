@@ -54,8 +54,8 @@ $file_count - $backup_dir_contets.Count
 if($file_count -eq $null)
 {
   $file_to_move = $backup_dir_contents.FullName
-  Write-Output "Moving $file_to_move to $env:BACKUP_FILENAME
-  Move-Item "$file_to_move" "$env:BACKUP_FILENAME""
+  Write-Output "Moving $file_to_move to $env:BACKUP_FILENAME"
+  Move-Item "$file_to_move" "$env:BACKUP_FILENAME"
 }
 else
 {
