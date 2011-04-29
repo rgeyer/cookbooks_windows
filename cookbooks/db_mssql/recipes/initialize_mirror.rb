@@ -61,7 +61,7 @@ end
 
 db_sqlserver_database node[:db_mssql][:database_name] do
   machine_type = node[:kernel][:machine]
-  backup_dir_path ::File.join(backup_dir,"mirror")
+  backup_dir_path backup_dir
   existing_backup_file_name_pattern node[:db_sqlserver][:backup][:existing_backup_file_name_pattern]
   server_name node[:db_sqlserver][:server_name]
   force_restore true
