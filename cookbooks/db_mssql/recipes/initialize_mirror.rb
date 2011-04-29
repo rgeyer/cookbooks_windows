@@ -87,7 +87,7 @@ powershell "Prepare the mirroring endpoint" do
 end
 
 # Partner up with the primary/principal server
-db_sqlserver_database node[:db_mssql][:database_name] do
+db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do
   server_name node[:db_sqlserver][:server_name]
   commands ["ALTER DATABASE #{node[:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:db_mssql][:mirror_partner_ip]}:#{node[:db_mssql][:mirror_listen_port]}'"]
   action :run_command
