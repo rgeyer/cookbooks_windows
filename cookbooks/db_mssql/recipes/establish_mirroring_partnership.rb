@@ -52,6 +52,11 @@ if($backup_dir_contents.Count -eq 1)
   Write-Output "Moving $file_to_move to $env:BACKUP_FILENAME
   Move-Item "$file_to_move" "$env:BACKUP_FILENAME""
 }
+else
+{
+  Write-Output "Found $backup_dir_contents.Count items in $env:BACKUP_DIR - No files were moved!"
+  foreach($file in $backup_dir_contents) { Write-Output "Found $_" }
+}
   EOF
 
   source(ps_code)
