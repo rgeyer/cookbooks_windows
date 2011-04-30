@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+require 'yaml'
+
 send_hash = {
   :rl_tests => {
     :one => "1",
@@ -24,11 +26,12 @@ send_hash = {
   :baz => "nothing"
 }
 
-Chef::Log.info("Sending the following hash to rl_tests::remote_recipe_ping on the first server with the tag rl_tests:target=true")
+Chef::Log.info("Sending the following hash to rl_tests::remote_recipe_ping on the first server with the tag remote_recipe:target=true")
+Chef::Log.info(send_hash.to_yaml)
 
 remote_recipe "Ping" do
   recipe "rl_tests::remote_recipe_ping"
   attributes(send_hash)
-  recipients_tags ["rl_tests:target=true"]
+  recipients_tags ["remote_recipe:target=true"]
   scope :single
 end
