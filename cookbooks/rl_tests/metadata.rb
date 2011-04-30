@@ -9,3 +9,19 @@ recipe "rl_tests::remote_recipe_setup", "Run on two instances which you want to 
 recipe "rl_tests::remote_recipe_test", "Kicks off the whole test"
 recipe "rl_tests::remote_recipe_ping", "Called by rl_tests::remote_recipe_test, then calls rl_tests::remote_recipe_pong"
 recipe "rl_tests::remote_recipe_pong", "Called by rl_tests::remote_recipe_ping"
+
+attribute "rl_tests/one",
+  :required => "required",
+  :recipes => ["rl_tests::remote_recipe_ping","rl_tests::remote_recipe_pong"]
+
+attribute "rl_tests/two",
+  :required => "optional",
+  :recipes => ["rl_tests::remote_recipe_ping","rl_tests::remote_recipe_pong"]
+
+attribute "foo",
+  :required => "optional",
+  :recipes => ["rl_tests::remote_recipe_ping","rl_tests::remote_recipe_pong"]
+
+attribute "baz",
+  :required => "required",
+  :recipes => ["rl_tests::remote_recipe_ping","rl_tests::remote_recipe_pong"]

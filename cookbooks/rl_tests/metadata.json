@@ -19,6 +19,54 @@
   "groupings": {
   },
   "attributes": {
+    "baz": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rl_tests::remote_recipe_ping",
+        "rl_tests::remote_recipe_pong"
+      ]
+    },
+    "rl_tests/two": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rl_tests::remote_recipe_ping",
+        "rl_tests::remote_recipe_pong"
+      ]
+    },
+    "foo": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rl_tests::remote_recipe_ping",
+        "rl_tests::remote_recipe_pong"
+      ]
+    },
+    "rl_tests/one": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rl_tests::remote_recipe_ping",
+        "rl_tests::remote_recipe_pong"
+      ]
+    }
   },
   "recommendations": {
   },

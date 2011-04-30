@@ -56,7 +56,7 @@ Chef::Log.info("Sending the following hash to rl_tests::remote_recipe_ping on th
 Chef::Log.info(send_hash.to_yaml)
 
 remote_recipe "Ping" do
-  recipe "rl_tests::remote_recipe_ping"
+  recipe "rl_tests::remote_recipe_pong"
   attributes(send_hash)
   recipients node[:remote_recipe][:from]
   scope :single
