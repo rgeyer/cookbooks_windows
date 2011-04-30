@@ -29,6 +29,6 @@ Chef::Log.info("Sending the following hash to rl_tests::remote_recipe_ping on th
 remote_recipe "Ping" do
   recipe "rl_tests::remote_recipe_ping"
   attributes(send_hash)
-  recipient_tags ["rl_tests:target=true"]
+  recipients_tags ["rl_tests:target=true"]
   scope :single
 end
