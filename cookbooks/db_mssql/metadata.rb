@@ -131,9 +131,3 @@ attribute "db_sqlserver/backup/backups_to_keep",
   :description => "Defines the number of old backups to keep. Ex: 30",
   :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
   :required => "required"
-
-attribute "s3/bucket_backups",
-  :display_name => "Bucket to store backups",
-  :description => "The name of the S3 bucket. Ex: production-bucket-backup",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
-  :required => "required"

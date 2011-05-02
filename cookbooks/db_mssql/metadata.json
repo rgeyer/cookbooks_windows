@@ -79,20 +79,6 @@
       "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD",
       "display_name": "SQL Server instance network name"
     },
-    "s3/bucket_backups": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror"
-      ],
-      "description": "The name of the S3 bucket. Ex: production-bucket-backup",
-      "display_name": "Bucket to store backups"
-    },
     "db_mssql/partner_certificate": {
       "required": "optional",
       "calculated": false,

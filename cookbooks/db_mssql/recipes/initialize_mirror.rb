@@ -21,11 +21,9 @@ require 'yaml'
 
 backup_dir = "C:/tmp/sql_mirror_backup/"
 
-partner_login = "#{node[:db_mssql][:mirror_partner]}_mirror_login"
-partner_user = "#{node[:db_mssql][:mirror_partner]}_mirror_user"
-partner_cert_name = "#{node[:db_mssql][:mirror_partner]}_mirror_cert"
-partner_cert_filename = "#{partner_cert_name}.cer"
-partner_cert_filepath = ::File.join(backup_dir, partner_cert_filename)
+# TODO: This is duplicated in db_mssql::establish_mirroring_partnership, in db_mssql::initialize_mirror, and in the outbound endpoint definition.  May want to fix that
+cert_name = "#{node[:db_mssql][:nickname]}_mirror_cert"
+cert_filename = "#{cert_name}.cer"
 
 remote_hash = {
   :db_mssql => {
@@ -105,44 +103,6 @@ db_mssql_enable_inbound_certificate_auth_mirror_endpoint "Enable inbound mirrori
   aws_secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:db_mssql][:mirror_bucket]
 end
-
-# Create user and import certificate for inbound connections
-aws_s3 "Download partner certificate from S3" do
-  access_key_id node[:aws][:access_key_id]
-  secret_access_key node[:aws][:secret_access_key]
-  s3_bucket node[:db_mssql][:mirror_bucket]
-  s3_file node[:db_mssql][:partner_certificate]
-  file_path partner_cert_filepath
-  action :get
-end
-
-db_mssql_login partner_login do
-  password node[:db_mssql][:mirror_password]
-  overwrite true
-  action :create
-end
-
-db_mssql_user partner_user do
-  login partner_login
-  overwrite true
-  action :create
-end
-
-db_mssql_certificate partner_cert_name do
-  cert_name partner_cert_name
-  overwrite true
-  import_on_create true
-  username partner_user
-  filename partner_cert_filepath
-  notifies :delete, resources(:directory => backup_dir), :immediately
-  action :create
-end
-
-db_sqlserver_database "master" do
-  server_name node[:db_sqlserver][:server_name]
-  commands ["GRANT CONNECT ON ENDPOINT::mirror_endpoint TO [#{partner_user}]"]
-end
-# /Create user and import certificate for inbound connections
 
 # Partner up with the primary/principal server
 db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do

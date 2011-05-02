@@ -24,6 +24,10 @@ backup_dir = "C:/tmp/sql_mirror_backup/"
 backup_filename = "#{node[:db_mssql][:database_name]}.zip"
 backup_filepath = ::File.join(backup_dir,backup_filename)
 
+# TODO: This is duplicated in db_mssql::establish_mirroring_partnership, in db_mssql::initialize_mirror, and in the outbound endpoint definition.  May want to fix that
+cert_name = "#{node[:db_mssql][:nickname]}_mirror_cert"
+cert_filename = "#{cert_name}.cer"
+
 remote_hash = {
   :db_mssql => {
     :database_name => node[:db_mssql][:database_name],
