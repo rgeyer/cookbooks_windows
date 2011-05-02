@@ -22,7 +22,6 @@ function Sql-ExecuteScalar([System.Data.SqlClient.SqlConnection]$server, [System
   $cmd.CommandType = [System.Data.CommandType]::Text
   $cmd.CommandText = $query
   $result = $cmd.ExecuteScalar()
-  $cmd.Close();
   return $result
 }
 
@@ -37,6 +36,5 @@ function Sql-ExecuteNonQuery([System.Data.SqlClient.SqlConnection]$server, [Syst
   $cmd.CommandType = [System.Data.CommandType]::Text
   $cmd.CommandText = $query
   $result = $cmd.ExecuteNonQuery()
-  $cmd.Close();
   return $result
 }
