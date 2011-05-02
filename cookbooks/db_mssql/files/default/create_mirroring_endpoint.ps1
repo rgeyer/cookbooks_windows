@@ -1,7 +1,4 @@
-[System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SMO") | Out-Null
-[System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SmoExtended") | Out-Null
-[Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.ConnectionInfo") | Out-Null
-[Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.SmoEnum") | Out-Null
+Include 'C:/powershell_scripts/sql/functions.ps1'
 
 # For debugging/local testing purposes
 #$env:SERVER = "localhost"
@@ -14,23 +11,17 @@
 $conn_string = "Server=$env:SERVER; Integrated Security=SSPI; Database=Master"
 $server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
 $server.Open()
-$cmd = New-Object "System.Data.SqlClient.SqlCommand"
-$cmd.CommandType = [System.Data.CommandType]::Text
-$cmd.CommandText = "SELECT COUNT(*) FROM master.sys.database_mirroring_endpoints"
-$cmd.Connection = $server
-$count = $cmd.ExecuteScalar()
+$count = Sql-ExecuteScalar $server "SELECT COUNT(*) FROM master.sys.database_mirroring_endpoints"
 
 if($count -gt 0)
 {
     # Assuming that there's only one, since there should be only one per server
     # TODO: need to check for the other parameters (authentication, listen port/ip, encryption, etc) before deciding to overwrite
-    $cmd.CommandText = "SELECT name FROM master.sys.database_mirroring_endpoints"
-    $endpoint_name = $cmd.ExecuteScalar()
+    $endpoint_name = Sql-ExecuteScalar "SELECT name FROM master.sys.database_mirroring_endpoints"
     if($endpoint_name -ne $env:ENDPOINT_NAME)
     {
         Write-Warning "Deleting all existing mirroring endpoints!"
-        $cmd.CommandText = "DROP ENDPOINT $endpoint_name"
-        $cmd.ExecuteNonQuery()
+        Sql-ExecuteNonQuery $server "DROP ENDPOINT $endpoint_name"
     }
     else
     {
@@ -42,17 +33,12 @@ if($count -gt 0)
 # We'll only arrive here if there are were no endpoints, or the endpoint(s) that existed weren't the one requested
 
 # TODO: Be more specific about authentication and encryption options. Probably want to create a mirroring service account
-$server.Close()
-$server.Open()
-$create_cmd = New-Object "System.Data.SqlClient.SqlCommand"
-$create_cmd.CommandType = [System.Data.CommandType]::Text
-$create_cmd.Connection = $server
-$create_cmd.CommandText = @"
+$query = @"
 CREATE ENDPOINT {0}
     STATE=STARTED
     AS TCP(LISTENER_PORT={1}, LISTENER_IP={2})
-    FOR DATA_MIRRORING(ROLE=PARTNER, AUTHENTICATION=WINDOWS NEGOTIATE, ENCRYPTION=REQUIRED ALGORITHM RC4)
-"@ -f $env:ENDPOINT_NAME, $env:LISTEN_PORT, $env:LISTEN_IP
-$create_cmd.ExecuteNonQuery()
+    FOR DATA_MIRRORING(ROLE=PARTNER, AUTHENTICATION=CERTIFICATE {3})
+"@ -f $env:ENDPOINT_NAME, $env:LISTEN_PORT, $env:LISTEN_IP, $env:CERT_NAME
+Sql-ExecuteNonQuery $server $query
 
 Return 0

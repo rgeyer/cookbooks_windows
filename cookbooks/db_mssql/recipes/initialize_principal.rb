@@ -15,6 +15,15 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+db_mssql_enable_inbound_certificate_auth_mirror_endpoint "Enable inbound mirroring endpoint" do
+  partner_certificate node[:db_mssql][:partner_certificate]
+  mirror_partner node[:db_mssql][:mirror_partner]
+  mirror_password node[:db_mssql][:mirror_password]
+  aws_access_key_id node[:aws][:access_key_id]
+  aws_secret_access_key node[:aws][:secret_access_key]
+  s3_bucket node[:db_mssql][:mirror_bucket]
+end
+
 # Partner up with the mirror server
 # TODO: This is currently setting up a "high performance" mirror (asynchronous) because we're setting safety and witness to off.  Might want to provide
 # other options?

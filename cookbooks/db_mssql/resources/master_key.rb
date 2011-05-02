@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: db_mssql
-# Recipe:: default
+# Powershell Resource:: master_key
 #
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,14 +15,14 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-right_link_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}"
-right_link_tag "mssql_server:my_ip_for_mirroring_partner=#{node[:db_mssql][:my_ip_for_mirroring_partner]}"
+actions :create, :backup, :restore, :drop
 
-directory 'C:/powershell_scripts/sql/' do
-  recursive true
-  action :create
-end
+# Required for everything
+attribute :password, :kind_of => [String], :required => true
+attribute :server_network_name, :kind_of => [String], :required => true
 
-remote_file 'C:/powershell_scripts/sql/functions.ps1' do
-  source "functions.ps1"
-end
+# Optional for create & restore
+attribute :overwrite, :equal_to => [true, false], :default => false
+
+# Required for backup & restore
+attribute :filename, :kind_of => [String]

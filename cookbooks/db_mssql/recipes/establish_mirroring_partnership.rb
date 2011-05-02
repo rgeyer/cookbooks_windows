@@ -27,19 +27,18 @@ backup_filepath = ::File.join(backup_dir,backup_filename)
 remote_hash = {
   :db_mssql => {
     :database_name => node[:db_mssql][:database_name],
+    :mirror_bucket => node[:db_mssql][:mirror_bucket],
     :mirror_backup_file => backup_filename,
     :mirror_partner => node[:db_mssql][:nickname],
     :mirror_partner_ip => node[:db_mssql][:my_ip_for_mirroring_partner],
-    :mirror_listen_port => node[:db_mssql][:mirror_listen_port]
+    :mirror_listen_port => node[:db_mssql][:mirror_listen_port],
+    :partner_certificate => cert_filename
 # Let the mirror server define it's own listen ip, since we might want it to only listen on a local IP, which we don't know here
 #    :mirror_listen_ip => node[:db_mssql][:mirror_listen_ip]
   },
   :aws => {
     :access_key_id => node[:aws][:access_key_id],
     :secret_access_key => node[:aws][:secret_access_key]
-  },
-  :s3 => {
-    :bucket_backups => node[:s3][:bucket_backups]
   }
 }
 
@@ -93,24 +92,21 @@ end
 aws_s3 "Upload database backup to S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
-  s3_bucket node[:s3][:bucket_backups]
-  s3_file "mirror/#{backup_filename}"
+  s3_bucket node[:db_mssql][:mirror_bucket]
+  s3_file backup_filename
   file_path backup_filepath
-  notifies :delete, resources(:directory => backup_dir), :immediately
   action :put
 end
 
-powershell "Prepare the mirroring endpoint" do
-  parameters({
-    'SERVER' => node[:db_sqlserver][:server_name],
-    'ENDPOINT_NAME' => 'mirror_endpoint',
-    'LISTEN_PORT' => node[:db_mssql][:mirror_listen_port],
-    'LISTEN_IP' => node[:db_mssql][:mirror_listen_ip]
-  })
-
-  source_file_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'create_mirroring_endpoint.ps1'))
-
-  source_path(source_file_path)
+db_mssql_enable_outbound_certificate_auth_mirror_endpoint "Enable outbound mirroring endpoint" do
+  server_name node[:db_sqlserver][:server_name]
+  nickname node[:db_mssql][:nickname]
+  mirror_password node[:db_mssql][:mirror_password]
+  aws_access_key_id node[:aws][:access_key_id]
+  aws_secret_access_key node[:aws][:secret_access_key]
+  s3_bucket node[:db_mssql][:mirror_bucket]
+  mirror_listen_port node[:db_mssql][:mirror_listen_port]
+  mirror_listen_ip node[:db_mssql][:mirror_listen_ip]
 end
 
 Chef::Log.info("Sending the following inputs/attributes to db_mssql::initialize_mirror on the first server with the tag - mssql_server:nickname=#{node[:db_mssql][:mirror_partner]}")

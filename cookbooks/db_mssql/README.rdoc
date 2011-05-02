@@ -1,0 +1,5 @@
+Setting up certificate based authentication for mirroring
+http://msdn.microsoft.com/en-us/library/ms191140.aspx
+
+ALTER DATABASE command docs, useful for determining which mirroring mode to use (high safety, high performance, etc)
+http://msdn.microsoft.com/en-us/library/bb522476.aspx

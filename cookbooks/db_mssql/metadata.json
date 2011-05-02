@@ -93,8 +93,22 @@
       "description": "The name of the S3 bucket. Ex: production-bucket-backup",
       "display_name": "Bucket to store backups"
     },
+    "db_mssql/partner_certificate": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::initialize_mirror",
+        "db_mssql::initialize_principal"
+      ],
+      "description": "The filename (key) of the file in the S3 bucket defined in db_mssql/mirror_bucket which will be used for communication with a mirroring partner",
+      "display_name": "SQL Mirroring Partner Cert"
+    },
     "db_mssql/mirror_partner_ip": {
-      "required": "required",
+      "required": "optional",
       "calculated": false,
       "choice": [
 
@@ -190,8 +204,22 @@
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
       "display_name": "Access Key Id"
     },
-    "db_mssql/mirror_backup_file": {
+    "db_mssql/mirror_bucket": {
       "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::establish_mirroring_partnership",
+        "db_mssql::initialize_mirror"
+      ],
+      "description": "An S3 bucket used to exchange data between partners in a mirroring relationship",
+      "display_name": "SQL Mirroring S3 Bucket"
+    },
+    "db_mssql/mirror_backup_file": {
+      "required": "optional",
       "calculated": false,
       "choice": [
 
@@ -246,8 +274,22 @@
       "description": "The nickname (set in db_mssql::default, defined by db_mssql/nickname) of the other server in the mirroring partnership",
       "display_name": "SQL Mirror Partner nickname"
     },
-    "db_mssql/database_name": {
+    "db_mssql/mirror_password": {
       "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::establish_mirroring_partnership",
+        "db_mssql::initialize_mirror"
+      ],
+      "description": "A password used to create a user and certificate for the mirroring partnership",
+      "display_name": "SQL Mirroring Password"
+    },
+    "db_mssql/database_name": {
+      "required": "optional",
       "calculated": false,
       "choice": [
 
@@ -277,5 +319,5 @@
   "name": "db_mssql",
   "suggestions": {
   },
-  "long_description": ""
+  "long_description": "Setting up certificate based authentication for mirroring\nhttp://msdn.microsoft.com/en-us/library/ms191140.aspx\n\nALTER DATABASE command docs, useful for determining which mirroring mode to use (high safety, high performance, etc)\nhttp://msdn.microsoft.com/en-us/library/bb522476.aspx"
 }

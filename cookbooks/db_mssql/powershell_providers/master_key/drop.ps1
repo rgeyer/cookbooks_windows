@@ -1,7 +1,3 @@
-#
-# Cookbook Name:: db_mssql
-# Recipe:: default
-#
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -15,14 +11,14 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-right_link_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}"
-right_link_tag "mssql_server:my_ip_for_mirroring_partner=#{node[:db_mssql][:my_ip_for_mirroring_partner]}"
+# http://technet.microsoft.com/en-us/library/ms174387.aspx
 
-directory 'C:/powershell_scripts/sql/' do
-  recursive true
-  action :create
-end
+$password = Get-NewResource password
+$server_network_name = Get-NewResource server_network_name
+$filename = Get-NewResource filename
 
-remote_file 'C:/powershell_scripts/sql/functions.ps1' do
-  source "functions.ps1"
-end
+$conn_string = "Server=$server_network_name; Integrated Security=SSPI; Database=Master"
+$server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
+$server.Open()
+
+Sql-ExecuteNonQuery $server "DROP MASTER KEY"
