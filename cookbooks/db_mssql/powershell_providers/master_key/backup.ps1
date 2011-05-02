@@ -19,7 +19,7 @@ $password = Get-NewResource password
 $server_network_name = Get-NewResource server_network_name
 $filename = Get-NewResource filename
 
-$conn_string = "Server=$server_network_name; Integrated Security=SSPI; Database=Master"
+$conn_string = "server=$server_network_name;database=master,trusted_connection=true"
 $server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
 $server.Open()
 
