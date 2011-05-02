@@ -20,5 +20,5 @@ if(!(Test-Path $filename))
 }
 else
 {
-  Include $filename
+  . $filename
 }
