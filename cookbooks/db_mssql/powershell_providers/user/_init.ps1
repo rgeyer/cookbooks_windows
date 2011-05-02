@@ -18,3 +18,7 @@ if(!(Test-Path $filename))
   Write-Error "The db_mssql Powershell script library was not installed.  Try running the db_mssql::default recipe then try again"
   exit 100
 }
+else
+{
+  Include $filename
+}

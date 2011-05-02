@@ -25,13 +25,13 @@ db_mssql_enable_inbound_certificate_auth_mirror_endpoint "Enable inbound mirrori
 end
 
 # Partner up with the mirror server
-# TODO: This is currently setting up a "high performance" mirror (asynchronous) because we're setting safety and witness to off.  Might want to provide
+# TODO: This is currently setting up a "high safety" mirror (synchronous) because we're setting safety to full and witness to off.  Might want to provide
 # other options?
 db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do
   server_name node[:db_sqlserver][:server_name]
   commands [
     "ALTER DATABASE #{node[:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:db_mssql][:mirror_partner_ip]}:#{node[:db_mssql][:mirror_listen_port]}'",
-    "ALTER DATABASE #{node[:db_mssql][:database_name]} SET SAFETY OFF",
+    "ALTER DATABASE #{node[:db_mssql][:database_name]} SET SAFETY FULL",
     "ALTER DATABASE #{node[:db_mssql][:database_name]} SET WITNESS OFF"
   ]
   action :run_command
