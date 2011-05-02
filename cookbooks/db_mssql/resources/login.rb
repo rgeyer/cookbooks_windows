@@ -18,5 +18,6 @@
 actions :create
 
 attribute :login, :kind_of => [String], :required => true, :name_attribute => true
+attribute :server_network_name, :kind_of => [String], :required => true
 attribute :password, :kind_of => [String], :required => true
 attribute :overwrite, :equal_to => [true, false], :default => false

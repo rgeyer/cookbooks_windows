@@ -18,6 +18,7 @@
 actions :create, :backup, :drop
 
 attribute :cert_name, :kind_of => [String], :required => true, :name_attribute => true
+attribute :server_network_name, :kind_of => [String], :required => true
 attribute :overwrite, :equal_to => [true, false], :default => false
 attribute :import_on_create, :equal_to => [true, false], :default => false
 attribute :username, :kind_of => [String]

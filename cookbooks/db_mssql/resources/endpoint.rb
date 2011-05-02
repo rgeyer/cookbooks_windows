@@ -16,3 +16,5 @@
 #  limitations under the License.
 
 actions :create
+
+attribute :server_network_name, :kind_of => [String], :required => true
