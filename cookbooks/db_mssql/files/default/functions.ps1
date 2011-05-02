@@ -17,7 +17,8 @@ function Sql-ExecuteScalar([System.Data.SqlClient.SqlConnection]$server, [System
   {
     $server.Open()
   }
-  $cmd = New-Object "System.Data.SqlClient.SqlCommand" $server
+  $cmd = New-Object "System.Data.SqlClient.SqlCommand"
+  $cmd.Connection = $server
   $cmd.CommandType = [System.Data.CommandType]::Text
   $cmd.CommandText = $query
   $result = $cmd.ExecuteScalar()
@@ -31,7 +32,8 @@ function Sql-ExecuteNonQuery([System.Data.SqlClient.SqlConnection]$server, [Syst
   {
     $server.Open()
   }
-  $cmd = New-Object "System.Data.SqlClient.SqlCommand" $server
+  $cmd = New-Object "System.Data.SqlClient.SqlCommand"
+  $cmd.Connection = $server
   $cmd.CommandType = [System.Data.CommandType]::Text
   $cmd.CommandText = $query
   $result = $cmd.ExecuteNonQuery()
