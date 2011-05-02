@@ -13,6 +13,8 @@
 
 # http://technet.microsoft.com/en-us/library/ms179906.aspx
 
+. 'C:/powershell_scripts/sql/functions.ps1'
+
 $name = Get-NewResource name
 
 $conn_string = "Server=$server_network_name; Integrated Security=SSPI; Database=Master"

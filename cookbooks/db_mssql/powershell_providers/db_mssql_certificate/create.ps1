@@ -13,6 +13,8 @@
 
 # http://technet.microsoft.com/en-us/library/ms187798.aspx
 
+. 'C:/powershell_scripts/sql/functions.ps1'
+
 $name = Get-NewResource name
 $overwrite = Get-NewResource overwrite
 $username = Get-NewResource username

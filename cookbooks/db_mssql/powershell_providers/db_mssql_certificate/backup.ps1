@@ -13,6 +13,8 @@
 
 # http://technet.microsoft.com/en-us/library/ms178578.aspx
 
+. 'C:/powershell_scripts/sql/functions.ps1'
+
 $name = Get-NewResource name
 $filename = Get-NewResource filename
 

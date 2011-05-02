@@ -13,6 +13,8 @@
 
 # http://technet.microsoft.com/en-us/library/ms174387.aspx
 
+. 'C:/powershell_scripts/sql/functions.ps1'
+
 $password = Get-NewResource password
 $server_network_name = Get-NewResource server_network_name
 $filename = Get-NewResource filename
