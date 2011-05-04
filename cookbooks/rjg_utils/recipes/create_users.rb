@@ -44,7 +44,7 @@ powershell "Create users" do
   ps_code = <<-EOF
 $users = Get-ChefNode users
 
-Write-Output $users
+Write-Output "The users object looks like $users"
 
 foreach($user in $users)
 {
@@ -71,4 +71,6 @@ foreach($user in $users)
   }
 }
   EOF
+
+  source(ps_code)
 end
