@@ -49,7 +49,7 @@ Write-Output "The users object looks like $users"
 foreach($user in $users)
 {
   $username = $user['user']
-  $password = $user['pass]
+  $password = $user['pass']
   Write-Output "Creating or updating user $username"
 
   $objUser = $null
