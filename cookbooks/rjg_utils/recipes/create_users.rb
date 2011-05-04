@@ -43,6 +43,7 @@ end
 powershell "Create users" do
   ps_code = <<-EOF
 $users = Get-ChefNode users
+$hostname = Get-ChefNode rjg_utils, hostname
 
 Write-Output "The users object looks like $users"
 
@@ -53,14 +54,14 @@ foreach($user in $users)
   Write-Output "Creating or updating user $username"
 
   $objUser = $null
-  if(!([ADSI]::Exists("WinNT://localhost/$username")))
+  if(!([ADSI]::Exists("WinNT://$hostname/$username")))
   {
-    $objOu = [ADSI]"WinNT://localhost"
+    $objOu = [ADSI]"WinNT://$hostname"
     $objUser = $objOU.Create("User", $username)
   }
   else
   {
-    $objUser = [ADSI]"WinNT://localhost/$username, user"
+    $objUser = [ADSI]"WinNT://$hostname/$username, user"
   }
 
 
@@ -71,14 +72,14 @@ foreach($user in $users)
 
   foreach($group in $user['groups'])
   {
-    if(!([ADSI]::Exists("WinNT://localhost/$group")))
+    if(!([ADSI]::Exists("WinNT://$hostname/$group")))
     {
       Write-Warning "The group ($group) did not exist, the user ($username) was not added"
     }
     else
     {
-      $objGroup = [ADSI]("WinNT://localhost/$group,group")
-      $objGroup.add("WinNT://localhost/$username")
+      $objGroup = [ADSI]("WinNT://$hostname/$group,group")
+      $objGroup.add("WinNT://$hostname/$username")
     }
   }
 }
