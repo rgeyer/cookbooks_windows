@@ -43,6 +43,9 @@ end
 powershell "Create users" do
   ps_code = <<-EOF
 $users = Get-ChefNode users
+
+Write-Output $users
+
 foreach($user in $users)
 {
   Write-Output "Creating or updating user $user.user"
