@@ -48,25 +48,36 @@ Write-Output "The users object looks like $users"
 
 foreach($user in $users)
 {
-  Write-Output "Creating or updating user $user.user"
+  $username = $user['user']
+  $password = $user['pass]
+  Write-Output "Creating or updating user $username"
 
   $objUser = $null
-  if(!([ADSI]::Exists("WinNT://localhost/$user.user")))
+  if(!([ADSI]::Exists("WinNT://localhost/$username")))
   {
     $objOu = [ADSI]"WinNT://localhost"
-    $objUser = $objOU.Create("User", $user.user)
+    $objUser = $objOU.Create("User", $username)
   }
   else
   {
-    $objUser = [ADSI]"WinNT://localhost/$user.user, user"
+    $objUser = [ADSI]"WinNT://localhost/$username, user"
   }
 
 
-  $objUser.psbase.invoke("SetPassword", $user.pass)
+  $objUser.psbase.invoke("SetPassword", $password)
   $objUser.psbase.CommitChanges()
 
   foreach($group in $user.groups)
   {
+    if(!([ADSI]::Exists("WinNT://localhost/$group")))
+    {
+      Write-Warning "The group ($group) did not exist, the user ($username) was not added"
+    }
+    else
+    {
+      $objGroup = [ADSI]("WinNT://localhost/$group")
+      $objGroup.PSBase.Invoke("Add",$objUser.PSBase.Path)
+    }
     Write-Output "Here's a group named $group"
   }
 }
