@@ -75,10 +75,9 @@ foreach($user in $users)
     }
     else
     {
-      $objGroup = [ADSI]("WinNT://localhost/$group")
-      $objGroup.PSBase.Invoke("Add",$objUser.PSBase.Path)
+      $objGroup = [ADSI]("WinNT://localhost/$group,group")
+      $objGroup.add("WinNT://localhost/$username")
     }
-    Write-Output "Here's a group named $group"
   }
 }
   EOF
