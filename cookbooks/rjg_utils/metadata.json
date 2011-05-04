@@ -17,7 +17,8 @@
     "rjg_utils::default": "Just for experimentation right now",
     "rjg_utils::install_scom_agent": "Installs the Microsoft System Center Operations Manager (SCOM) agent using settings from active directory",
     "rjg_utils::reboot": "Reboots the system",
-    "rjg_utils::set_hostname": "Sets the system's hostname to match the nickname in the RightScale dashboard"
+    "rjg_utils::set_hostname": "Sets the system's hostname to match the nickname in the RightScale dashboard",
+    "rjg_utils::create_users": "Creates or updates a set of users defined in a yaml file stored in an S3 bucket"
   },
   "maintainer": "Ryan J. Geyer",
   "replacing": {
@@ -133,6 +134,19 @@
       "description": "The full S3 key to a zip file containing a logon.bgi file, and any files which it depends upon (I.E. like images)",
       "display_name": "BGInfo Zip S3 file"
     },
+    "rjg_utils/users_secret_access_key": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::create_users"
+      ],
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+      "display_name": "Secret Access Key"
+    },
     "rjg_utils/hostname": {
       "required": "required",
       "calculated": false,
@@ -186,6 +200,45 @@
       ],
       "description": "A boolean indicating if a zip file containing a custom bginfo configuration should be download from S3.  If true rjg_utils/bginfo_s3_file and rjg_utils/bginfo_s3_bucket must be set",
       "display_name": "Custom BGInfo?"
+    },
+    "rjg_utils/users_access_key_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::create_users"
+      ],
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
+    },
+    "rjg_utils/users_file": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::create_users"
+      ],
+      "description": "A yaml file containing an array of objects describing local users to be created on the system.",
+      "display_name": "Users YAML File"
+    },
+    "rjg_utils/users_s3_bucket": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::create_users"
+      ],
+      "description": "The S3 bucket containing a yaml file describing local users to create",
+      "display_name": "Users S3 bucket"
     },
     "rjg_utils/features_and_roles_list": {
       "required": "optional",

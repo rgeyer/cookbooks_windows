@@ -18,6 +18,7 @@ recipe "rjg_utils::install_roles_and_features", "Installs one or many Windows 20
 recipe "rjg_utils::reboot", "Reboots the system"
 recipe "rjg_utils::install_scom_agent", "Installs the Microsoft System Center Operations Manager (SCOM) agent using settings from active directory"
 recipe "rjg_utils::determine_architecture", "Sets some node attributes based on the processor architecture of the node (x86 or x64)"
+recipe "rjg_utils::create_users", "Creates or updates a set of users defined in a yaml file stored in an S3 bucket"
 
 attribute "rjg_utils/dns_list",
   :display_name => "A comma separated list of IPV4 addresses of DNS servers",
@@ -66,6 +67,30 @@ attribute "rjg_utils/scom_share_subdir",
   :description => "The subdirectory of the share (if any) which contains the SCOM agent install files.  If your SCOM Share UNC Path is \\fileserver\SCOMShare, and this is InstallationFiles\Agent the full UNC path will be \\fileserver\SCOMShare\InstallationFiles\Agent",
   :recipes => ["rjg_utils::install_scom_agent"],
   :default => ""
+
+attribute "rjg_utils/users_s3_bucket",
+  :display_name => "Users S3 bucket",
+  :description => "The S3 bucket containing a yaml file describing local users to create",
+  :recipes => ["rjg_utils::create_users"],
+  :required => "required"
+
+attribute "rjg_utils/users_file",
+  :display_name => "Users YAML File",
+  :description => "A yaml file containing an array of objects describing local users to be created on the system.",
+  :recipes => ["rjg_utils::create_users"],
+  :required => "required"
+
+attribute "rjg_utils/users_access_key_id",
+  :display_name => "Access Key Id",
+  :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+  :recipes => ["rjg_utils::create_users"],
+  :required => "required"
+
+attribute "rjg_utils/users_secret_access_key",
+  :display_name => "Secret Access Key",
+  :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+  :recipes => ["rjg_utils::create_users"],
+  :required => "required"
 
 attribute "rjg_utils/custom_bginfo",
   :display_name => "Custom BGInfo?",
