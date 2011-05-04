@@ -64,10 +64,12 @@ foreach($user in $users)
   }
 
 
-  $objUser.psbase.invoke("SetPassword", $password)
-  $objUser.psbase.CommitChanges()
+  $objUser.SetPassword($password)
+  $objUser.SetInfo()
+  $objUser.Description = $username
+  $objUser.SetInfo()
 
-  foreach($group in $user.groups)
+  foreach($group in $user['groups'])
   {
     if(!([ADSI]::Exists("WinNT://localhost/$group")))
     {
