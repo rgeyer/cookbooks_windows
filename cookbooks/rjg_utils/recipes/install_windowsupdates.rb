@@ -31,7 +31,7 @@ $FileReport = $true
 $To = "rgeyer@its.jnj.com","me@ryangeyer.com"
 $From = "RightScriptAutomation@mentorsolutions.com"
 $SMTPServer = "ip-10-162-123-79.us-west-1.compute.internal"
-$FileReportPath = "\\domain.local\IT\Windows Update Reports\"
+$FileReportPath = "C:\\"
 $AutoRestart = $true
 $AutoRestartIfPending = $true
 
