@@ -29,19 +29,6 @@
   "groupings": {
   },
   "attributes": {
-    "rjg_utils/rs_uuid": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "rjg_utils::default"
-      ],
-      "description": "Just set this to the RS_INSTANCE_UUID ENV value",
-      "display_name": "ENV RS_INSTANCE_UUID Value"
-    },
     "rjg_utils/bginfo_s3_bucket": {
       "required": "optional",
       "calculated": false,

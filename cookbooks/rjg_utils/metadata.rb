@@ -38,12 +38,6 @@ attribute "rjg_utils/features_and_roles_list",
   :recipes => [ "rjg_utils::install_roles_and_features" ],
   :default => ""
 
-attribute "rjg_utils/rs_uuid",
-  :display_name => "ENV RS_INSTANCE_UUID Value",
-  :description => "Just set this to the RS_INSTANCE_UUID ENV value",
-  :required => true,
-  :recipes => ["rjg_utils::default"]
-
 attribute "rjg_utils/scom_share_user",
   :display_name => "SCOM Share Username",
   :description => "The username of a user who has permissions to access the share which contains the SCOM agent.",
