@@ -27,7 +27,7 @@ powershell "Download and install all pending Windows Updates" do
 
 #Variables to customize
 $EmailReport = $false
-$FileReport = $true
+$FileReport = $false
 $To = "rgeyer@its.jnj.com","me@ryangeyer.com"
 $From = "RightScriptAutomation@mentorsolutions.com"
 $SMTPServer = "ip-10-162-123-79.us-west-1.compute.internal"
