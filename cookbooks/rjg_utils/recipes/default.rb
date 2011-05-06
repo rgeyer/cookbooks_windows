@@ -23,6 +23,6 @@ directory 'C:/powershell_scripts/rjg_utils/' do
   action :create
 end
 
-remote_file 'C:/powershell_scripts/sql/functions.ps1' do
+remote_file 'C:/powershell_scripts/rjg_utils/functions.ps1' do
   source "functions.ps1"
 end
