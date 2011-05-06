@@ -89,7 +89,7 @@ foreach($user in $users)
       else
       {
         $groupMembers = Local-Group-Members $group $hostname
-        if($groupMembers -notcontains $userusername)
+        if($groupMembers -notcontains $username)
         {
           $objGroup = [ADSI]("WinNT://$hostname/$group,group")
           $objGroup.add("WinNT://$hostname/$username")
