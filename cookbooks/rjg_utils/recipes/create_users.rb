@@ -88,7 +88,7 @@ foreach($user in $users)
       }
       else
       {
-        $groupMembers = Local-Group-Members($group)
+        $groupMembers = Local-Group-Members $group $hostname
         if($groupMembers -notcontains $userusername)
         {
           $objGroup = [ADSI]("WinNT://$hostname/$group,group")
