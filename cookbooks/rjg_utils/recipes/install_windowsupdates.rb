@@ -26,8 +26,8 @@ powershell "Download and install all pending Windows Updates" do
 #Requires -Version 2.0
 
 #Variables to customize
-$EmailReport = $true
-$FileReport = $false
+$EmailReport = $false
+$FileReport = $true
 $To = "rgeyer@its.jnj.com","me@ryangeyer.com"
 $From = "RightScriptAutomation@mentorsolutions.com"
 $SMTPServer = "ip-10-162-123-79.us-west-1.compute.internal"
@@ -101,7 +101,7 @@ $Criteria="IsInstalled=0 and Type='Software'"
 $resultcode= @{0="Not Started"; 1="In Progress"; 2="Succeeded"; 3="Succeeded With Errors"; 4="Failed" ; 5="Aborted" }
 $Result= $downloader.Download()
 
-if (($Result.Hresult -eq 0) –and (($result.resultCode –eq 2) -or ($result.resultCode –eq 3)) ) {
+if (($Result.Hresult -eq 0) ï¿½and (($result.resultCode ï¿½eq 2) -or ($result.resultCode ï¿½eq 3)) ) {
        $updatesToInstall = New-object -com "Microsoft.Update.UpdateColl"
        $Updates | where {$_.isdownloaded} | foreach-Object {$updatesToInstall.Add($_) | out-null
 }
