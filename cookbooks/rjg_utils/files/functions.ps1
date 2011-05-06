@@ -1,7 +1,3 @@
-#
-# Cookbook Name:: rjg_utils
-# Recipe:: create_users
-#
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -15,14 +11,14 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-# a good post on adding users and groups using powershell
-#http://blogs.technet.com/b/heyscriptingguy/archive/2010/11/25/use-powershell-to-add-local-users-to-local-groups.aspx
+function Local-Group-Members([String]$groupName, [String]$serverName)
+{
+  $grp = [ADSI]"WinNT://$serverName/$groupName, group"
+  $retVal = @()
 
-directory 'C:/powershell_scripts/rjg_utils/' do
-  recursive true
-  action :create
-end
-
-remote_file 'C:/powershell_scripts/sql/functions.ps1' do
-  source "functions.ps1"
-end
+  foreach($member in $grp.psbase.Invoke("Members"))
+  {
+    $retVal += $member.GetType().InvokeMember("Name","GetProperty",$null,$member,$null)
+  }
+  return $retVal
+}

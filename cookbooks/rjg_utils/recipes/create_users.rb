@@ -42,10 +42,20 @@ end
 
 powershell "Create users" do
   ps_code = <<-EOF
+$filename = 'C:/powershell_scripts/rjg_utils/functions.ps1'
+
+if(!(Test-Path $filename))
+{
+  Write-Error "The rjg_utils Powershell script library was not installed.  Try running the rjg_utils::default recipe then try again"
+  exit 100
+}
+else
+{
+  . $filename
+}
+
 $users = Get-ChefNode users
 $hostname = Get-ChefNode rjg_utils, hostname
-
-Write-Output "The users object looks like $users"
 
 foreach($user in $users)
 {
@@ -72,18 +82,27 @@ foreach($user in $users)
 
   foreach($group in $user['groups'])
   {
-    if(!([ADSI]::Exists("WinNT://$hostname/$group")))
-    {
-      Write-Warning "The group ($group) did not exist, the user ($username) was not added"
-    }
-    else
-    {
-      $objGroup = [ADSI]("WinNT://$hostname/$group,group")
-      $objGroup.add("WinNT://$hostname/$username")
-    }
+      if(!([ADSI]::Exists("WinNT://$hostname/$group")))
+      {
+        Write-Warning "The group ($group) did not exist, the user ($username) was not added"
+      }
+      else
+      {
+        $groupMembers = Local-Group-Members($group)
+        if($groupMembers -notcontains $userusername)
+        {
+          $objGroup = [ADSI]("WinNT://$hostname/$group,group")
+          $objGroup.add("WinNT://$hostname/$username")
+        }
+      }
   }
 }
   EOF
 
   source(ps_code)
+end
+
+directory users_dir do
+  recursive true
+  action :delete
 end

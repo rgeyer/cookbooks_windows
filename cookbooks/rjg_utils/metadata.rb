@@ -8,7 +8,7 @@ version "0.0.1"
 
 provides "rjg_utils_set_dns(dns_list)"
 
-recipe "rjg_utils::default", "Just for experimentation right now"
+recipe "rjg_utils::default", "Adds a powershell function library to the C:\\ drive for use by other recipes"
 recipe "rjg_utils::set_dns", "Sets the DNS search list ot the provided CSV list"
 recipe "rjg_utils::set_hostname", "Sets the system's hostname to match the nickname in the RightScale dashboard"
 recipe "rjg_utils::install_bginfo", "Installs the BGInfo tool and sets it to run on each user login"

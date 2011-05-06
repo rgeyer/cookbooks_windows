@@ -14,7 +14,7 @@
     "rjg_utils::install_roles_and_features": "Installs one or many Windows 2008 roles and features using the rjg_utils::features_and_roles_list as input.",
     "rjg_utils::install_windowsupdates": "Downloads and installs all pending windows updates for the server",
     "rjg_utils::install_bginfo": "Installs the BGInfo tool and sets it to run on each user login",
-    "rjg_utils::default": "Just for experimentation right now",
+    "rjg_utils::default": "Adds a powershell function library to the C:\\ drive for use by other recipes",
     "rjg_utils::install_scom_agent": "Installs the Microsoft System Center Operations Manager (SCOM) agent using settings from active directory",
     "rjg_utils::reboot": "Reboots the system",
     "rjg_utils::set_hostname": "Sets the system's hostname to match the nickname in the RightScale dashboard",
