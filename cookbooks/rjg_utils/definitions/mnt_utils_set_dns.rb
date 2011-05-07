@@ -9,10 +9,9 @@ define :rjg_utils_set_dns, :dns_list => nil, :dns_suffix_list => nil do
       [array]$dnsAry = @($NIC.DNSServerSearchOrder[-1])
       $dnsAry = $env:DNS_LIST.split(',') + $dnsAry
       $NIC.SetDNSServerSearchOrder($dnsAry)
-
-      $suffixAry = $env:SUFFIX_LIST.split(',')
-      $NIC.DNSDomainSuffixSearchOrder($suffixAry)
     }
+    # Setting the suffixes is a static method call
+    invoke-wmimethod -Class win32_networkadapterconfiguration -Name setDNSSuffixSearchOrder -ArgumentList @($env:SUFFIX_LIST.split(',')), $null
 POWERSHELL_SCRIPT
 
     source(powershell_script)
