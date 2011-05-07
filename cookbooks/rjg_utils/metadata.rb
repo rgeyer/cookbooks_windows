@@ -21,8 +21,14 @@ recipe "rjg_utils::determine_architecture", "Sets some node attributes based on 
 recipe "rjg_utils::create_users", "Creates or updates a set of users defined in a yaml file stored in an S3 bucket"
 
 attribute "rjg_utils/dns_list",
-  :display_name => "A comma separated list of IPV4 addresses of DNS servers",
+  :display_name => "DNS Server List",
   :description => "A comma separated list of IPV4 addresses of DNS servers",
+  :recipes => [ "rjg_utils::set_dns" ],
+  :required => "required"
+
+attribute "rjg_utils/dns_suffix_list",
+  :display_name => "DNS Suffix List",
+  :description => "A comma separated list of DNS suffixes",
   :recipes => [ "rjg_utils::set_dns" ],
   :required => "required"
 

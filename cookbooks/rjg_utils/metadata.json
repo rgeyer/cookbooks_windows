@@ -53,7 +53,7 @@
         "rjg_utils::set_dns"
       ],
       "description": "A comma separated list of IPV4 addresses of DNS servers",
-      "display_name": "A comma separated list of IPV4 addresses of DNS servers"
+      "display_name": "DNS Server List"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -147,6 +147,19 @@
       ],
       "description": "The desired hostname for the instance",
       "display_name": "Hostname"
+    },
+    "rjg_utils/dns_suffix_list": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::set_dns"
+      ],
+      "description": "A comma separated list of DNS suffixes",
+      "display_name": "DNS Suffix List"
     },
     "rjg_utils/scom_share_unc": {
       "required": "required",
