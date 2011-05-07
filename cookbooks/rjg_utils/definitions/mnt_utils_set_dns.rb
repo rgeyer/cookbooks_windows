@@ -11,7 +11,7 @@ define :rjg_utils_set_dns, :dns_list => nil, :dns_suffix_list => nil do
       $NIC.SetDNSServerSearchOrder($dnsAry)
 
       $suffixAry = $env:SUFFIX_LIST.split(',')
-      $NIC.SetDNSSuffixSearchOrder($suffixAry)
+      $NIC.DNSDomainSuffixSearchOrder($suffixAry)
     }
 POWERSHELL_SCRIPT
 
