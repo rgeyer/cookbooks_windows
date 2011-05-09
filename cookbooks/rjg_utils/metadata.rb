@@ -35,7 +35,7 @@ attribute "rjg_utils/dns_suffix_list",
 attribute "rjg_utils/hostname",
   :display_name => "Hostname",
   :description => "The desired hostname for the instance",
-  :recipes => [ "rjg_utils::set_hostname","rjg_utils::create_users"],
+  :recipes => [ "rjg_utils::set_hostname"],
   :required => "required"
 
 attribute "rjg_utils/features_and_roles_list",

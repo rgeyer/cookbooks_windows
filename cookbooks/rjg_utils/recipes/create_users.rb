@@ -55,7 +55,7 @@ else
 }
 
 $users = Get-ChefNode users
-$hostname = Get-ChefNode rjg_utils, hostname
+$hostname = $env:COMPUTERNAME
 
 foreach($user in $users)
 {

@@ -142,8 +142,7 @@
       ],
       "type": "string",
       "recipes": [
-        "rjg_utils::set_hostname",
-        "rjg_utils::create_users"
+        "rjg_utils::set_hostname"
       ],
       "description": "The desired hostname for the instance",
       "display_name": "Hostname"
