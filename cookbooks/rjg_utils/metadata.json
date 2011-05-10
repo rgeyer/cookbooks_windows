@@ -94,6 +94,20 @@
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
       "display_name": "Access Key Id"
     },
+    "rjg_utils/workgroup": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "WORKGROUP",
+      "type": "string",
+      "recipes": [
+        "rjg_utils::set_hostname"
+      ],
+      "description": "The desired workgroup for the instance",
+      "display_name": "Workgroup"
+    },
     "rjg_utils/scom_share_subdir": {
       "required": "optional",
       "calculated": false,

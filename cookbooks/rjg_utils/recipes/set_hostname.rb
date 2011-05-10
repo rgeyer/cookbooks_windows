@@ -3,8 +3,11 @@ unless node[:rjg_utils_hostname_set]
     action :nothing
   end
 
-  powershell "Set the computer hostname to the same as the RightScale nickname" do
-    parameters({'HOSTNAME' => node[:rjg_utils][:hostname]})
+  powershell "Set the computer hostname and workgroup name" do
+    parameters({
+      'HOSTNAME' => node[:rjg_utils][:hostname],
+      'WORKGROUP' => node[:rjg_utils][:workgroup]
+    })
 
     powershell_script = <<'EOF'
 # The regex cleans things up so all is well.
@@ -37,6 +40,7 @@ if( $NewComputerName.CompareTo($CurrentComputerName) -eq 0 ) {
 
   $computerinfo = Get-WmiObject -class win32_computersystem
   $computerinfo.Rename($NewComputerName)
+  $computerinfo.JoinDomainOrWorkgroup($env:WORKGROUP)
 
   set-chefnode rjg_utils_hostname_reboot -BooleanValue $true
   set-chefnode rjg_utils_hostname_set -BooleanValue $true

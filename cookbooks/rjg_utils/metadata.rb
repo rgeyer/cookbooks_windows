@@ -38,6 +38,13 @@ attribute "rjg_utils/hostname",
   :recipes => [ "rjg_utils::set_hostname"],
   :required => "required"
 
+attribute "rjg_utils/workgroup",
+  :display_name => "Workgroup",
+  :description => "The desired workgroup for the instance",
+  :recipes => [ "rjg_utils::set_hostname"],
+  :required => "optional",
+  :default => "WORKGROUP"
+
 attribute "rjg_utils/features_and_roles_list",
   :display_name => "Windows 2008 Features & Roles",
   :description => "A CSV list of features and roles to install.  To view the list of available roles and features run 'servermanagercmd -query' on a Windows 2008 server instance",
