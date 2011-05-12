@@ -90,6 +90,6 @@ EOF
 end
 
 rjg_utils_system "Reboot System" do
-  node_attr "rjg_utils_hostname_reboot"
+  node_attribute "rjg_utils_hostname_reboot"
   action :conditional_reboot
 end
