@@ -11,12 +11,13 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-function Do-Reboot()
-{
-  $computer = get-content env:computername
-  $system = Get-WmiObject Win32_OperatingSystem -ComputerName $computer
-  $system.psbase.Scope.Options.EnablePrivileges = $true
-  #redirecting the output to $null to avoid script failure
-  $system.Reboot() > $null
-  Write-Output "Reboot signal sent!"
-}
+# TODO: This is duplicated in both conditional_reboot and reboot..  This definition isn't available to those scripts for some reason
+#function Do-Reboot()
+#{
+#  $computer = get-content env:computername
+#  $system = Get-WmiObject Win32_OperatingSystem -ComputerName $computer
+#  $system.psbase.Scope.Options.EnablePrivileges = $true
+#  #redirecting the output to $null to avoid script failure
+#  $system.Reboot() > $null
+#  Write-Output "Reboot signal sent!"
+#}
