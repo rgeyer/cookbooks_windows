@@ -11,4 +11,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-Do-Reboot
+$node_attr = Get-NewResource node_attribute
+$do_reboot = Get-ChefNode $node_attr
+
+if($do_reboot)
+{
+  Do-Reboot
+}
