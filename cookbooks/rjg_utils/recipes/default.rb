@@ -32,7 +32,7 @@ end
 # Personal preference, but it's handy on most systems
 powershell "Show extensions for known file types" do
   pscode = <<'EOF'
-$reg_path = "Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+$reg_path = "Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 Set-ItemProperty -Path $reg_path -Name HideFileExt -Value 0 -Type dword
 EOF
   source(pscode)
