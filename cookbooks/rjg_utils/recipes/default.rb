@@ -30,10 +30,11 @@ rjg_utils_system "Reboot System" do
 end
 
 # Personal preference, but it's handy on most systems
+# TODO: Of course this doesn't exist for the RightScale user who doesn't have an interactive shell, gotta find another way.
 powershell "Show extensions for known file types" do
   pscode = <<'EOF'
 $reg_path = "Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-Set-ItemProperty -Path $reg_path -Name HideFileExt -Value 0 -Type dword
+#Set-ItemProperty -Path $reg_path -Name HideFileExt -Value 0 -Type dword
 EOF
   source(pscode)
 end
