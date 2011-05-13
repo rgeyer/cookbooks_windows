@@ -40,7 +40,7 @@ if ($appcmd_exists)
   {
     Write-Output "Session state server already installed and configured, skipping"
   }
-  Set-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters" -Name AllowRemoteConnection -Value 1 -Type dword
+  Set-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\aspnet_state\\Parameters -Name AllowRemoteConnection -Value 1 -Type dword
 }
 else
 {
