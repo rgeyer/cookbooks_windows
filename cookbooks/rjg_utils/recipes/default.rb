@@ -24,6 +24,7 @@ remote_file 'C:/powershell_scripts/rjg_utils/functions.ps1' do
   source "functions.ps1"
 end
 
+# TODO: This concept was a bust, we might want to retry it later.
 #rjg_utils_system "Reboot System" do
 #  node_attribute "rjg_utils_reboot"
 #  action :nothing
@@ -33,8 +34,21 @@ end
 # TODO: Of course this doesn't exist for the RightScale user who doesn't have an interactive shell, gotta find another way.
 powershell "Show extensions for known file types" do
   pscode = <<'EOF'
-$reg_path = "Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-#Set-ItemProperty -Path $reg_path -Name HideFileExt -Value 0 -Type dword
+$reg_path = "Registry::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+$name = "HideFileExt"
+
+Get-ItemProperty -Path $reg_path -Name $name -ErrorAction SilentlyContinue | Out-Null
+$prop = $?
+if(!$prop)
+{
+  Write-Output "Registry value for hiding file extensions doesn't exist, creating it..."
+  New-ItemProperty -Path $reg_path -Name $name -Value 0 -Type dword
+}
+else
+{
+  Write-Output "Registry value for hiding file extensions exists, setting it to false..."
+  Set-ItemProperty -Path $reg_path -Name $name -Value 0 -Type dword
+}
 EOF
-  source(pscode)
+  #source(pscode)
 end
