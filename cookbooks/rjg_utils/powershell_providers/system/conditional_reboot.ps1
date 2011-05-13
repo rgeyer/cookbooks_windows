@@ -24,6 +24,8 @@ function Do-Reboot()
 $node_attr = Get-NewResource node_attribute
 $do_reboot = Get-ChefNode $node_attr
 
+Write-Output "Checked $node_attr for conditional reboot.  Value was $do_reboot"
+
 if($do_reboot)
 {
   Do-Reboot

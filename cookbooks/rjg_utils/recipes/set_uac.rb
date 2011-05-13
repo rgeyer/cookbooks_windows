@@ -45,7 +45,8 @@ else
 {
   Write-Output "UAC was already set to $enable_uac_node_attr.  Skipping..."
 }
-Set-ChefNode rjg_utils_reboot -BooleanValue ($rjg_utils_reboot -or $needsReboot)
+$setval = $rjg_utils_reboot -or $needsReboot
+Set-ChefNode rjg_utils_reboot -BooleanValue $setval
 EOF
 
   source(pscode)

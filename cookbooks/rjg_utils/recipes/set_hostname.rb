@@ -85,8 +85,8 @@ if(!$needsReboot)
 {
   write-output("The hostname was already set to $NewComputerName.$NewWorkgroupName, hostname was not changed")
 }
-
-Set-ChefNode rjg_utils_reboot -BooleanValue ($rjg_utils_reboot -or $needsReboot)
+$setval = $rjg_utils_reboot -or $needsReboot
+Set-ChefNode rjg_utils_reboot -BooleanValue $setval
 EOF
 
   source(powershell_script)
