@@ -17,7 +17,7 @@
 
 include_recipe "rjg_utils::install_roles_and_features"
 
-node[:rjg_utils][:features_and_roles_ary] << "Web-Asp-Net" unless node[:rjg_utils][:features_and_roles_array].include?("Web-Asp-Net")
+rjg_utils_add_role_or_feature "Web-Asp-Net"
 
 powershell "Configure session state server" do
   ps_code = <<-EOF
