@@ -15,9 +15,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-# a good post on adding users and groups using powershell
-#http://blogs.technet.com/b/heyscriptingguy/archive/2010/11/25/use-powershell-to-add-local-users-to-local-groups.aspx
-
 directory 'C:/powershell_scripts/rjg_utils/' do
   recursive true
   action :create
@@ -30,4 +27,13 @@ end
 rjg_utils_system "Reboot System" do
   node_attribute "rjg_utils_reboot"
   action :nothing
+end
+
+# Personal preference, but it's handy on most systems
+powershell "Show extensions for known file types" do
+  pscode = <<'EOF'
+$reg_path = "Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+Set-ItemProperty -Path $reg_path -Name HideFileExt -Value 0 -Type dword
+EOF
+  source(pscode)
 end
