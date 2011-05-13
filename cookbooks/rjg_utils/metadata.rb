@@ -6,11 +6,15 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 name "rjg_utils"
 version "0.0.1"
 
+# This is the rightscale utilities https://github.com/rightscale/cookbooks_public_windows/tree/master/cookbooks/utilities
+depends "utilities"
+depends "rjg_aws"
+
 provides "rjg_utils_set_dns(dns_list)"
 
 recipe "rjg_utils::default", "Adds a powershell function library to the C:\\ drive for use by other recipes"
 recipe "rjg_utils::set_dns", "Sets the DNS search list ot the provided CSV list"
-recipe "rjg_utils::set_hostname", "Sets the system's hostname to match the nickname in the RightScale dashboard"
+recipe "rjg_utils::set_hostname", "Sets the system's hostname and workgroup"
 recipe "rjg_utils::install_bginfo", "Installs the BGInfo tool and sets it to run on each user login"
 recipe "rjg_utils::helloworld", "A recipe which should always work, used as a control test"
 recipe "rjg_utils::install_windowsupdates", "Downloads and installs all pending windows updates for the server"

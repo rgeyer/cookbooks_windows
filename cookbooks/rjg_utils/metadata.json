@@ -18,7 +18,7 @@
     "rjg_utils::set_uac": "Enables or disables User Access Control (UAC)",
     "rjg_utils::install_scom_agent": "Installs the Microsoft System Center Operations Manager (SCOM) agent using settings from active directory",
     "rjg_utils::reboot": "Reboots the system",
-    "rjg_utils::set_hostname": "Sets the system's hostname to match the nickname in the RightScale dashboard",
+    "rjg_utils::set_hostname": "Sets the system's hostname and workgroup",
     "rjg_utils::create_users": "Creates or updates a set of users defined in a yaml file stored in an S3 bucket"
   },
   "maintainer": "Ryan J. Geyer",
@@ -287,6 +287,12 @@
   "recommendations": {
   },
   "dependencies": {
+    "utilities": [
+
+    ],
+    "rjg_aws": [
+
+    ]
   },
   "platforms": {
   },
