@@ -15,7 +15,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-include_recipe "rjg_utils::default"
+rjg_utils_system "Reboot System For Hostname" do
+  node_attribute "rjg_utils_hostname_reboot"
+  action :nothing
+end
 
 powershell "Set the computer hostname and workgroup name" do
   parameters({
@@ -38,7 +41,6 @@ function Windows-NameCleanse([String]$name, [Boolean]$allowDot=$false)
   return $NewName
 }
 
-$rjg_utils_reboot = Get-ChefNode rjg_utils_reboot
 $needsReboot = $false
 
 $NewComputerName = Windows-NameCleanse $env:HOSTNAME
@@ -85,10 +87,11 @@ if(!$needsReboot)
 {
   write-output("The hostname was already set to $NewComputerName.$NewWorkgroupName, hostname was not changed")
 }
-$setval = $rjg_utils_reboot -or $needsReboot
-Set-ChefNode rjg_utils_reboot -BooleanValue $setval
+#$setval = $rjg_utils_reboot -or $needsReboot
+#Set-ChefNode rjg_utils_reboot -BooleanValue $setval
+Set-ChefNode rjg_utils_hostname_reboot -BooleanValue $needsReboot
 EOF
 
   source(powershell_script)
-  notifies :conditional_reboot, resources(:rjg_utils_system => "Reboot System"), :delayed
+  notifies :conditional_reboot, resources(:rjg_utils_system => "Reboot System For Hostname"), :delayed
 end

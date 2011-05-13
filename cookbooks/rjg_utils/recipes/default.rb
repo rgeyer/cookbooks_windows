@@ -24,10 +24,10 @@ remote_file 'C:/powershell_scripts/rjg_utils/functions.ps1' do
   source "functions.ps1"
 end
 
-rjg_utils_system "Reboot System" do
-  node_attribute "rjg_utils_reboot"
-  action :nothing
-end
+#rjg_utils_system "Reboot System" do
+#  node_attribute "rjg_utils_reboot"
+#  action :nothing
+#end
 
 # Personal preference, but it's handy on most systems
 # TODO: Of course this doesn't exist for the RightScale user who doesn't have an interactive shell, gotta find another way.
