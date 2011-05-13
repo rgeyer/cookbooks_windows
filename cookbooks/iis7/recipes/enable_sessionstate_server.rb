@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "rjg_utils::install_roles_and_features"
+
 node[:rjg_utils][:features_and_roles_ary] << "Web-Asp-Net" unless node[:rjg_utils][:features_and_roles_array].include?("Web-Asp-Net")
 
 powershell "Configure session state server" do
@@ -38,6 +40,7 @@ if ($appcmd_exists)
   {
     Write-Output "Session state server already installed and configured, skipping"
   }
+  Set-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters" -Name AllowRemoteConnection -Value 1 -Type dword
 }
 else
 {
