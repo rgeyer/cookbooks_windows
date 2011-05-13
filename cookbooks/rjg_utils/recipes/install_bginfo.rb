@@ -15,6 +15,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "utilities::install_7zip"
+# In RightScale you need to actually include rjg_aws::default in the boot phase or the attributes won't be set
+include_recipe "rjg_aws::default"
+
 programFilesPath = "C:\\Program Files"
 
 bginfo_path = "#{programFilesPath}\\BGInfo"
