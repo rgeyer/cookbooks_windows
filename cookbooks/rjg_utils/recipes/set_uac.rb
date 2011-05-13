@@ -49,7 +49,7 @@ else
 }
 #$setval = $rjg_utils_reboot -or $needsReboot
 #Set-ChefNode rjg_utils_reboot -BooleanValue $setval
-Set-ChevNode rjg_utils_uac_reboot -BooleanValue $needsReboot
+Set-ChefNode rjg_utils_uac_reboot -BooleanValue $needsReboot
 EOF
 
   source(pscode)
