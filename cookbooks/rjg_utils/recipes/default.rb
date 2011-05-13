@@ -26,3 +26,8 @@ end
 remote_file 'C:/powershell_scripts/rjg_utils/functions.ps1' do
   source "functions.ps1"
 end
+
+rjg_utils_system "Reboot System" do
+  node_attribute "rjg_utils_reboot"
+  action :nothing
+end

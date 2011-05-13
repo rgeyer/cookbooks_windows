@@ -15,10 +15,13 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "rjg_utils::default"
+
 powershell "Set UAC" do
   pscode = <<'EOF'
 $enable_uac_node_attr = Get-ChefNode rjg_utils, enable_uac
 $reg_path = "Registry::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\policies\system"
+$rjg_utils_reboot = Get-ChefNode rjg_utils_reboot
 $needsReboot = $false
 
 if($enable_uac_node_attr -eq "true")
@@ -42,13 +45,9 @@ else
 {
   Write-Output "UAC was already set to $enable_uac_node_attr.  Skipping..."
 }
-Set-ChefNode rjg_utils_uac_reboot -BooleanValue $needsReboot
+Set-ChefNode rjg_utils_reboot -BooleanValue $rjg_utils_reboot | $needsReboot
 EOF
 
   source(pscode)
-end
-
-rjg_utils_system "Reboot System For UAC" do
-  node_attribute "rjg_utils_uac_reboot"
-  action :conditional_reboot
+  notifies :conditional_reboot, resources(:rjg_utils_system => "Reboot System"), :delayed
 end
