@@ -19,6 +19,7 @@ recipe "rjg_utils::reboot", "Reboots the system"
 recipe "rjg_utils::install_scom_agent", "Installs the Microsoft System Center Operations Manager (SCOM) agent using settings from active directory"
 recipe "rjg_utils::determine_architecture", "Sets some node attributes based on the processor architecture of the node (x86 or x64)"
 recipe "rjg_utils::create_users", "Creates or updates a set of users defined in a yaml file stored in an S3 bucket"
+recipe "rjg_utils::set_uac", "Enables or disables User Access Control (UAC)"
 
 attribute "rjg_utils/dns_list",
   :display_name => "DNS Server List",
@@ -117,6 +118,13 @@ attribute "rjg_utils/bginfo_s3_bucket",
   :description => "The S3 bucket containing rjg_utils/bginfo_s3_file",
   :recipes => ["rjg_utils::install_bginfo"],
   :required => "optional"
+
+attribute "rjg_utils/enable_uac",
+  :display_name => "Enable UAC?",
+  :description => "A boolean indicating if UAC should be enabled",
+  :required => "required",
+  :choice => ["true", "false"],
+  :recipes => ["rjg_utils::set_uac"]
 
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
