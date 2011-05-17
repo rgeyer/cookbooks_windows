@@ -1,24 +1,11 @@
 {
-  "conflicting": {
+  "dependencies": {
+    "rjg_aws": ">= 0.0.0",
+    "skeme": ">= 0.0.0",
+    "db_sqlserver": ">= 0.0.0"
   },
-  "license": "\n                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an example is provided in the Appendix below).\n\n      \"Derivative Works\" shall mean any work, whether in Source or Object\n      form, that is based on (or derived from) the Work and for which the\n      editorial revisions, annotations, elaborations, or other modifications\n      represent, as a whole, an original work of authorship. For the purposes\n      of this License, Derivative Works shall not include works that remain\n      separable from, or merely link (or bind by name) to the interfaces of,\n      the Work and Derivative Works thereof.\n\n      \"Contribution\" shall mean any work of authorship, including\n      the original version of the Work and any modifications or additions\n      to that Work or Derivative Works thereof, that is intentionally\n      submitted to Licensor for inclusion in the Work by the copyright owner\n      or by an individual or Legal Entity authorized to submit on behalf of\n      the copyright owner. For the purposes of this definition, \"submitted\"\n      means any form of electronic, verbal, or written communication sent\n      to the Licensor or its representatives, including but not limited to\n      communication on electronic mailing lists, source code control systems,\n      and issue tracking systems that are managed by, or on behalf of, the\n      Licensor for the purpose of discussing and improving the Work, but\n      excluding communication that is conspicuously marked or otherwise\n      designated in writing by the copyright owner as \"Not a Contribution.\"\n\n      \"Contributor\" shall mean Licensor and any individual or Legal Entity\n      on behalf of whom a Contribution has been received by Licensor and\n      subsequently incorporated within the Work.\n\n   2. Grant of Copyright License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.\n\n   3. Grant of Patent License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      (except as stated in this section) patent license to make, have made,\n      use, offer to sell, sell, import, and otherwise transfer the Work,\n      where such license applies only to those patent claims licensable\n      by such Contributor that are necessarily infringed by their\n      Contribution(s) alone or by combination of their Contribution(s)\n      with the Work to which such Contribution(s) was submitted. If You\n      institute patent litigation against any entity (including a\n      cross-claim or counterclaim in a lawsuit) alleging that the Work\n      or a Contribution incorporated within the Work constitutes direct\n      or contributory patent infringement, then any patent licenses\n      granted to You under this License for that Work shall terminate\n      as of the date such litigation is filed.\n\n   4. Redistribution. You may reproduce and distribute copies of the\n      Work or Derivative Works thereof in any medium, with or without\n      modifications, and in Source or Object form, provided that You\n      meet the following conditions:\n\n      (a) You must give any other recipients of the Work or\n          Derivative Works a copy of this License; and\n\n      (b) You must cause any modified files to carry prominent notices\n          stating that You changed the files; and\n\n      (c) You must retain, in the Source form of any Derivative Works\n          that You distribute, all copyright, patent, trademark, and\n          attribution notices from the Source form of the Work,\n          excluding those notices that do not pertain to any part of\n          the Derivative Works; and\n\n      (d) If the Work includes a \"NOTICE\" text file as part of its\n          distribution, then any Derivative Works that You distribute must\n          include a readable copy of the attribution notices contained\n          within such NOTICE file, excluding those notices that do not\n          pertain to any part of the Derivative Works, in at least one\n          of the following places: within a NOTICE text file distributed\n          as part of the Derivative Works; within the Source form or\n          documentation, if provided along with the Derivative Works; or,\n          within a display generated by the Derivative Works, if and\n          wherever such third-party notices normally appear. The contents\n          of the NOTICE file are for informational purposes only and\n          do not modify the License. You may add Your own attribution\n          notices within Derivative Works that You distribute, alongside\n          or as an addendum to the NOTICE text from the Work, provided\n          that such additional attribution notices cannot be construed\n          as modifying the License.\n\n      You may add Your own copyright statement to Your modifications and\n      may provide additional or different license terms and conditions\n      for use, reproduction, or distribution of Your modifications, or\n      for any such Derivative Works as a whole, provided Your use,\n      reproduction, and distribution of the Work otherwise complies with\n      the conditions stated in this License.\n\n   5. Submission of Contributions. Unless You explicitly state otherwise,\n      any Contribution intentionally submitted for inclusion in the Work\n      by You to the Licensor shall be under the terms and conditions of\n      this License, without any additional terms or conditions.\n      Notwithstanding the above, nothing herein shall supersede or modify\n      the terms of any separate license agreement you may have executed\n      with Licensor regarding such Contributions.\n\n   6. Trademarks. This License does not grant permission to use the trade\n      names, trademarks, service marks, or product names of the Licensor,\n      except as required for reasonable and customary use in describing the\n      origin of the Work and reproducing the content of the NOTICE file.\n\n   7. Disclaimer of Warranty. Unless required by applicable law or\n      agreed to in writing, Licensor provides the Work (and each\n      Contributor provides its Contributions) on an \"AS IS\" BASIS,\n      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n      implied, including, without limitation, any warranties or conditions\n      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n      PARTICULAR PURPOSE. You are solely responsible for determining the\n      appropriateness of using or redistributing the Work and assume any\n      risks associated with Your exercise of permissions under this License.\n\n   8. Limitation of Liability. In no event and under no legal theory,\n      whether in tort (including negligence), contract, or otherwise,\n      unless required by applicable law (such as deliberate and grossly\n      negligent acts) or agreed to in writing, shall any Contributor be\n      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.\n\n   9. Accepting Warranty or Additional Liability. While redistributing\n      the Work or Derivative Works thereof, You may choose to offer,\n      and charge a fee for, acceptance of support, warranty, indemnity,\n      or other liability obligations and/or rights consistent with this\n      License. However, in accepting such obligations, You may act only\n      on Your own behalf and on Your sole responsibility, not on behalf\n      of any other Contributor, and only if You agree to indemnify,\n      defend, and hold each Contributor harmless for any liability\n      incurred by, or claims asserted against, such Contributor by reason\n      of your accepting any such warranty or additional liability.\n\n   END OF TERMS AND CONDITIONS\n\n   APPENDIX: How to apply the Apache License to your work.\n\n      To apply the Apache License to your work, attach the following\n      boilerplate notice, with the fields enclosed by brackets \"[]\"\n      replaced with your own identifying information. (Don't include\n      the brackets!)  The text should be enclosed in the appropriate\n      comment syntax for the file format. We also recommend that a\n      file or class name and description of purpose be included on the\n      same \"printed page\" as the copyright notice for easier\n      identification within third-party archives.\n\n   Copyright [yyyy] [name of copyright owner]\n\n   Licensed under the Apache License, Version 2.0 (the \"License\");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \"AS IS\" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.\n",
-  "providing": {
-  },
-  "recipes": {
-    "db_mssql::initialize_mirror": "Downloads a full, and transaction log backup (created by the principal server) from S3.  The backup is restored with NORECOVERY and mirroring is configured.  This is usually intended to be called remotely by the principal server when db_mssql::establish_mirroring_partnership is used.",
-    "db_mssql::initialize_principal": "Causes the principal server to create a mirror partnership with the mirror.  The mirror configuration is high-performance (asynchronous).  This is usually intended to be called remotely by the mirror server when db_mssql::initialize_mirror is used.",
-    "db_mssql::default": "Tags the server instance with a nickname so it can be easily located later for mirroring activities",
-    "db_mssql::establish_mirroring_partnership": "To be run from the server containing the database to be mirroed.  This server will become the principal in the relationship.",
-    "db_mssql::add_sysadmin": "Adds a user (or group) as a sysadmin for the entire server"
-  },
-  "maintainer": "Ryan J. Geyer",
-  "replacing": {
-  },
+  "name": "db_mssql",
   "maintainer_email": "me@ryangeyer.com",
-  "description": "Microsoft SQL 2008 (Standard & Express) Bits",
-  "version": "0.0.1",
-  "groupings": {
-  },
   "attributes": {
     "db_mssql/my_ip_for_mirroring_partner": {
       "required": "required",
@@ -31,8 +18,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::default"
       ],
-      "description": "The ip address (or hostname) that partners connecting to this node should use.  This should be set to something like $env:EC2_PUBLIC_IPV4",
-      "display_name": "SQL Mirror My IP"
+      "display_name": "SQL Mirror My IP",
+      "description": "The ip address (or hostname) that partners connecting to this node should use.  This should be set to something like $env:EC2_PUBLIC_IPV4"
     },
     "db_sqlserver/backup/existing_backup_file_name_pattern": {
       "required": "optional",
@@ -46,8 +33,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "Wildcard file matching pattern (i.e. not a Regex) with Powershell-style string format arguments for finding backup files. The 0 argument represents the database name and the rest of the pattern should match the file names generated from the backup_file_name_format. Ex: {0}_*.bak",
-      "display_name": "Pattern matching backup file names"
+      "display_name": "Pattern matching backup file names",
+      "description": "Wildcard file matching pattern (i.e. not a Regex) with Powershell-style string format arguments for finding backup files. The 0 argument represents the database name and the rest of the pattern should match the file names generated from the backup_file_name_format. Ex: {0}_*.bak"
     },
     "db_sqlserver/backup/backup_file_name_format": {
       "required": "optional",
@@ -61,8 +48,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "Format string with Powershell-style string format arguments for creating backup files. The 0 argument represents the database name, the 1 argument represents a generated time stamp and the 2 argument represents the backup contents (one of 'full' or 'log' indicating a full backup or transactional log backup). Ex: {0}_{1}_{2}.bak",
-      "display_name": "Backup file name format"
+      "display_name": "Backup file name format",
+      "description": "Format string with Powershell-style string format arguments for creating backup files. The 0 argument represents the database name, the 1 argument represents a generated time stamp and the 2 argument represents the backup contents (one of 'full' or 'log' indicating a full backup or transactional log backup). Ex: {0}_{1}_{2}.bak"
     },
     "db_sqlserver/server_name": {
       "required": "required",
@@ -76,8 +63,8 @@
         "db_mssql::initialize_mirror",
         "db_mssql::initialize_principal"
       ],
-      "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD",
-      "display_name": "SQL Server instance network name"
+      "display_name": "SQL Server instance network name",
+      "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
     },
     "db_mssql/partner_certificate": {
       "required": "optional",
@@ -90,8 +77,8 @@
         "db_mssql::initialize_mirror",
         "db_mssql::initialize_principal"
       ],
-      "description": "The filename (key) of the file in the S3 bucket defined in db_mssql/mirror_bucket which will be used for communication with a mirroring partner",
-      "display_name": "SQL Mirroring Partner Cert"
+      "display_name": "SQL Mirroring Partner Cert",
+      "description": "The filename (key) of the file in the S3 bucket defined in db_mssql/mirror_bucket which will be used for communication with a mirroring partner"
     },
     "db_mssql/mirror_partner_ip": {
       "required": "optional",
@@ -104,8 +91,8 @@
         "db_mssql::initialize_mirror",
         "db_mssql::initialize_principal"
       ],
-      "description": "The ip address (or hostname) of the opposite side of the mirroring partnership.",
-      "display_name": "SQL Mirror Partner IP/Hostname"
+      "display_name": "SQL Mirror Partner IP/Hostname",
+      "description": "The ip address (or hostname) of the opposite side of the mirroring partnership."
     },
     "db_mssql/nickname": {
       "required": "required",
@@ -117,8 +104,8 @@
       "recipes": [
         "db_mssql::default"
       ],
-      "description": "A unique memorable name for this mssql server.  Used for activities like mirroring etc, where actions must be performed on more than one sql server.",
-      "display_name": "SQL Server nickname"
+      "display_name": "SQL Server nickname",
+      "description": "A unique memorable name for this mssql server.  Used for activities like mirroring etc, where actions must be performed on more than one sql server."
     },
     "db_mssql/server_name": {
       "required": "required",
@@ -130,8 +117,8 @@
       "recipes": [
         "db_mssql::add_sysadmin"
       ],
-      "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD",
-      "display_name": "SQL Server instance network name"
+      "display_name": "SQL Server instance network name",
+      "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
     },
     "db_mssql/sysadmin_user": {
       "required": "optional",
@@ -143,8 +130,8 @@
       "recipes": [
         "db_mssql::add_sysadmin"
       ],
-      "description": "The username or group name to make a sysadmin",
-      "display_name": "Sysadmin Username or Group"
+      "display_name": "Sysadmin Username or Group",
+      "description": "The username or group name to make a sysadmin"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -157,8 +144,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
-      "display_name": "Secret Access Key"
+      "display_name": "Secret Access Key",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
     },
     "db_mssql/mirror_listen_port": {
       "required": "optional",
@@ -173,8 +160,8 @@
         "db_mssql::initialize_mirror",
         "db_mssql::initialize_principal"
       ],
-      "description": "The port that the mirroring endpoint will listen on",
-      "display_name": "SQL Mirroring Endpoint Port"
+      "display_name": "SQL Mirroring Endpoint Port",
+      "description": "The port that the mirroring endpoint will listen on"
     },
     "aws/access_key_id": {
       "required": "required",
@@ -187,8 +174,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
-      "display_name": "Access Key Id"
+      "display_name": "Access Key Id",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
     },
     "db_mssql/mirror_bucket": {
       "required": "required",
@@ -201,8 +188,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "An S3 bucket used to exchange data between partners in a mirroring relationship",
-      "display_name": "SQL Mirroring S3 Bucket"
+      "display_name": "SQL Mirroring S3 Bucket",
+      "description": "An S3 bucket used to exchange data between partners in a mirroring relationship"
     },
     "db_mssql/mirror_backup_file": {
       "required": "optional",
@@ -214,8 +201,8 @@
       "recipes": [
         "db_mssql::initialize_mirror"
       ],
-      "description": "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner",
-      "display_name": "SQL Mirror Backup File"
+      "display_name": "SQL Mirror Backup File",
+      "description": "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner"
     },
     "db_sqlserver/backup/backups_to_keep": {
       "required": "required",
@@ -228,8 +215,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "Defines the number of old backups to keep. Ex: 30",
-      "display_name": "Old backups to keep"
+      "display_name": "Old backups to keep",
+      "description": "Defines the number of old backups to keep. Ex: 30"
     },
     "db_mssql/mirror_listen_ip": {
       "required": "optional",
@@ -243,8 +230,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "The IP address(es) that the mirroring endpoint will listen on.  Defaults to 'ALL' but any option defined in the 'TCP Protocol Option' section of (http://technet.microsoft.com/en-us/library/ms181591.aspx) is acceptable",
-      "display_name": "SQL Mirror Endpoint Listener IP"
+      "display_name": "SQL Mirror Endpoint Listener IP",
+      "description": "The IP address(es) that the mirroring endpoint will listen on.  Defaults to 'ALL' but any option defined in the 'TCP Protocol Option' section of (http://technet.microsoft.com/en-us/library/ms181591.aspx) is acceptable"
     },
     "db_mssql/mirror_partner": {
       "required": "required",
@@ -257,8 +244,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "The nickname (set in db_mssql::default, defined by db_mssql/nickname) of the other server in the mirroring partnership",
-      "display_name": "SQL Mirror Partner nickname"
+      "display_name": "SQL Mirror Partner nickname",
+      "description": "The nickname (set in db_mssql::default, defined by db_mssql/nickname) of the other server in the mirroring partnership"
     },
     "db_mssql/mirror_password": {
       "required": "required",
@@ -271,8 +258,8 @@
         "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
-      "description": "A password used to create a user and certificate for the mirroring partnership",
-      "display_name": "SQL Mirroring Password"
+      "display_name": "SQL Mirroring Password",
+      "description": "A password used to create a user and certificate for the mirroring partnership"
     },
     "db_mssql/database_name": {
       "required": "optional",
@@ -286,24 +273,34 @@
         "db_mssql::initialize_mirror",
         "db_mssql::initialize_principal"
       ],
-      "description": "The name of the database to perform the action on",
-      "display_name": "SQL Database Name"
+      "display_name": "SQL Database Name",
+      "description": "The name of the database to perform the action on"
     }
   },
-  "recommendations": {
-  },
-  "dependencies": {
-    "rjg_aws": [
-
-    ],
-    "db_sqlserver": [
-
-    ]
+  "license": "\n                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an example is provided in the Appendix below).\n\n      \"Derivative Works\" shall mean any work, whether in Source or Object\n      form, that is based on (or derived from) the Work and for which the\n      editorial revisions, annotations, elaborations, or other modifications\n      represent, as a whole, an original work of authorship. For the purposes\n      of this License, Derivative Works shall not include works that remain\n      separable from, or merely link (or bind by name) to the interfaces of,\n      the Work and Derivative Works thereof.\n\n      \"Contribution\" shall mean any work of authorship, including\n      the original version of the Work and any modifications or additions\n      to that Work or Derivative Works thereof, that is intentionally\n      submitted to Licensor for inclusion in the Work by the copyright owner\n      or by an individual or Legal Entity authorized to submit on behalf of\n      the copyright owner. For the purposes of this definition, \"submitted\"\n      means any form of electronic, verbal, or written communication sent\n      to the Licensor or its representatives, including but not limited to\n      communication on electronic mailing lists, source code control systems,\n      and issue tracking systems that are managed by, or on behalf of, the\n      Licensor for the purpose of discussing and improving the Work, but\n      excluding communication that is conspicuously marked or otherwise\n      designated in writing by the copyright owner as \"Not a Contribution.\"\n\n      \"Contributor\" shall mean Licensor and any individual or Legal Entity\n      on behalf of whom a Contribution has been received by Licensor and\n      subsequently incorporated within the Work.\n\n   2. Grant of Copyright License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.\n\n   3. Grant of Patent License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      (except as stated in this section) patent license to make, have made,\n      use, offer to sell, sell, import, and otherwise transfer the Work,\n      where such license applies only to those patent claims licensable\n      by such Contributor that are necessarily infringed by their\n      Contribution(s) alone or by combination of their Contribution(s)\n      with the Work to which such Contribution(s) was submitted. If You\n      institute patent litigation against any entity (including a\n      cross-claim or counterclaim in a lawsuit) alleging that the Work\n      or a Contribution incorporated within the Work constitutes direct\n      or contributory patent infringement, then any patent licenses\n      granted to You under this License for that Work shall terminate\n      as of the date such litigation is filed.\n\n   4. Redistribution. You may reproduce and distribute copies of the\n      Work or Derivative Works thereof in any medium, with or without\n      modifications, and in Source or Object form, provided that You\n      meet the following conditions:\n\n      (a) You must give any other recipients of the Work or\n          Derivative Works a copy of this License; and\n\n      (b) You must cause any modified files to carry prominent notices\n          stating that You changed the files; and\n\n      (c) You must retain, in the Source form of any Derivative Works\n          that You distribute, all copyright, patent, trademark, and\n          attribution notices from the Source form of the Work,\n          excluding those notices that do not pertain to any part of\n          the Derivative Works; and\n\n      (d) If the Work includes a \"NOTICE\" text file as part of its\n          distribution, then any Derivative Works that You distribute must\n          include a readable copy of the attribution notices contained\n          within such NOTICE file, excluding those notices that do not\n          pertain to any part of the Derivative Works, in at least one\n          of the following places: within a NOTICE text file distributed\n          as part of the Derivative Works; within the Source form or\n          documentation, if provided along with the Derivative Works; or,\n          within a display generated by the Derivative Works, if and\n          wherever such third-party notices normally appear. The contents\n          of the NOTICE file are for informational purposes only and\n          do not modify the License. You may add Your own attribution\n          notices within Derivative Works that You distribute, alongside\n          or as an addendum to the NOTICE text from the Work, provided\n          that such additional attribution notices cannot be construed\n          as modifying the License.\n\n      You may add Your own copyright statement to Your modifications and\n      may provide additional or different license terms and conditions\n      for use, reproduction, or distribution of Your modifications, or\n      for any such Derivative Works as a whole, provided Your use,\n      reproduction, and distribution of the Work otherwise complies with\n      the conditions stated in this License.\n\n   5. Submission of Contributions. Unless You explicitly state otherwise,\n      any Contribution intentionally submitted for inclusion in the Work\n      by You to the Licensor shall be under the terms and conditions of\n      this License, without any additional terms or conditions.\n      Notwithstanding the above, nothing herein shall supersede or modify\n      the terms of any separate license agreement you may have executed\n      with Licensor regarding such Contributions.\n\n   6. Trademarks. This License does not grant permission to use the trade\n      names, trademarks, service marks, or product names of the Licensor,\n      except as required for reasonable and customary use in describing the\n      origin of the Work and reproducing the content of the NOTICE file.\n\n   7. Disclaimer of Warranty. Unless required by applicable law or\n      agreed to in writing, Licensor provides the Work (and each\n      Contributor provides its Contributions) on an \"AS IS\" BASIS,\n      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n      implied, including, without limitation, any warranties or conditions\n      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n      PARTICULAR PURPOSE. You are solely responsible for determining the\n      appropriateness of using or redistributing the Work and assume any\n      risks associated with Your exercise of permissions under this License.\n\n   8. Limitation of Liability. In no event and under no legal theory,\n      whether in tort (including negligence), contract, or otherwise,\n      unless required by applicable law (such as deliberate and grossly\n      negligent acts) or agreed to in writing, shall any Contributor be\n      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.\n\n   9. Accepting Warranty or Additional Liability. While redistributing\n      the Work or Derivative Works thereof, You may choose to offer,\n      and charge a fee for, acceptance of support, warranty, indemnity,\n      or other liability obligations and/or rights consistent with this\n      License. However, in accepting such obligations, You may act only\n      on Your own behalf and on Your sole responsibility, not on behalf\n      of any other Contributor, and only if You agree to indemnify,\n      defend, and hold each Contributor harmless for any liability\n      incurred by, or claims asserted against, such Contributor by reason\n      of your accepting any such warranty or additional liability.\n\n   END OF TERMS AND CONDITIONS\n\n   APPENDIX: How to apply the Apache License to your work.\n\n      To apply the Apache License to your work, attach the following\n      boilerplate notice, with the fields enclosed by brackets \"[]\"\n      replaced with your own identifying information. (Don't include\n      the brackets!)  The text should be enclosed in the appropriate\n      comment syntax for the file format. We also recommend that a\n      file or class name and description of purpose be included on the\n      same \"printed page\" as the copyright notice for easier\n      identification within third-party archives.\n\n   Copyright [yyyy] [name of copyright owner]\n\n   Licensed under the Apache License, Version 2.0 (the \"License\");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \"AS IS\" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.\n",
+  "suggestions": {
   },
   "platforms": {
   },
-  "name": "db_mssql",
-  "suggestions": {
+  "maintainer": "Ryan J. Geyer",
+  "long_description": "Setting up certificate based authentication for mirroring\nhttp://msdn.microsoft.com/en-us/library/ms191140.aspx\n\nALTER DATABASE command docs, useful for determining which mirroring mode to use (high safety, high performance, etc)\nhttp://msdn.microsoft.com/en-us/library/bb522476.aspx",
+  "version": "0.0.1",
+  "recommendations": {
   },
-  "long_description": "Setting up certificate based authentication for mirroring\nhttp://msdn.microsoft.com/en-us/library/ms191140.aspx\n\nALTER DATABASE command docs, useful for determining which mirroring mode to use (high safety, high performance, etc)\nhttp://msdn.microsoft.com/en-us/library/bb522476.aspx"
+  "recipes": {
+    "db_mssql::initialize_mirror": "Downloads a full, and transaction log backup (created by the principal server) from S3.  The backup is restored with NORECOVERY and mirroring is configured.  This is usually intended to be called remotely by the principal server when db_mssql::establish_mirroring_partnership is used.",
+    "db_mssql::initialize_principal": "Causes the principal server to create a mirror partnership with the mirror.  The mirror configuration is high-performance (asynchronous).  This is usually intended to be called remotely by the mirror server when db_mssql::initialize_mirror is used.",
+    "db_mssql::default": "Tags the server instance with a nickname so it can be easily located later for mirroring activities",
+    "db_mssql::establish_mirroring_partnership": "To be run from the server containing the database to be mirroed.  This server will become the principal in the relationship.",
+    "db_mssql::add_sysadmin": "Adds a user (or group) as a sysadmin for the entire server"
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Microsoft SQL 2008 (Standard & Express) Bits",
+  "providing": {
+  }
 }

@@ -122,4 +122,6 @@ remote_recipe "Initialize the principal" do
   scope :single
 end
 
-right_link_tag "mssql_server:mirror_for_db=#{node[:db_mssql][:database_name]}"
+skeme_tag "mssql_server:mirror_for_db=#{node[:db_mssql][:database_name]}" do
+  action :add
+end

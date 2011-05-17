@@ -15,8 +15,12 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-right_link_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}"
-right_link_tag "mssql_server:my_ip_for_mirroring_partner=#{node[:db_mssql][:my_ip_for_mirroring_partner]}"
+skeme_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}" do
+  action :add
+end
+skeme_tag "mssql_server:my_ip_for_mirroring_partner=#{node[:db_mssql][:my_ip_for_mirroring_partner]}" do
+  action :add
+end
 
 directory 'C:/powershell_scripts/sql/' do
   recursive true

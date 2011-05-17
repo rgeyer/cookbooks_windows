@@ -8,6 +8,7 @@ version "0.0.1"
 
 depends "db_sqlserver"
 depends "rjg_aws"
+depends "skeme"
 
 recipe "db_mssql::default", "Tags the server instance with a nickname so it can be easily located later for mirroring activities"
 recipe "db_mssql::add_sysadmin", "Adds a user (or group) as a sysadmin for the entire server"

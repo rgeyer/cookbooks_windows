@@ -15,6 +15,7 @@ recipe "ad_tools::set_dns", "Sets the dns server(s) to the internal IP's of the 
 
 depends "utilities"
 depends "rjg_utils"
+depends "skeme"
 
 attribute "utilities/admin_password",
   :display_name => "New administrator password",

@@ -15,4 +15,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-right_link_tag "remote_recipe:target=true"
+skeme_tag "remote_recipe:target=true" do
+  action :add
+end

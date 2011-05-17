@@ -1,40 +1,11 @@
 {
-  "license": "Apache v2.0",
-  "suggestions": {
-  },
   "dependencies": {
-    "utilities": [
-
-    ],
-    "mnt_utils": [
-
-    ]
+    "utilities": ">= 0.0.0",
+    "rjg_utils": ">= 0.0.0",
+    "skeme": ">= 0.0.0"
   },
-  "conflicting": {
-  },
-  "long_description": "Configures Windows 2008 Servers to act as primary or backup domian controllers.  Provides some other useful tools for domain controllers as well",
-  "description": "Configures Windows 2008 Servers to act as primary or backup domian controllers.  Provides some other useful tools for domain controllers as well",
-  "providing": {
-  },
-  "platforms": {
-  },
-  "version": "0.0.1",
-  "maintainer": "Ryan J. Geyer",
-  "recipes": {
-    "ad_tools::set_dns": "Sets the dns server(s) to the internal IP's of the domain controllers.  Assumes that the domain controllers, and the server this recipe is run on are in the same EC2 cloud.",
-    "ad_tools::reset_joined_domain": "Debug script so I can test things relating to active directory",
-    "ad_tools::change_rightlink_service_account": "Changes the service account for both RightScale services to Local System",
-    "ad_tools::demote_dc": "Removes the domain controller from the forest and uninstalls the AD binaries",
-    "ad_tools::reset_is_bdc": "Debug script so I can test things relating to active directory.",
-    "ad_tools::join_domain": "Adds the node to an existing domain",
-    "ad_tools::initialize_bdc": "Runs dcpromo with appropriate answers to create a backup or slave domain controller for the specified domain"
-  },
-  "replacing": {
-  },
-  "maintainer_email": "rgeyer@its.jnj.com",
   "name": "ad_tools",
-  "groupings": {
-  },
+  "maintainer_email": "rgeyer@its.jnj.com",
   "attributes": {
     "ad_tools/domain_name": {
       "required": "required",
@@ -108,6 +79,32 @@
       "description": "Domain Administrator Password"
     }
   },
+  "license": "Apache v2.0",
+  "suggestions": {
+  },
+  "platforms": {
+  },
+  "maintainer": "Ryan J. Geyer",
+  "long_description": "Configures Windows 2008 Servers to act as primary or backup domian controllers.  Provides some other useful tools for domain controllers as well",
+  "version": "0.0.1",
   "recommendations": {
+  },
+  "recipes": {
+    "ad_tools::set_dns": "Sets the dns server(s) to the internal IP's of the domain controllers.  Assumes that the domain controllers, and the server this recipe is run on are in the same EC2 cloud.",
+    "ad_tools::reset_joined_domain": "Debug script so I can test things relating to active directory",
+    "ad_tools::change_rightlink_service_account": "Changes the service account for both RightScale services to Local System",
+    "ad_tools::demote_dc": "Removes the domain controller from the forest and uninstalls the AD binaries",
+    "ad_tools::reset_is_bdc": "Debug script so I can test things relating to active directory.",
+    "ad_tools::join_domain": "Adds the node to an existing domain",
+    "ad_tools::initialize_bdc": "Runs dcpromo with appropriate answers to create a backup or slave domain controller for the specified domain"
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Configures Windows 2008 Servers to act as primary or backup domian controllers.  Provides some other useful tools for domain controllers as well",
+  "providing": {
   }
 }

@@ -13,6 +13,7 @@ ad_tools_ad "Demote server from DC role" do
   action :unattended_dcpromo
 end
 
+# TODO: add wildcards to Skeme
 right_link_tag "ad:*" do
   action :remove
 end

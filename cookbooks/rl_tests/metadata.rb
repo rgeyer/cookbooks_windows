@@ -5,6 +5,8 @@ description      "Installs/Configures rl_tests"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
+depends "skeme"
+
 recipe "rl_tests::remote_recipe_setup", "Run on two instances which you want to use to test remote recipe"
 recipe "rl_tests::remote_recipe_test", "Kicks off the whole test"
 recipe "rl_tests::remote_recipe_ping", "Called by rl_tests::remote_recipe_test, then calls rl_tests::remote_recipe_pong"

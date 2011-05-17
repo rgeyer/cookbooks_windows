@@ -15,8 +15,12 @@ if(node[:rjg_utils_hostname_set] && node[:ad_tools_dns_set] && !node[:ad_tools_j
     action :join_domain
   end
 
-  right_link_tag "ad:domain=#{node[:ad_tools][:domain_name]}"
-  right_link_tag "ad:role=member"
+  skeme_tag "ad:domain=#{node[:ad_tools][:domain_name]}" do
+    action :add
+  end
+  skeme_tag "ad:role=member" do
+    action :add
+  end
 
   node[:ad_tools_joined_domain] = true
 

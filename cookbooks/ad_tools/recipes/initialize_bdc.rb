@@ -25,8 +25,12 @@ if(@node[:rjg_utils_hostname_set] && @node[:rjg_utils_dns_set] && !@node[:ad_bdc
     action :unattended_dcpromo
   end
 
-  right_link_tag "ad:domain=#{@node[:ad_tools][:domain_name]}"
-  right_link_tag "ad:role=bdc"
+  skeme_tag "ad:domain=#{@node[:ad_tools][:domain_name]}" do
+    action :add
+  end
+  skeme_tag "ad:role=bdc" do
+    action :add
+  end
 
   @node[:ad_bdc_initialized] = true
 end

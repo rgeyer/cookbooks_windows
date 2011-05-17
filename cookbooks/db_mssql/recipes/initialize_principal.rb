@@ -37,4 +37,6 @@ db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do
   action :run_command
 end
 
-right_link_tag "mssql_server:principal_for_db=#{node[:db_mssql][:database_name]}"
+skeme_tag "mssql_server:principal_for_db=#{node[:db_mssql][:database_name]}" do
+  action :add
+end
