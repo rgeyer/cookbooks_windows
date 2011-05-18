@@ -6,6 +6,7 @@
 
 include_recipe "rjg_utils::determine_architecture"
 
+# This is not conditional assignment, this is an array join..  Maybe a different syntax would be a good idea to avoid confusion?
 node[:rjg_utils][:features_and_roles_ary] = node[:rjg_utils][:features_and_roles_list].split(',') | node[:rjg_utils][:features_and_roles_ary]
 
 powershell "Installs the CSV list of windows features and roles" do
