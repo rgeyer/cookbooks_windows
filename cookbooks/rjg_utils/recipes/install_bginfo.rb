@@ -69,7 +69,7 @@ if(node[:rjg_utils][:custom_bginfo] == "true")
   end
 else
 
-  powershell "Copy the default bginfo configuration to disk" do
+  powershell "Unzipping bginfo configuration to disk - #{custom_login_bgi_zip}" do
     parameters({ 'BGINFO_PATH' => bginfo_path, 'BGINFO_ZIP' => custom_login_bgi_zip })
     powershell_script = <<'EOF'
 $command='cmd /c 7z x -y "'+$env:BGINFO_ZIP+'" -o"'+$env:BGINFO_PATH+'""'
