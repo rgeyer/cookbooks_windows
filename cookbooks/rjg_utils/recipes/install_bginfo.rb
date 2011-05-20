@@ -67,7 +67,6 @@ if(node[:rjg_utils][:custom_bginfo] == "true")
     file_path custom_login_bgi_zip
     action :get
   end
-else
 
   powershell "Unzipping bginfo configuration to disk - #{custom_login_bgi_zip}" do
     parameters({ 'BGINFO_PATH' => bginfo_path, 'BGINFO_ZIP' => custom_login_bgi_zip })
@@ -83,5 +82,13 @@ if (!($command_ouput -match 'Everything is Ok'))
 EOF
     source (powershell_script)
   end
+else
+  powershell "Copy default login.bgi" do
+    parameters({'LOGIN_BGI' => ::File.join(attachments_path, "login.bgi"), 'BGINFO_PATH' => bginfo_path})
+    ps_code = <<-EOF
+    Copy-Item "$env:LOGIN_BGI" "$env:BGINFO_PATH/login.bgi"
+    EOF
 
+    source(ps_code)
+  end
 end
