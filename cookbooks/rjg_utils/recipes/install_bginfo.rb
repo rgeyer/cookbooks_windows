@@ -86,7 +86,7 @@ else
   powershell "Copy default login.bgi" do
     parameters({'LOGIN_BGI' => ::File.join(attachments_path, "login.bgi"), 'BGINFO_PATH' => bginfo_path})
     ps_code = <<-EOF
-    Copy-Item "$env:LOGIN_BGI" "$env:BGINFO_PATH/login.bgi"
+    Copy-Item "$env:LOGIN_BGI" "$env:BGINFO_PATH/logon.bgi"
     EOF
 
     source(ps_code)
