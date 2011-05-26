@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "skeme::default"
+
 db_mssql_enable_inbound_certificate_auth_mirror_endpoint "Enable inbound mirroring endpoint" do
   partner_certificate node[:db_mssql][:partner_certificate]
   mirror_partner node[:db_mssql][:mirror_partner]

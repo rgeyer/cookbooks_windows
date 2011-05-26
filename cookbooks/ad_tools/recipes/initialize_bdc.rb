@@ -3,6 +3,7 @@
 # RightLink service - Needs AD service account?
 
 include_recipe "rjg_utils::determine_architecture"
+include_recipe "skeme::default"
 
 ntds_dir = "C:\\Windows\\NTDS"
 

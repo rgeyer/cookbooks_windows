@@ -1,3 +1,5 @@
+include_recipe "skeme::default"
+
 if(node[:rjg_utils_hostname_set] && node[:ad_tools_dns_set] && !node[:ad_tools_joined_domain])
   Chef::Log.info("The hostname has been set, the DNS has been set, and now we can join the domain.")
   # 1. Retrieve inputs
