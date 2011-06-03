@@ -64,7 +64,7 @@ if(node[:rjg_utils][:custom_bginfo] == "true")
     secret_access_key node[:aws][:secret_access_key]
     s3_file node[:rjg_utils][:bginfo_s3_file]
     s3_bucket node[:rjg_utils][:bginfo_s3_bucket]
-    file_path custom_login_bgi_zip
+    download_dir bginfo_path
     action :get
   end
 
