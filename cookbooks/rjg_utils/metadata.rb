@@ -9,6 +9,7 @@ version "0.0.1"
 # This is the rightscale utilities https://github.com/rightscale/cookbooks_public_windows/tree/master/cookbooks/utilities
 depends "utilities"
 depends "rjg_aws"
+depends "aws"
 
 provides "rjg_utils_set_dns(dns_list)"
 

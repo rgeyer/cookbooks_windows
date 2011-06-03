@@ -59,7 +59,7 @@ EOF
 end
 
 if(node[:rjg_utils][:custom_bginfo] == "true")
-  rjg_aws_s3 "Get the custom bg_info configuration zipfile" do
+  aws_s3 "Get the custom bg_info configuration zipfile" do
     access_key_id node[:aws][:access_key_id]
     secret_access_key node[:aws][:secret_access_key]
     s3_file node[:rjg_utils][:bginfo_s3_file]
