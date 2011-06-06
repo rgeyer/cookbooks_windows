@@ -52,8 +52,8 @@ attribute "rjg_utils/workgroup",
   :default => "WORKGROUP"
 
 attribute "rjg_utils/features_and_roles_list",
-  :display_name => "Windows 2008 Features & Roles",
-  :description => "A CSV list of features and roles to install.  To view the list of available roles and features run 'servermanagercmd -query' on a Windows 2008 server instance",
+  :display_name => "Windows 2008 Features & Roles/Windows 2003 Components",
+  :description => "A CSV list of features and roles to install.  To view the list of available roles and features run 'servermanagercmd -query' on a Windows 2008 server instance.  On Windows 2003 only the following component names are supported ['snmp', 'iis6']",
   :recipes => [ "rjg_utils::install_roles_and_features" ],
   :default => ""
 

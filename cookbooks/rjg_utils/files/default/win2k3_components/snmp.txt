@@ -1,0 +1,2 @@
+[NetOptionalComponents]
+SNMP = 1

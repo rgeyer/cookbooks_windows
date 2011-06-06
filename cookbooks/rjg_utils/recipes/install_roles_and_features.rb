@@ -29,7 +29,7 @@ if node[:platform_version].start_with? "5.2"
       powershell "Install component #{component} from answer file in Windows 2003" do
         parameters({'SYSOCMGR_PATH' => ::File.join(node[:rjg_utils][:system32_dir], "sysocmgr.exe"), 'ANSWERS' => answer_path})
         powershell_script = <<'EOF'
-        $env:SYSOCMGR_PATH /i:$env:WINDIR\inf\sysoc.inf /u:$env:ANSWERS /r /q
+        & $env:SYSOCMGR_PATH /i:$env:WINDIR\inf\sysoc.inf /u:$env:ANSWERS /r /q
 
 EOF
         source(powershell_script)
