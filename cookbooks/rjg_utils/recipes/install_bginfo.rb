@@ -19,10 +19,13 @@ include_recipe "utilities::install_7zip"
 # In RightScale you need to actually include rjg_aws::default in the boot phase or the attributes won't be set
 include_recipe "rjg_aws::default"
 
+Chef::Log.info("Platform #{node[:platform]} - Version #{node[:platform_version]}")
+
 programFilesPath = "C:\\Program Files"
 
 bginfo_path = "#{programFilesPath}\\BGInfo"
 startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
+startup_file = "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\bginfo.bat"
 attachments_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'install_bginfo'))
 custom_login_bgi_zip = ::File.join(bginfo_path, 'BGInfo.zip')
 
