@@ -25,12 +25,12 @@ programFilesPath = "C:\\Program Files"
 
 bginfo_path = "#{programFilesPath}\\BGInfo"
 
-if node[:platform_version] =~ /6\.(0|1)/
-  # Win2k8 & Win2k8 RC2
-  startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
-else
+if node[:platform_version].start_with? "5.2"
   # Win2k3 & Win2k3 RC2
   startup_file = "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\bginfo.bat"
+else
+  # Win2k8 & Win2k8 RC2
+  startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
 end
 
 attachments_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'install_bginfo'))
