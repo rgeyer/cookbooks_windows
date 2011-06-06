@@ -24,8 +24,15 @@ Chef::Log.info("Platform #{node[:platform]} - Version #{node[:platform_version]}
 programFilesPath = "C:\\Program Files"
 
 bginfo_path = "#{programFilesPath}\\BGInfo"
-startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
-startup_file = "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\bginfo.bat"
+
+if node[:platform_version] =~ /6\.(0|1)/
+  # Win2k8 & Win2k8 RC2
+  startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
+else
+  # Win2k3 & Win2k3 RC2
+  startup_file = "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\bginfo.bat"
+end
+
 attachments_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'install_bginfo'))
 custom_login_bgi_zip = ::File.join(bginfo_path, 'BGInfo.zip')
 
