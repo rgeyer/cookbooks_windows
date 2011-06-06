@@ -17,6 +17,8 @@
 
 # Working from these steps http://weblogs.sqlteam.com/tarad/archive/2007/02/13/60091.aspx
 
+include_recipe "skeme::default"
+
 require 'yaml'
 
 backup_dir = "C:/tmp/sql_mirror_backup/"

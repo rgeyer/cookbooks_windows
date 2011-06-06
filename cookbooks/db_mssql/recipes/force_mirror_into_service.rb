@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: rl_tests
-# Recipe:: remote_recipe_test
+# Cookbook Name:: db_mssql
+# Recipe:: force_mirror_into_service
 #
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,23 +15,4 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-require 'yaml'
-
-send_hash = {
-  :rl_tests => {
-    :one => "1",
-    :two => "2"
-  },
-  :foo => "bar",
-  :baz => "nothing"
-}
-
-Chef::Log.info("Sending the following hash to rl_tests::remote_recipe_ping on the first server with the tag remote_recipe:target=true")
-Chef::Log.info(send_hash.to_yaml)
-
-remote_recipe "Ping" do
-  recipe "rl_tests::remote_recipe_ping"
-  attributes(send_hash)
-  recipients_tags ["remote_recipe:target=true"]
-  scope :single
-end
+#ALTER DATABASE YourDatabaseName SET PARTNER FORCE_SERVICE_ALLOW_DATA_LOSS

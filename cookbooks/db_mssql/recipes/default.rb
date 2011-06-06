@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "skeme::default"
+
 skeme_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}" do
   action :add
 end
