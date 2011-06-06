@@ -32,23 +32,23 @@ end
 
 # Personal preference, but it's handy on most systems
 # TODO: Of course this doesn't exist for the RightScale user who doesn't have an interactive shell, gotta find another way.
-powershell "Show extensions for known file types" do
-  pscode = <<'EOF'
-$reg_path = "Registry::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-$name = "HideFileExt"
-
-Get-ItemProperty -Path $reg_path -Name $name -ErrorAction SilentlyContinue | Out-Null
-$prop = $?
-if(!$prop)
-{
-  Write-Output "Registry value for hiding file extensions doesn't exist, creating it..."
-  New-ItemProperty -Path $reg_path -Name $name -Value 0 -Type dword
-}
-else
-{
-  Write-Output "Registry value for hiding file extensions exists, setting it to false..."
-  Set-ItemProperty -Path $reg_path -Name $name -Value 0 -Type dword
-}
-EOF
-  #source(pscode)
-end
+#powershell "Show extensions for known file types" do
+#  pscode = <<'EOF'
+#$reg_path = "Registry::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+#$name = "HideFileExt"
+#
+#Get-ItemProperty -Path $reg_path -Name $name -ErrorAction SilentlyContinue | Out-Null
+#$prop = $?
+#if(!$prop)
+#{
+#  Write-Output "Registry value for hiding file extensions doesn't exist, creating it..."
+#  New-ItemProperty -Path $reg_path -Name $name -Value 0 -Type dword
+#}
+#else
+#{
+#  Write-Output "Registry value for hiding file extensions exists, setting it to false..."
+#  Set-ItemProperty -Path $reg_path -Name $name -Value 0 -Type dword
+#}
+#EOF
+#  source(pscode)
+#end
