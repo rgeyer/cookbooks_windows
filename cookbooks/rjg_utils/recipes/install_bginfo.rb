@@ -19,11 +19,11 @@ include_recipe "utilities::install_7zip"
 # In RightScale you need to actually include rjg_aws::default in the boot phase or the attributes won't be set
 include_recipe "rjg_aws::default"
 
-Chef::Log.info("Platform #{node[:platform]} - Version #{node[:platform_version]}")
-
 programFilesPath = "C:\\Program Files"
-
 bginfo_path = "#{programFilesPath}\\BGInfo"
+install_zip = ::File.join(ENV['TMP'], "BGInfo.zip")
+#attachments_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'install_bginfo'))
+custom_login_bgi_zip = ::File.join(bginfo_path, 'BGInfo.zip')
 
 if node[:platform_version].start_with? "5.2"
   # Win2k3 & Win2k3 RC2
@@ -33,10 +33,16 @@ else
   startup_file = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bginfo.bat"
 end
 
-attachments_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'install_bginfo'))
-custom_login_bgi_zip = ::File.join(bginfo_path, 'BGInfo.zip')
-
 #bginfo_dl_uri = "http://download.sysinternals.com/Files/BgInfo.zip"
+if Gem::Version.new(Chef::VERSION) >= Gem::Version.new('0.9.0')
+  cookbook_file install_zip do
+    source "win2k3_components/BgInfo.zip"
+  end
+else
+  remote_file install_zip do
+    source "win2k3_components/BgInfo.zip"
+  end
+end
 
 template startup_file do
   source "bginfo.bat.erb"
@@ -49,12 +55,11 @@ end if !File.directory? bginfo_path
 
 powershell "Install BGInfo & add to startup items" do
   parameters({
-    'BGINFO_ZIP' => ::File.join(attachments_path, 'BGInfo.zip'),
+    'BGINFO_ZIP' => install_zip,
     'BGINFO_PATH' => bginfo_path
   })
 
   powershell_script = <<'EOF'
-  #Copy-Item "$env:ATTACHMENTS_PATH\*" "$env:BGINFO_PATH"
   $command='cmd /c 7z x -y "'+$env:BGINFO_ZIP+'" -o"'+$env:BGINFO_PATH+'""'
   $command_ouput=invoke-expression $command
   if (!($command_ouput -match 'Everything is Ok'))
