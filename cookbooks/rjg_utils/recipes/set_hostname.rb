@@ -15,8 +15,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-node[:rjg_utils][:workgroup] = ""
-
 rjg_utils_system "Reboot System For Hostname" do
   node_attribute "rjg_utils_hostname_reboot"
   action :nothing
