@@ -22,8 +22,8 @@ include_recipe "rjg_aws::default"
 programFilesPath = "C:\\Program Files"
 bginfo_path = "#{programFilesPath}\\BGInfo"
 install_zip = ::File.join(ENV['TMP'], "BGInfo.zip")
-#attachments_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'install_bginfo'))
-custom_login_bgi_zip = ::File.join(bginfo_path, 'BGInfo.zip')
+custom_logon_bgi_zip = ::File.join(bginfo_path, 'BGInfo.zip')
+logon_bgi_file = ::File.join(bginfo_path, 'logon.bgi')
 
 if node[:platform_version].start_with? "5.2"
   # Win2k3 & Win2k3 RC2
@@ -36,11 +36,11 @@ end
 #bginfo_dl_uri = "http://download.sysinternals.com/Files/BgInfo.zip"
 if Gem::Version.new(Chef::VERSION) >= Gem::Version.new('0.9.0')
   cookbook_file install_zip do
-    source "win2k3_components/BgInfo.zip"
+    source "install_bginfo/BgInfo.zip"
   end
 else
   remote_file install_zip do
-    source "win2k3_components/BgInfo.zip"
+    source "install_bginfo/BgInfo.zip"
   end
 end
 
@@ -83,8 +83,8 @@ if(node[:rjg_utils][:custom_bginfo] == "true")
     action :get
   end
 
-  powershell "Unzipping bginfo configuration to disk - #{custom_login_bgi_zip}" do
-    parameters({ 'BGINFO_PATH' => bginfo_path, 'BGINFO_ZIP' => custom_login_bgi_zip })
+  powershell "Unzipping bginfo configuration to disk - #{custom_logon_bgi_zip}" do
+    parameters({ 'BGINFO_PATH' => bginfo_path, 'BGINFO_ZIP' => custom_logon_bgi_zip })
     powershell_script = <<'EOF'
 $command='cmd /c 7z x -y "'+$env:BGINFO_ZIP+'" -o"'+$env:BGINFO_PATH+'""'
 $command_ouput=invoke-expression $command
@@ -98,12 +98,13 @@ EOF
     source (powershell_script)
   end
 else
-  powershell "Copy default login.bgi" do
-    parameters({'LOGIN_BGI' => ::File.join(attachments_path, "login.bgi"), 'BGINFO_PATH' => bginfo_path})
-    ps_code = <<-EOF
-    Copy-Item "$env:LOGIN_BGI" "$env:BGINFO_PATH/logon.bgi"
-    EOF
-
-    source(ps_code)
+  if Gem::Version.new(Chef::VERSION) >= Gem::Version.new('0.9.0')
+    cookbook_file logon_bgi_file do
+      source "install_bginfo/logon.bgi"
+    end
+  else
+    remote_file logon_bgi_file do
+      source "install_bginfo/logon.bgi"
+    end
   end
 end
