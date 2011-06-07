@@ -13,7 +13,7 @@ if node[:platform_version].start_with? "5.2"
   # Win2k3 & Win2k3 RC2
   node[:rjg_utils][:features_and_roles_ary].each do |component|
     if !['snmp'].include? component
-      Chef::Log.error("This recipe does not know how to install (#{component}) on Windows 2003.")
+      raise "This recipe does not know how to install (#{component}) on Windows 2003."
     else
       answer_path = ::File.join(ENV['TMP'], "#{component}_answers.txt")
       if Gem::Version.new(Chef::VERSION) >= Gem::Version.new('0.9.0')
