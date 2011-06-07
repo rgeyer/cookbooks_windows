@@ -1,0 +1,7 @@
+[Components]
+aspnet = on
+iis_common = on
+iis_inetmer = on
+iis_nntp = on
+iis_smtp = on
+iis_www = on
