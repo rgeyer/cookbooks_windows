@@ -47,10 +47,10 @@ attribute "rjg_utils/hostname",
 
 attribute "rjg_utils/workgroup",
   :display_name => "Workgroup",
-  :description => "The desired workgroup for the instance",
+  :description => "The desired workgroup for the instance. If left blank workgroup is not changed, this is useful for servers who are AD members.",
   :recipes => [ "rjg_utils::set_hostname"],
   :required => "optional",
-  :default => "WORKGROUP"
+  :default => ""
 
 attribute "rjg_utils/features_and_roles_list",
   :display_name => "Windows 2008 Features & Roles/Windows 2003 Components",

@@ -77,7 +77,7 @@ if( $NewComputerName.CompareTo($CurrentComputerName) -ne 0 ) {
   $needsReboot = $true
 }
 
-if( $NewWorkgroupName.CompareTo($CurrentWorkgroupName) -ne 0 ) {
+if( ![String]::IsNullOrEmpty($NewWorkgroupName) && $NewWorkgroupName.CompareTo($CurrentWorkgroupName) -ne 0 ) {
   write-output "Joining workgroup $NewWorkgroupName"
   $computerinfo.JoinDomainOrWorkgroup($env:WORKGROUP)
   $needsReboot = $true

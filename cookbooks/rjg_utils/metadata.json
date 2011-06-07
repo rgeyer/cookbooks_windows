@@ -78,13 +78,13 @@
       "choice": [
 
       ],
-      "default": "WORKGROUP",
+      "default": "",
       "type": "string",
       "recipes": [
         "rjg_utils::set_hostname"
       ],
       "display_name": "Workgroup",
-      "description": "The desired workgroup for the instance"
+      "description": "The desired workgroup for the instance. If left blank workgroup is not changed, this is useful for servers who are AD members."
     },
     "rjg_utils/scom_share_subdir": {
       "required": "optional",
