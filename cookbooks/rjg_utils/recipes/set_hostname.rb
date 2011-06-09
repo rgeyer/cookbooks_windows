@@ -49,7 +49,7 @@ $NewWorkgroupName = Windows-NameCleanse -name $env:WORKGROUP -allowDot $true
 $computerinfo = Get-WmiObject -class win32_computersystem
 
 $CurrentComputerName = $env:COMPUTERNAME.ToUpper()
-$CurrentWorkgroupName = $computerinfo.Workgroup
+$CurrentWorkgroupName = $computerinfo.Workgroup.ToUpper()
 
 $programFilesPath = "C:\Program Files"
 echo "The progam files dir is set to $programFilesPath"
