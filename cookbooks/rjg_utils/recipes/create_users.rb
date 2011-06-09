@@ -64,7 +64,7 @@ foreach($user in $users)
 {
   $username = $user['user']
   $password = $user['pass']
-  Create-Local-User($username, $password, $user['groups'])
+  Create-Local-User -username $username -password $password -groups $user['groups']
 #  Write-Output "Creating or updating user $username"
 #
 #  $objUser = $null
