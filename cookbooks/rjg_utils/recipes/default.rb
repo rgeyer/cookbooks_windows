@@ -22,6 +22,7 @@ end
 
 remote_file 'C:/powershell_scripts/rjg_utils/functions.ps1' do
   source "functions.ps1"
+  backup false
 end
 
 # TODO: This concept was a bust, we might want to retry it later.
