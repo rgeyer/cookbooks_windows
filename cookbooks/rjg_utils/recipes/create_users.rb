@@ -16,6 +16,7 @@
 #  limitations under the License.
 
 include_recipe "aws::default"
+include_recipe "rjg_utils::default"
 
 require 'yaml'
 
@@ -63,41 +64,42 @@ foreach($user in $users)
 {
   $username = $user['user']
   $password = $user['pass']
-  Write-Output "Creating or updating user $username"
-
-  $objUser = $null
-  if(!([ADSI]::Exists("WinNT://$hostname/$username")))
-  {
-    $objOu = [ADSI]"WinNT://$hostname"
-    $objUser = $objOU.Create("User", $username)
-  }
-  else
-  {
-    $objUser = [ADSI]"WinNT://$hostname/$username, user"
-  }
-
-
-  $objUser.SetPassword($password)
-  $objUser.SetInfo()
-  $objUser.Description = $username
-  $objUser.SetInfo()
-
-  foreach($group in $user['groups'])
-  {
-      if(!([ADSI]::Exists("WinNT://$hostname/$group")))
-      {
-        Write-Warning "The group ($group) did not exist, the user ($username) was not added"
-      }
-      else
-      {
-        $groupMembers = Local-Group-Members $group $hostname
-        if($groupMembers -notcontains $username)
-        {
-          $objGroup = [ADSI]("WinNT://$hostname/$group,group")
-          $objGroup.add("WinNT://$hostname/$username")
-        }
-      }
-  }
+  Create-Local-User($username, $password, $user['groups'])
+#  Write-Output "Creating or updating user $username"
+#
+#  $objUser = $null
+#  if(!([ADSI]::Exists("WinNT://$hostname/$username")))
+#  {
+#    $objOu = [ADSI]"WinNT://$hostname"
+#    $objUser = $objOU.Create("User", $username)
+#  }
+#  else
+#  {
+#    $objUser = [ADSI]"WinNT://$hostname/$username, user"
+#  }
+#
+#
+#  $objUser.SetPassword($password)
+#  $objUser.SetInfo()
+#  $objUser.Description = $username
+#  $objUser.SetInfo()
+#
+#  foreach($group in $user['groups'])
+#  {
+#      if(!([ADSI]::Exists("WinNT://$hostname/$group")))
+#      {
+#        Write-Warning "The group ($group) did not exist, the user ($username) was not added"
+#      }
+#      else
+#      {
+#        $groupMembers = Local-Group-Members $group $hostname
+#        if($groupMembers -notcontains $username)
+#        {
+#          $objGroup = [ADSI]("WinNT://$hostname/$group,group")
+#          $objGroup.add("WinNT://$hostname/$username")
+#        }
+#      }
+#  }
 }
   EOF
 
