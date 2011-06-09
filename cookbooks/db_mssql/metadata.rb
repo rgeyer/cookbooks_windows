@@ -7,7 +7,6 @@ name "db_mssql"
 version "0.0.1"
 
 depends "db_sqlserver"
-depends "rjg_aws"
 depends "skeme"
 
 recipe "db_mssql::default", "Tags the server instance with a nickname so it can be easily located later for mirroring activities"

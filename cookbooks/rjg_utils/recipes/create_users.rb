@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "aws::default"
+
 require 'yaml'
 
 users_dir = "C:/users"
@@ -25,12 +27,12 @@ directory users_dir do
   action :create
 end
 
-rjg_aws_s3 "Download users YAML from S3" do
+aws_s3 "Download users YAML from S3" do
   access_key_id node[:rjg_utils][:users_access_key_id]
   secret_access_key node[:rjg_utils][:users_secret_access_key]
   s3_bucket node[:rjg_utils][:users_s3_bucket]
   s3_file node[:rjg_utils][:users_file]
-  file_path users_file
+  download_dir users_dir
   action :get
 end
 

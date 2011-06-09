@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "utilities": ">= 0.0.0",
-    "rjg_aws": ">= 0.0.0",
     "aws": ">= 0.0.0"
   },
   "name": "rjg_utils",

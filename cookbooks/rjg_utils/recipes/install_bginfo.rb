@@ -17,7 +17,7 @@
 
 include_recipe "utilities::install_7zip"
 # In RightScale you need to actually include rjg_aws::default in the boot phase or the attributes won't be set
-include_recipe "rjg_aws::default"
+include_recipe "aws::default"
 
 programFilesPath = "C:\\Program Files"
 bginfo_path = "#{programFilesPath}\\BGInfo"

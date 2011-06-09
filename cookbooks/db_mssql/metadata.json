@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "rjg_aws": ">= 0.0.0",
     "skeme": ">= 0.0.0",
     "db_sqlserver": ">= 0.0.0"
   },
