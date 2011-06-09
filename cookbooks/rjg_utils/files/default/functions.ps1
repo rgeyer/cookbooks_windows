@@ -25,7 +25,8 @@ function Local-Group-Members([String]$groupName, [String]$serverName)
 
 function Create-Local-User([String]$username, [String]$password, [Array]$groups=@())
 {
-  Write-Output "Creating or updating user $username"
+  $hostname = $env:COMPUTERNAME
+  Write-Host "Creating or updating user $username"
 
   $objUser = $null
   if(!([ADSI]::Exists("WinNT://$hostname/$username")))
@@ -48,7 +49,7 @@ function Create-Local-User([String]$username, [String]$password, [Array]$groups=
   {
       if(!([ADSI]::Exists("WinNT://$hostname/$group")))
       {
-        Write-Warning "The group ($group) did not exist, the user ($username) was not added"
+        Write-Host "The group ($group) did not exist, the user ($username) was not added"
       }
       else
       {
