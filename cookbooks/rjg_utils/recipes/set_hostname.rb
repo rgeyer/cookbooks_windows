@@ -51,6 +51,8 @@ $computerinfo = Get-WmiObject -class win32_computersystem
 $CurrentComputerName = Windows-NameCleanse $env:COMPUTERNAME
 $CurrentWorkgroupName = Windows-NameCleanse -name $computerinfo.Domain -allowDot $true
 
+write-output "Desired hostname is ($NewComputerName.$NewWorkgroupName) - Current hostname is ($CurrentComputerName.$CurrentWorkgroupName)"
+
 $programFilesPath = "C:\Program Files"
 echo "The progam files dir is set to $programFilesPath"
 $ec2ConfigFile = "$programFilesPath\Amazon\Ec2ConfigService\Settings\config.xml"
