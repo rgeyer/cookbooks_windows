@@ -25,6 +25,9 @@ include_recipe "rjg_utils::determine_architecture"
 # This is not conditional assignment, this is an array join..  Maybe a different syntax would be a good idea to avoid confusion?
 node[:rjg_utils][:features_and_roles_ary] = node[:rjg_utils][:features_and_roles_list].split(',') | node[:rjg_utils][:features_and_roles_ary]
 
+sysocmgr_exe = ::File.join(ENV["windir"], "system32", "sysocmgr.exe")
+sysocmgr_exe = ::File.join(node[:rjg_utils][:system32_dir], "sysocmgr.exe") if ::File.exist?(::File.join(node[:rjg_utils][:system32_dir], "sysocmgr.exe"))
+
 if node[:platform_version].start_with? "5.2"
   # Win2k3 & Win2k3 RC2
   node[:rjg_utils][:features_and_roles_ary].each do |component|
@@ -43,7 +46,7 @@ if node[:platform_version].start_with? "5.2"
       end
 
       powershell "Install component #{component} from answer file in Windows 2003" do
-        parameters({'SYSOCMGR_PATH' => ::File.join(node[:rjg_utils][:system32_dir], "sysocmgr.exe"), 'ANSWERS' => answer_path})
+        parameters({'SYSOCMGR_PATH' => sysocmgr_exe, 'ANSWERS' => answer_path})
         powershell_script = <<'EOF'
         & $env:SYSOCMGR_PATH /i:$env:WINDIR\inf\sysoc.inf /u:$env:ANSWERS /r /q
 
