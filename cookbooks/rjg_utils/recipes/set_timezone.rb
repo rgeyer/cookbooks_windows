@@ -16,7 +16,7 @@
 #  limitations under the License.
 
 powershell "Set Windows Timezone" do
-  paramters({"TZ_OFFSET" => node[:rjg_utils][:tz_hash][node[:rjg_utils][:timezone]]})
+  parameters({"TZ_OFFSET" => node[:rjg_utils][:tz_hash][node[:rjg_utils][:timezone]]})
   ps_code = <<'EOF'
 
 $tz_offset = $env:TZOFFSET
