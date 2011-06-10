@@ -6,6 +6,23 @@
   "name": "rjg_utils",
   "maintainer_email": "me@ryangeyer.com",
   "attributes": {
+    "rjg_utils/timezone": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+        "GMT",
+        "PST",
+        "CST",
+        "EST"
+      ],
+      "default": "GMT",
+      "type": "string",
+      "recipes": [
+        "rjg_utils::set_timezone"
+      ],
+      "display_name": "Timezone",
+      "description": "The desired timezone."
+    },
     "rjg_utils/bginfo_s3_bucket": {
       "required": "optional",
       "calculated": false,
@@ -274,6 +291,7 @@
     "rjg_utils::determine_architecture": "Sets some node attributes based on the processor architecture of the node (x86 or x64)",
     "rjg_utils::helloworld": "A recipe which should always work, used as a control test",
     "rjg_utils::set_dns": "Sets the DNS search list ot the provided CSV list",
+    "rjg_utils::set_timezone": "Sets the computers timezone to the specified timezone",
     "rjg_utils::install_roles_and_features": "Installs one or many Windows 2008 roles and features, or Windows 2003 components using the rjg_utils::features_and_roles_list as input.",
     "rjg_utils::install_windowsupdates": "Downloads and installs all pending windows updates for the server",
     "rjg_utils::install_bginfo": "Installs the BGInfo tool and sets it to run on each user login",
