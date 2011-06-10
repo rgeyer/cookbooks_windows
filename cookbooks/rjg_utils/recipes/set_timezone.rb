@@ -23,7 +23,7 @@ $tz_offset = $env:TZOFFSET
 $hostname = $env:COMPUTERNAME
 $system = gwmi -class Win32_ComputerSystem -computername $hostname
 
-$system.CurrentTimeZone = $tz_collection[$timezone]
+$system.CurrentTimeZone = $tz_offset
 $system.Put()
 
 EOF
