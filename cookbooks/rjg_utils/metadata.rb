@@ -25,6 +25,7 @@ recipe "rjg_utils::install_scom_agent", "Installs the Microsoft System Center Op
 recipe "rjg_utils::determine_architecture", "Sets some node attributes based on the processor architecture of the node (x86 or x64)"
 recipe "rjg_utils::create_users", "Creates or updates a set of users defined in a yaml file stored in an S3 bucket"
 recipe "rjg_utils::set_uac", "Enables or disables User Access Control (UAC)"
+recipe "rjg_utils::set_timezone", "Sets the computers timezone to the specified timezone"
 
 attribute "rjg_utils/dns_list",
   :display_name => "DNS Server List",
@@ -130,6 +131,13 @@ attribute "rjg_utils/enable_uac",
   :required => "required",
   :choice => ["true", "false"],
   :recipes => ["rjg_utils::set_uac"]
+
+attribute "rjg_utils/timezone",
+  :display_name => "Timezone",
+  :description => "The desired timezone.",
+  :choice => ["GMT","PST","CST","EST"],
+  :default => "GMT",
+  :recipes => ["rjg_utils::set_timezone"]
 
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
