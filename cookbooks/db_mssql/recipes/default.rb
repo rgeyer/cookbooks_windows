@@ -17,6 +17,8 @@
 
 include_recipe "skeme::default"
 
+maintenance_script = ::File.join(ENV['TMP'], "maintenance.sql")
+
 skeme_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}" do
   action :add
 end
@@ -29,6 +31,29 @@ directory 'C:/powershell_scripts/sql/' do
   action :create
 end
 
-remote_file 'C:/powershell_scripts/sql/functions.ps1' do
+if Gem::Version.new(Chef::VERSION) >= Gem::Version.new('0.9.0')
+  cookbook_file 'C:/powershell_scripts/sql/functions.ps1' do
   source "functions.ps1"
+  end
+else
+  remote_file 'C:/powershell_scripts/sql/functions.ps1' do
+  source "functions.ps1"
+  end
+end
+
+directory node[:db_mssql][:backup_dir] do
+  recursive true
+  action :create
+end
+
+template maintenance_script do
+  source "MaintenanceSolution.sql.erb"
+  variables(:backup_dir => node[:db_mssql][:backup_dir])
+  backup false
+end
+
+db_sqlserver_database "master" do
+  server_name node[:db_sqlserver][:server_name]
+  script_path maintenance_script
+  action :run_script
 end

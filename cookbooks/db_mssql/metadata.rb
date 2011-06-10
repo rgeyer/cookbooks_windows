@@ -4,7 +4,7 @@ license          IO.read(File.expand_path(File.join(File.dirname(__FILE__), '..'
 description "Microsoft SQL 2008 (Standard & Express) Bits"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 name "db_mssql"
-version "0.0.1"
+version "0.0.2"
 
 depends "db_sqlserver"
 depends "skeme"
@@ -14,6 +14,13 @@ recipe "db_mssql::add_sysadmin", "Adds a user (or group) as a sysadmin for the e
 recipe "db_mssql::establish_mirroring_partnership", "To be run from the server containing the database to be mirroed.  This server will become the principal in the relationship."
 recipe "db_mssql::initialize_mirror", "Downloads a full, and transaction log backup (created by the principal server) from S3.  The backup is restored with NORECOVERY and mirroring is configured.  This is usually intended to be called remotely by the principal server when db_mssql::establish_mirroring_partnership is used."
 recipe "db_mssql::initialize_principal", "Causes the principal server to create a mirror partnership with the mirror.  The mirror configuration is high-performance (asynchronous).  This is usually intended to be called remotely by the mirror server when db_mssql::initialize_mirror is used."
+recipe "db_mssql::sql_backup", "Executes a full backup of all databases, putting the results into db_mssql/backup_dir"
+
+attribute "db_mssql/backup_dir",
+  :display_name => "SQL Database Backup Dir",
+  :description => "The full path to a directory where SQL backups will be stored",
+  :recipes => ["db_mssql::default"],
+  :default => "C:/sql_backups"
 
 attribute "db_mssql/sysadmin_user",
   :display_name => "Sysadmin Username or Group",

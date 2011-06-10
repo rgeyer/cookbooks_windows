@@ -217,6 +217,20 @@
       "display_name": "Old backups to keep",
       "description": "Defines the number of old backups to keep. Ex: 30"
     },
+    "db_mssql/backup_dir": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "C:/sql_backups",
+      "type": "string",
+      "recipes": [
+        "db_mssql::default"
+      ],
+      "display_name": "SQL Database Backup Dir",
+      "description": "The full path to a directory where SQL backups will be stored"
+    },
     "db_mssql/mirror_listen_ip": {
       "required": "optional",
       "calculated": false,
@@ -283,10 +297,11 @@
   },
   "maintainer": "Ryan J. Geyer",
   "long_description": "Setting up certificate based authentication for mirroring\nhttp://msdn.microsoft.com/en-us/library/ms191140.aspx\n\nALTER DATABASE command docs, useful for determining which mirroring mode to use (high safety, high performance, etc)\nhttp://msdn.microsoft.com/en-us/library/bb522476.aspx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "recommendations": {
   },
   "recipes": {
+    "db_mssql::sql_backup": "Executes a full backup of all databases, putting the results into db_mssql/backup_dir",
     "db_mssql::initialize_mirror": "Downloads a full, and transaction log backup (created by the principal server) from S3.  The backup is restored with NORECOVERY and mirroring is configured.  This is usually intended to be called remotely by the principal server when db_mssql::establish_mirroring_partnership is used.",
     "db_mssql::initialize_principal": "Causes the principal server to create a mirror partnership with the mirror.  The mirror configuration is high-performance (asynchronous).  This is usually intended to be called remotely by the mirror server when db_mssql::initialize_mirror is used.",
     "db_mssql::default": "Tags the server instance with a nickname so it can be easily located later for mirroring activities",
