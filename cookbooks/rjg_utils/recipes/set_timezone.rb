@@ -19,7 +19,7 @@ powershell "Set Windows Timezone" do
   parameters({"TZ_OFFSET" => node[:rjg_utils][:tz_hash][node[:rjg_utils][:timezone]]})
   ps_code = <<'EOF'
 
-$tz_offset = $env:TZOFFSET
+$tz_offset = $env:TZ_OFFSET
 $hostname = $env:COMPUTERNAME
 $system = gwmi -class Win32_ComputerSystem -computername $hostname
 
