@@ -8,3 +8,4 @@ default[:db_mssql][:mirror_listen_port] = "5022"
 default[:db_mssql][:mirror_listen_ip] = "ALL"
 
 default[:db_mssql][:backup_dir] = "C:/sql_backups"
+default[:db_mssql][:backup_cleanup_time] = "168"

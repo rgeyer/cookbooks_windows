@@ -19,8 +19,14 @@ recipe "db_mssql::sql_backup", "Executes a full backup of all databases, putting
 attribute "db_mssql/backup_dir",
   :display_name => "SQL Database Backup Dir",
   :description => "The full path to a directory where SQL backups will be stored",
-  :recipes => ["db_mssql::default"],
+  :recipes => ["db_mssql::default","db_mssql::sql_backup"],
   :default => "C:/sql_backups"
+
+attribute "db_mssql/backup_cleanup_time",
+  :display_name => "SQL Backup File Max Age (hours)",
+  :description => "The maximum age (in hours) of backup files.  Any files older than this value will be deleted when a new backup is created. Defaults to 168 (one week)",
+  :default => "168",
+  :recipes => ["db_mssql::sql_backup"]
 
 attribute "db_mssql/sysadmin_user",
   :display_name => "Sysadmin Username or Group",
@@ -30,7 +36,7 @@ attribute "db_mssql/sysadmin_user",
 attribute "db_mssql/server_name",
   :display_name => "SQL Server instance network name",
   :description => "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD",
-  :recipes => ["db_mssql::add_sysadmin"],
+  :recipes => ["db_mssql::add_sysadmin","db_mssql::default"],
   :required => "required"
 
 attribute "db_mssql/nickname",

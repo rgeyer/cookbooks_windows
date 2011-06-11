@@ -53,7 +53,7 @@ template maintenance_script do
 end
 
 db_sqlserver_database "master" do
-  server_name node[:db_sqlserver][:server_name]
+  server_name node[:db_mssql][:server_name]
   script_path maintenance_script
   action :run_script
 end

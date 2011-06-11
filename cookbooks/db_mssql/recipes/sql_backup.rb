@@ -15,3 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+db_sqlserver_database "master" do
+  server_name node[:db_mssql][:server_name]
+  commands ["EXECUTE [dbo].[DatabaseBackup] , @Directory = N'#{node[:db_mssql][:backup_dir]}', @BackupType = 'FULL', @Verify = 'Y', @CleanupTime = #{node[:db_mssql][:backup_cleanup_time]}, @CheckSum = 'Y'"]
+  action :run_command
+end

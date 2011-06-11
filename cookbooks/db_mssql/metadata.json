@@ -114,7 +114,8 @@
       ],
       "type": "string",
       "recipes": [
-        "db_mssql::add_sysadmin"
+        "db_mssql::add_sysadmin",
+        "db_mssql::default"
       ],
       "display_name": "SQL Server instance network name",
       "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
@@ -226,7 +227,8 @@
       "default": "C:/sql_backups",
       "type": "string",
       "recipes": [
-        "db_mssql::default"
+        "db_mssql::default",
+        "db_mssql::sql_backup"
       ],
       "display_name": "SQL Database Backup Dir",
       "description": "The full path to a directory where SQL backups will be stored"
@@ -259,6 +261,20 @@
       ],
       "display_name": "SQL Mirror Partner nickname",
       "description": "The nickname (set in db_mssql::default, defined by db_mssql/nickname) of the other server in the mirroring partnership"
+    },
+    "db_mssql/backup_cleanup_time": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "168",
+      "type": "string",
+      "recipes": [
+        "db_mssql::sql_backup"
+      ],
+      "display_name": "SQL Backup File Max Age (hours)",
+      "description": "The maximum age (in hours) of backup files.  Any files older than this value will be deleted when a new backup is created. Defaults to 168 (one week)"
     },
     "db_mssql/mirror_password": {
       "required": "required",
