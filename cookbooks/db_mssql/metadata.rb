@@ -39,7 +39,7 @@ attribute "db_mssql/backup_vol_snapshot_id",
   :display_name => "SQL Backup Volume Snapshot Id",
   :description => "The AWS snapshot ID of a volume to mount as the SQL backup volume (useful for starting a new lineage from an old one)",
   :recipes => ["db_mssql::default"],
-  :required => "required"
+  :required => "optional"
 
 attribute "db_mssql/sysadmin_user",
   :display_name => "Sysadmin Username or Group",

@@ -67,7 +67,7 @@
       "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
     },
     "db_mssql/backup_vol_snapshot_id": {
-      "required": "required",
+      "required": "optional",
       "calculated": false,
       "choice": [
 
