@@ -33,23 +33,25 @@ end
 
 if Gem::Version.new(Chef::VERSION) >= Gem::Version.new('0.9.0')
   cookbook_file 'C:/powershell_scripts/sql/functions.ps1' do
-  source "functions.ps1"
+    source "functions.ps1"
+  end
+
+  cookbook_file maintenance_script do
+    source "MaintenanceSolution.sql"
   end
 else
   remote_file 'C:/powershell_scripts/sql/functions.ps1' do
-  source "functions.ps1"
+    source "functions.ps1"
+  end
+
+  remote_file maintenance_script do
+    source "MaintenanceSolution.sql"
   end
 end
 
 directory node[:db_mssql][:backup_dir] do
   recursive true
   action :create
-end
-
-template maintenance_script do
-  source "MaintenanceSolution.sql.erb"
-  variables(:backup_dir => node[:db_mssql][:backup_dir])
-  backup false
 end
 
 db_sqlserver_database "master" do
