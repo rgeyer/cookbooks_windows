@@ -50,11 +50,6 @@ else
   end
 end
 
-directory node[:db_mssql][:backup_dir] do
-  recursive true
-  action :create
-end
-
 db_sqlserver_database "master" do
   server_name node[:db_mssql][:server_name]
   script_path maintenance_script
@@ -70,4 +65,5 @@ ebs_conductor_attach_lineage "Attach SQL Backup Volume in lineage #{backup_linea
   if node[:db_mssql][:backup_vol_snapshot_id]
     snapshot_id node[:db_mssql][:backup_vol_snapshot_id]
   end
+  mountpoint node[:db_mssql][:backup_vol_driveletter]
 end

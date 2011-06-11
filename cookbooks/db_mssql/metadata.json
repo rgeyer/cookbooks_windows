@@ -245,21 +245,6 @@
       "display_name": "SQL Backup Volume Size in GB",
       "description": "The size in GB of the EBS volume for database backups"
     },
-    "db_mssql/backup_dir": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "C:/sql_backups",
-      "type": "string",
-      "recipes": [
-        "db_mssql::default",
-        "db_mssql::sql_backup"
-      ],
-      "display_name": "SQL Database Backup Dir",
-      "description": "The full path to a directory where SQL backups will be stored"
-    },
     "db_mssql/mirror_listen_ip": {
       "required": "optional",
       "calculated": false,
@@ -316,6 +301,21 @@
       ],
       "display_name": "SQL Mirroring Password",
       "description": "A password used to create a user and certificate for the mirroring partnership"
+    },
+    "db_mssql/backup_vol_driveletter": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "D",
+      "type": "string",
+      "recipes": [
+        "db_mssql::default",
+        "db_mssql::sql_backup"
+      ],
+      "display_name": "SQL Database Backup Dir",
+      "description": "The full path to a directory where SQL backups will be stored"
     },
     "db_mssql/database_name": {
       "required": "optional",

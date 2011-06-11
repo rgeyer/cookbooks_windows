@@ -17,11 +17,11 @@ recipe "db_mssql::initialize_mirror", "Downloads a full, and transaction log bac
 recipe "db_mssql::initialize_principal", "Causes the principal server to create a mirror partnership with the mirror.  The mirror configuration is high-performance (asynchronous).  This is usually intended to be called remotely by the mirror server when db_mssql::initialize_mirror is used."
 recipe "db_mssql::sql_backup", "Executes a full backup of all databases, putting the results into db_mssql/backup_dir"
 
-attribute "db_mssql/backup_dir",
+attribute "db_mssql/backup_vol_driveletter",
   :display_name => "SQL Database Backup Dir",
   :description => "The full path to a directory where SQL backups will be stored",
   :recipes => ["db_mssql::default","db_mssql::sql_backup"],
-  :default => "C:/sql_backups"
+  :default => "D"
 
 attribute "db_mssql/backup_cleanup_time",
   :display_name => "SQL Backup File Max Age (hours)",
