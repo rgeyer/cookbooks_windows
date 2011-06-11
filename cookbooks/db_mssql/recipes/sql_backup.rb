@@ -17,6 +17,6 @@
 
 db_sqlserver_database "master" do
   server_name node[:db_mssql][:server_name]
-  commands ["EXECUTE [dbo].[DatabaseBackup] @Directory = N'#{node[:db_mssql][:backup_dir]}', @BackupType = 'FULL', @Verify = 'Y', @CleanupTime = #{node[:db_mssql][:backup_cleanup_time]}, @CheckSum = 'Y'"]
+  commands ["EXECUTE [dbo].[DatabaseBackup] @Databases = 'USER_DATABASES', @Directory = N'#{node[:db_mssql][:backup_dir]}', @BackupType = 'FULL', @Verify = 'Y', @CleanupTime = #{node[:db_mssql][:backup_cleanup_time]}, @CheckSum = 'Y'"]
   action :run_command
 end

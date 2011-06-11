@@ -18,6 +18,7 @@
 include_recipe "skeme::default"
 
 maintenance_script = ::File.join(ENV['TMP'], "maintenance.sql")
+backup_lineage = "#{node[:db_mssql][:nickname]}-db-backups"
 
 skeme_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}" do
   action :add
@@ -58,4 +59,15 @@ db_sqlserver_database "master" do
   server_name node[:db_mssql][:server_name]
   script_path maintenance_script
   action :run_script
+end
+
+# TODO: Permit RightScale tagging support by passing credentials
+ebs_conductor_attach_lineage "Attach SQL Backup Volume in lineage #{backup_lineage}" do
+  lineage backup_lineage
+  aws_access_key_id node[:aws][:access_key_id]
+  aws_secret_access_key node[:aws][:secret_access_key]
+  vol_size_in_gb node[:db_mssql][:backup_vol_size_in_gb]
+  if node[:db_mssql][:backup_vol_snapshot_id]
+    snapshot_id node[:db_mssql][:backup_vol_snapshot_id]
+  end
 end

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "ebs_conductor": ">= 0.0.0",
     "skeme": ">= 0.0.0",
     "db_sqlserver": ">= 0.0.0"
   },
@@ -64,6 +65,19 @@
       ],
       "display_name": "SQL Server instance network name",
       "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
+    },
+    "db_mssql/backup_vol_snapshot_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::default"
+      ],
+      "display_name": "SQL Backup Volume Snapshot Id",
+      "description": "The AWS snapshot ID of a volume to mount as the SQL backup volume (useful for starting a new lineage from an old one)"
     },
     "db_mssql/partner_certificate": {
       "required": "optional",
@@ -217,6 +231,19 @@
       ],
       "display_name": "Old backups to keep",
       "description": "Defines the number of old backups to keep. Ex: 30"
+    },
+    "db_mssql/backup_vol_size_in_gb": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "db_mssql::default"
+      ],
+      "display_name": "SQL Backup Volume Size in GB",
+      "description": "The size in GB of the EBS volume for database backups"
     },
     "db_mssql/backup_dir": {
       "required": "optional",

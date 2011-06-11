@@ -8,6 +8,7 @@ version "0.0.2"
 
 depends "db_sqlserver"
 depends "skeme"
+depends "ebs_conductor"
 
 recipe "db_mssql::default", "Tags the server instance with a nickname so it can be easily located later for mirroring activities"
 recipe "db_mssql::add_sysadmin", "Adds a user (or group) as a sysadmin for the entire server"
@@ -27,6 +28,18 @@ attribute "db_mssql/backup_cleanup_time",
   :description => "The maximum age (in hours) of backup files.  Any files older than this value will be deleted when a new backup is created. Defaults to 168 (one week)",
   :default => "168",
   :recipes => ["db_mssql::sql_backup"]
+
+attribute "db_mssql/backup_vol_size_in_gb",
+  :display_name => "SQL Backup Volume Size in GB",
+  :description => "The size in GB of the EBS volume for database backups",
+  :recipes => ["db_mssql::default"],
+  :required => "required"
+
+attribute "db_mssql/backup_vol_snapshot_id",
+  :display_name => "SQL Backup Volume Snapshot Id",
+  :description => "The AWS snapshot ID of a volume to mount as the SQL backup volume (useful for starting a new lineage from an old one)",
+  :recipes => ["db_mssql::default"],
+  :required => "required"
 
 attribute "db_mssql/sysadmin_user",
   :display_name => "Sysadmin Username or Group",
