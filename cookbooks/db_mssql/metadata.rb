@@ -16,6 +16,8 @@ recipe "db_mssql::establish_mirroring_partnership", "To be run from the server c
 recipe "db_mssql::initialize_mirror", "Downloads a full, and transaction log backup (created by the principal server) from S3.  The backup is restored with NORECOVERY and mirroring is configured.  This is usually intended to be called remotely by the principal server when db_mssql::establish_mirroring_partnership is used."
 recipe "db_mssql::initialize_principal", "Causes the principal server to create a mirror partnership with the mirror.  The mirror configuration is high-performance (asynchronous).  This is usually intended to be called remotely by the mirror server when db_mssql::initialize_mirror is used."
 recipe "db_mssql::sql_backup", "Executes a full backup of all databases, putting the results into db_mssql/backup_dir"
+recipe "db_mssql::enable_continuous_sql_backup", "Schedules a full DB backup using db_mssql::sql_backup daily"
+recipe "db_mssql::disable_continuous_sql_backup", "Disables the scheduled full DB backup using db_mssql::sql_backup daily"
 
 attribute "db_mssql/backup_vol_driveletter",
   :display_name => "SQL Database Backup Dir",
