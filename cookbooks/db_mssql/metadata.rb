@@ -57,7 +57,7 @@ attribute "db_mssql/server_name",
 attribute "db_mssql/nickname",
   :display_name => "SQL Server nickname",
   :description => "A unique memorable name for this mssql server.  Used for activities like mirroring etc, where actions must be performed on more than one sql server.",
-  :recipes => ["db_mssql::default"],
+  :recipes => ["db_mssql::default", "db_mssql::sql_backup"],
   :required => "required"
 
 attribute "db_mssql/database_name",
@@ -126,13 +126,13 @@ attribute "db_mssql/partner_certificate",
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::sql_backup"],
   :required => "required"
 
 attribute "aws/secret_access_key",
   :display_name => "Secret Access Key",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::sql_backup"],
   :required => "required"
 
 # db_sqlserver copy/paste
