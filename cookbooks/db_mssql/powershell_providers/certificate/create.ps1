@@ -42,7 +42,7 @@ if($count -gt 0)
 }
 
 # We'll have returned or exitted by now if we weren't supposed to do this.
-$query = "CREATE CERTIFICATE [$name] WITH SUBJECT = '$name generated from the Chef LWRP db_mssql_certificate'"
+$query = "CREATE CERTIFICATE [$name]"
 
 # Add an authorization
 if(![String]::IsNullOrEmpty($username))
@@ -54,6 +54,10 @@ if(![String]::IsNullOrEmpty($username))
 if(![String]::IsNullOrEmpty($filename) -and $import_on_create)
 {
   $query += " FROM FILE = '$filename'"
+}
+else
+{
+  $query += " WITH SUBJECT = '$name generated from the Chef LWRP db_mssql_certificate'"
 }
 
 Sql-ExecuteNonQuery $server $query
