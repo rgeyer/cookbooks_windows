@@ -41,7 +41,7 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
     secret_access_key params[:aws_secret_access_key]
     s3_bucket params[:s3_bucket]
     s3_file params[:partner_certificate]
-    file_path partner_cert_filepath
+    download_dir backup_dir
     action :get
   end
 
