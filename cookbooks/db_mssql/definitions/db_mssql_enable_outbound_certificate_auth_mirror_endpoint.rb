@@ -56,7 +56,7 @@ define :db_mssql_enable_outbound_certificate_auth_mirror_endpoint,
 
   db_mssql_certificate "Create or overwrite a certificate named #{cert_name}" do
     import_on_create false
-    overwrite true
+    overwrite false
     cert_name cert_name
     filename cert_filepath
     action [:create, :backup]

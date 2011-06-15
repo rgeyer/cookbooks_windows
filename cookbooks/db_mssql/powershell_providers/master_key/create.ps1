@@ -28,8 +28,9 @@ if($count -gt 0)
 {
   if($overwrite)
   {
-    Write-Warning "Overwrite was set to true, deleting existing master encryption key..."
-    Sql-ExecuteNonQuery $server "DROP MASTER KEY"
+    Write-Warning "Overwrite was set to true, altering the existing master key to use the specified password..."
+    Sql-ExecuteNonQuery $server "ALTER MASTER KEY REGENERATE WITH ENCRYPTION BY PASSWORD = '$password'"
+    exit 0
   }
   else
   {
@@ -39,4 +40,5 @@ if($count -gt 0)
 }
 
 # We'll have returned or exitted by now if we weren't supposed to do this.
+Write-Output "Creating a new master key..."
 Sql-ExecuteNonQuery $server "CREATE MASTER KEY ENCRYPTION BY PASSWORD = '$password'"
