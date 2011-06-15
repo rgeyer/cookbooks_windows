@@ -29,12 +29,12 @@ if($count -gt 0)
 {
   if($overwrite)
   {
-    Write-Warning "Overwrite was set to true, deleting the user named ($name)..."
-    Sql-ExecuteNonQuery $server "DROP USER [$name]"
+    Write-Warning "Overwrite was set to true, deleting the user named ($user)..."
+    Sql-ExecuteNonQuery $server "DROP USER [$user]"
   }
   else
   {
-    Write-Output "User with the name ($name) already exists, skipping creation.."
+    Write-Output "User with the name ($user) already exists, skipping creation.."
     exit 0
   }
 }
