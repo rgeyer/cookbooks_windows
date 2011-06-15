@@ -24,10 +24,10 @@ define :db_mssql_enable_outbound_certificate_auth_mirror_endpoint,
        :s3_bucket => nil,
        :mirror_listen_port => nil,
        :mirror_listen_ip => nil do
-  backup_dir = "C:/tmp/mirrorendpoint/"
+  backup_dir = ::File.join(ENV['TMP'], 'mirrorendpoint')
   master_key_backup_filename = "#{params[:nickname]}_master_key.key"
   master_key_backup_filepath = ::File.join(backup_dir, master_key_backup_filename)
-  # TODO: This is duplicated in db_mssql::establish_mirroring_partnership, in db_mssql::initialize_mirror, and in the outbound endpoint definition.  May want to fix that
+
   cert_name = "#{params[:nickname]}_mirror_cert"
   cert_filename = "#{cert_name}.cer"
   cert_filepath = ::File.join(backup_dir, cert_filename)

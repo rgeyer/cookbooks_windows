@@ -63,20 +63,20 @@ attribute "db_mssql/nickname",
 attribute "db_mssql/database_name",
   :display_name => "SQL Database Name",
   :description => "The name of the database to perform the action on",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
+  :recipes => ["db_mssql::establish_mirroring_partnership"],
   :required => "optional"
 
 attribute "db_mssql/mirror_partner",
   :display_name => "SQL Mirror Partner nickname",
   :description => "The nickname (set in db_mssql::default, defined by db_mssql/nickname) of the other server in the mirroring partnership",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership"],
   :required => "required"
 
-attribute "db_mssql/mirror_partner_ip",
-  :display_name => "SQL Mirror Partner IP/Hostname",
-  :description => "The ip address (or hostname) of the opposite side of the mirroring partnership.",
-  :recipes => ["db_mssql::initialize_mirror","db_mssql::initialize_principal"],
-  :required => "optional"
+#attribute "db_mssql/mirror_partner_ip",
+#  :display_name => "SQL Mirror Partner IP/Hostname",
+#  :description => "The ip address (or hostname) of the opposite side of the mirroring partnership.",
+#  :recipes => [],
+#  :required => "optional"
 
 attribute "db_mssql/my_ip_for_mirroring_partner",
   :display_name => "SQL Mirror My IP",
@@ -84,55 +84,55 @@ attribute "db_mssql/my_ip_for_mirroring_partner",
   :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::default"],
   :required => "required"
 
-attribute "db_mssql/mirror_backup_file",
-  :display_name => "SQL Mirror Backup File",
-  :description => "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner",
-  :recipes => ["db_mssql::initialize_mirror"],
-  :required => "optional"
+#attribute "db_mssql/mirror_backup_file",
+#  :display_name => "SQL Mirror Backup File",
+#  :description => "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner",
+#  :recipes => [],
+#  :required => "optional"
 
 attribute "db_mssql/mirror_listen_port",
   :display_name => "SQL Mirroring Endpoint Port",
   :description => "The port that the mirroring endpoint will listen on",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
+  :recipes => ["db_mssql::establish_mirroring_partnership"],
   :required => "optional",
   :default => "5022"
 
 attribute "db_mssql/mirror_listen_ip",
   :display_name => "SQL Mirror Endpoint Listener IP",
   :description => "The IP address(es) that the mirroring endpoint will listen on.  Defaults to 'ALL' but any option defined in the 'TCP Protocol Option' section of (http://technet.microsoft.com/en-us/library/ms181591.aspx) is acceptable",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::initialize_mirror"],
   :required => "optional",
   :default => "ALL"
 
 attribute "db_mssql/mirror_bucket",
   :display_name => "SQL Mirroring S3 Bucket",
   :description => "An S3 bucket used to exchange data between partners in a mirroring relationship",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership"],
   :required => "required"
 
 attribute "db_mssql/mirror_password",
   :display_name => "SQL Mirroring Password",
   :description => "A password used to create a user and certificate for the mirroring partnership",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initalize_mirror"],
   :required => "required"
 
-attribute "db_mssql/partner_certificate",
-  :display_name => "SQL Mirroring Partner Cert",
-  :description => "The filename (key) of the file in the S3 bucket defined in db_mssql/mirror_bucket which will be used for communication with a mirroring partner",
-  :recipes => ["db_mssql::initialize_mirror","db_mssql::initialize_principal"],
-  :required => "optional"
+#attribute "db_mssql/partner_certificate",
+#  :display_name => "SQL Mirroring Partner Cert",
+#  :description => "The filename (key) of the file in the S3 bucket defined in db_mssql/mirror_bucket which will be used for communication with a mirroring partner",
+#  :recipes => [],
+#  :required => "optional"
 
 # AWS copy/paste
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::sql_backup"],
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::sql_backup"],
   :required => "required"
 
 attribute "aws/secret_access_key",
   :display_name => "Secret Access Key",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::sql_backup"],
+  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::sql_backup"],
   :required => "required"
 
 # db_sqlserver copy/paste

@@ -23,7 +23,7 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
        :aws_secret_access_key => nil,
        :s3_bucket => nil do
 
-  backup_dir = "C:/tmp/mirrorendpoint/"
+  backup_dir = ::File.join(ENV['TMP'], 'mirrorendpoint')
 
   partner_login = "#{params[:mirror_partner]}_mirror_login"
   partner_user = "#{params[:mirror_partner]}_mirror_user"

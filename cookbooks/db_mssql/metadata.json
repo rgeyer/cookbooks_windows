@@ -79,34 +79,6 @@
       "display_name": "SQL Backup Volume Snapshot Id",
       "description": "The AWS snapshot ID of a volume to mount as the SQL backup volume (useful for starting a new lineage from an old one)"
     },
-    "db_mssql/partner_certificate": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "db_mssql::initialize_mirror",
-        "db_mssql::initialize_principal"
-      ],
-      "display_name": "SQL Mirroring Partner Cert",
-      "description": "The filename (key) of the file in the S3 bucket defined in db_mssql/mirror_bucket which will be used for communication with a mirroring partner"
-    },
-    "db_mssql/mirror_partner_ip": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "db_mssql::initialize_mirror",
-        "db_mssql::initialize_principal"
-      ],
-      "display_name": "SQL Mirror Partner IP/Hostname",
-      "description": "The ip address (or hostname) of the opposite side of the mirroring partnership."
-    },
     "db_mssql/nickname": {
       "required": "required",
       "calculated": false,
@@ -157,7 +129,6 @@
       "type": "string",
       "recipes": [
         "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror",
         "db_mssql::sql_backup"
       ],
       "display_name": "Secret Access Key",
@@ -172,9 +143,7 @@
       "default": "5022",
       "type": "string",
       "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror",
-        "db_mssql::initialize_principal"
+        "db_mssql::establish_mirroring_partnership"
       ],
       "display_name": "SQL Mirroring Endpoint Port",
       "description": "The port that the mirroring endpoint will listen on"
@@ -188,7 +157,6 @@
       "type": "string",
       "recipes": [
         "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror",
         "db_mssql::sql_backup"
       ],
       "display_name": "Access Key Id",
@@ -202,24 +170,10 @@
       ],
       "type": "string",
       "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror"
+        "db_mssql::establish_mirroring_partnership"
       ],
       "display_name": "SQL Mirroring S3 Bucket",
       "description": "An S3 bucket used to exchange data between partners in a mirroring relationship"
-    },
-    "db_mssql/mirror_backup_file": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "db_mssql::initialize_mirror"
-      ],
-      "display_name": "SQL Mirror Backup File",
-      "description": "The name (key) of the file in S3 under the s3/bucket_backups bucket which will be downloaded, and restored in order to create the mirrored relationship with db_mssql/mirror_partner"
     },
     "db_sqlserver/backup/backups_to_keep": {
       "required": "required",
@@ -257,7 +211,6 @@
       "default": "ALL",
       "type": "string",
       "recipes": [
-        "db_mssql::establish_mirroring_partnership",
         "db_mssql::initialize_mirror"
       ],
       "display_name": "SQL Mirror Endpoint Listener IP",
@@ -271,8 +224,7 @@
       ],
       "type": "string",
       "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror"
+        "db_mssql::establish_mirroring_partnership"
       ],
       "display_name": "SQL Mirror Partner nickname",
       "description": "The nickname (set in db_mssql::default, defined by db_mssql/nickname) of the other server in the mirroring partnership"
@@ -300,7 +252,7 @@
       "type": "string",
       "recipes": [
         "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror"
+        "db_mssql::initalize_mirror"
       ],
       "display_name": "SQL Mirroring Password",
       "description": "A password used to create a user and certificate for the mirroring partnership"
@@ -328,9 +280,7 @@
       ],
       "type": "string",
       "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror",
-        "db_mssql::initialize_principal"
+        "db_mssql::establish_mirroring_partnership"
       ],
       "display_name": "SQL Database Name",
       "description": "The name of the database to perform the action on"
