@@ -1,4 +1,14 @@
-Include 'C:/powershell_scripts/sql/functions.ps1'
+$filename = 'C:/powershell_scripts/sql/functions.ps1'
+
+if(!(Test-Path $filename))
+{
+  Write-Error "The db_mssql Powershell script library was not installed.  Try running the db_mssql::default recipe then try again"
+  exit 100
+}
+else
+{
+  . $filename
+}
 
 # For debugging/local testing purposes
 #$env:SERVER = "localhost"
@@ -8,7 +18,7 @@ Include 'C:/powershell_scripts/sql/functions.ps1'
 
 # TODO: We're not really doing any error handling... And that's bad...
 
-$conn_string = "Server=$env:SERVER; Integrated Security=SSPI; Database=Master"
+$conn_string = "server=$server_network_name;database=master;trusted_connection=true;"
 $server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
 $server.Open()
 $count = Sql-ExecuteScalar $server "SELECT COUNT(*) FROM master.sys.database_mirroring_endpoints"
