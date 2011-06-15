@@ -19,7 +19,7 @@ $password = Get-NewResource password
 $overwrite = Get-NewResource overwrite
 $server_network_name = Get-NewResource server_network_name
 
-$conn_string = "server=$server_network_name;database=master,trusted_connection=true;"
+$conn_string = "server=$server_network_name;database=master;trusted_connection=true;"
 $server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
 $server.Open()
 

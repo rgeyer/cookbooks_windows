@@ -64,7 +64,7 @@ attribute "db_mssql/database_name",
   :display_name => "SQL Database Name",
   :description => "The name of the database to perform the action on",
   :recipes => ["db_mssql::establish_mirroring_partnership"],
-  :required => "optional"
+  :required => "required"
 
 attribute "db_mssql/mirror_partner",
   :display_name => "SQL Mirror Partner nickname",

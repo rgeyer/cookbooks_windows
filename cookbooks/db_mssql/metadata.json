@@ -217,7 +217,7 @@
       "description": "The full path to a directory where SQL backups will be stored"
     },
     "db_mssql/database_name": {
-      "required": "optional",
+      "required": "required",
       "calculated": false,
       "choice": [
 
