@@ -15,7 +15,7 @@
 
 . 'C:/powershell_scripts/sql/functions.ps1'
 
-$login = Get-NewResource name
+$login = Get-NewResource login
 $password = Get-NewResource password
 $overwrite = Get-NewResource overwrite
 $server_network_name = Get-NewResource server_network_name
