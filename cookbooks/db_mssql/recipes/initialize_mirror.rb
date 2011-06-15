@@ -91,7 +91,7 @@ db_sqlserver_database "master" do
   server_name node[:db_mssql][:server_name]
   commands [
     "RESTORE DATABASE [#{node[:remote][:db_mssql][:database_name]}] FROM DISK = '#{::File.join(backup_dir, 'backup.bak')}' WITH FILE=1, NORECOVERY",
-    "RESTORE LOG [#{node[:db_mssql][:database_name]}] FROM DISK = '#{::File.join(backup_dir, 'backup.trn')}' WITH FILE=1, NORECOVERY"
+    "RESTORE LOG [#{node[:remote][:db_mssql][:database_name]}] FROM DISK = '#{::File.join(backup_dir, 'backup.trn')}' WITH FILE=1, NORECOVERY"
            ]
   action :run_command
   #notifies :delete, resources(:directory => backup_dir), :immediately
