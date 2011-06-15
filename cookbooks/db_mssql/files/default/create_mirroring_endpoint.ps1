@@ -27,7 +27,7 @@ if($count -gt 0)
 {
     # Assuming that there's only one, since there should be only one per server
     # TODO: need to check for the other parameters (authentication, listen port/ip, encryption, etc) before deciding to overwrite
-    $endpoint_name = Sql-ExecuteScalar "SELECT name FROM master.sys.database_mirroring_endpoints"
+    $endpoint_name = Sql-ExecuteScalar $server "SELECT name FROM master.sys.database_mirroring_endpoints"
     if($endpoint_name -ne $env:ENDPOINT_NAME)
     {
         Write-Warning "Deleting all existing mirroring endpoints!"
