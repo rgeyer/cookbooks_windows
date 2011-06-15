@@ -81,7 +81,7 @@ powershell "Zip the backup files" do
 Write-Output "Zipping the backup"
 $output=invoke-expression 'cmd /c 7z a -tzip "$env:BACKUP_FILENAME" $env:FULL_BACKUP_PATH $env:LOG_BACKUP_PATH'
 Write-Output $output
-if (!($output -match "Everything is Ok")
+if (!($output -match "Everything is Ok"))
 {
   Write-Error "Failed to zip backups"
   exit 1
