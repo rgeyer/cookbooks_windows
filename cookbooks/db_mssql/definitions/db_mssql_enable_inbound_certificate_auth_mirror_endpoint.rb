@@ -55,6 +55,7 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
   end
 
   db_mssql_user partner_user do
+    user partner_user
     server_network_name params[:server_name]
     login partner_login
     overwrite true
