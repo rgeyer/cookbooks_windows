@@ -78,7 +78,8 @@ define :db_mssql_enable_outbound_certificate_auth_mirror_endpoint,
       'ENDPOINT_NAME' => 'mirror_endpoint',
       'LISTEN_PORT' => params[:mirror_listen_port],
       'LISTEN_IP' => params[:mirror_listen_ip],
-      'MIRROR_PASSWORD' => params[:mirror_password]
+      'MIRROR_PASSWORD' => params[:mirror_password],
+      'CERT_NAME' => cert_name
     })
 
     # TODO: Make this chef client compatible, using the relative path won't work unless we're in solo
