@@ -51,7 +51,7 @@ attribute "db_mssql/sysadmin_user",
 attribute "db_mssql/server_name",
   :display_name => "SQL Server instance network name",
   :description => "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD",
-  :recipes => ["db_mssql::add_sysadmin","db_mssql::default"],
+  :recipes => ["db_mssql::add_sysadmin","db_mssql::default","db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
   :required => "required"
 
 attribute "db_mssql/nickname",
@@ -133,29 +133,4 @@ attribute "aws/secret_access_key",
   :display_name => "Secret Access Key",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
   :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::sql_backup"],
-  :required => "required"
-
-# db_sqlserver copy/paste
-attribute "db_sqlserver/server_name",
-  :display_name => "SQL Server instance network name",
-  :description => "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
-  :required => "required"
-
-attribute "db_sqlserver/backup/backup_file_name_format",
-  :display_name => "Backup file name format",
-  :description => "Format string with Powershell-style string format arguments for creating backup files. The 0 argument represents the database name, the 1 argument represents a generated time stamp and the 2 argument represents the backup contents (one of 'full' or 'log' indicating a full backup or transactional log backup). Ex: {0}_{1}_{2}.bak",
-  :default => "{0}_{1}_{2}.bak",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"]
-
-attribute "db_sqlserver/backup/existing_backup_file_name_pattern",
-  :display_name => "Pattern matching backup file names",
-  :description => "Wildcard file matching pattern (i.e. not a Regex) with Powershell-style string format arguments for finding backup files. The 0 argument represents the database name and the rest of the pattern should match the file names generated from the backup_file_name_format. Ex: {0}_*.bak",
-  :default => "{0}_*.bak",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"]
-
-attribute "db_sqlserver/backup/backups_to_keep",
-  :display_name => "Old backups to keep",
-  :description => "Defines the number of old backups to keep. Ex: 30",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror"],
   :required => "required"

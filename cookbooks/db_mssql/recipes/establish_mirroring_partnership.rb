@@ -103,7 +103,7 @@ aws_s3 "Upload database backup to S3" do
 end
 
 db_mssql_enable_outbound_certificate_auth_mirror_endpoint "Enable outbound mirroring endpoint" do
-  server_name node[:db_sqlserver][:server_name]
+  server_name node[:db_mssql][:server_name]
   nickname node[:db_mssql][:nickname]
   mirror_password node[:db_mssql][:mirror_password]
   aws_access_key_id node[:aws][:access_key_id]

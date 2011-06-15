@@ -30,7 +30,7 @@ end
 # TODO: This is currently setting up a "high safety" mirror (synchronous) because we're setting safety to full and witness to off.  Might want to provide
 # other options?
 db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do
-  server_name node[:db_sqlserver][:server_name]
+  server_name node[:db_mssql][:server_name]
   commands [
     "ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:remote][:db_mssql][:mirror_partner_ip]}:#{node[:remote][:db_mssql][:mirror_listen_port]}'",
     "ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET SAFETY FULL",

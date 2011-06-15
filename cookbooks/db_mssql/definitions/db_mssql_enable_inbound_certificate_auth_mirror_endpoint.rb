@@ -68,7 +68,7 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
   end
 
   db_sqlserver_database "master" do
-    server_name node[:db_sqlserver][:server_name]
+    server_name node[:db_mssql][:server_name]
     commands ["GRANT CONNECT ON ENDPOINT::mirror_endpoint TO [#{partner_user}]"]
   end
 end

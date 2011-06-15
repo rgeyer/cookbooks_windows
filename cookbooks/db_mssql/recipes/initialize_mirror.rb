@@ -99,7 +99,7 @@ end
 # /Download & restore DB
 
 db_mssql_enable_outbound_certificate_auth_mirror_endpoint "Enable outbound mirroring endpoint" do
-  server_name node[:db_sqlserver][:server_name]
+  server_name node[:db_mssql][:server_name]
   nickname node[:db_mssql][:nickname]
   mirror_password node[:remote][:db_mssql][:mirror_password]
   aws_access_key_id node[:remote][:aws][:access_key_id]
@@ -120,7 +120,7 @@ end
 
 # Partner up with the primary/principal server
 db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do
-  server_name node[:db_sqlserver][:server_name]
+  server_name node[:db_mssql][:server_name]
   commands ["ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:remote][:db_mssql][:mirror_partner_ip]}:#{node[:remote][:db_mssql][:mirror_listen_port]}'"]
   action :run_command
 end

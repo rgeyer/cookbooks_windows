@@ -21,51 +21,6 @@
       "display_name": "SQL Mirror My IP",
       "description": "The ip address (or hostname) that partners connecting to this node should use.  This should be set to something like $env:EC2_PUBLIC_IPV4"
     },
-    "db_sqlserver/backup/existing_backup_file_name_pattern": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "{0}_*.bak",
-      "type": "string",
-      "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror"
-      ],
-      "display_name": "Pattern matching backup file names",
-      "description": "Wildcard file matching pattern (i.e. not a Regex) with Powershell-style string format arguments for finding backup files. The 0 argument represents the database name and the rest of the pattern should match the file names generated from the backup_file_name_format. Ex: {0}_*.bak"
-    },
-    "db_sqlserver/backup/backup_file_name_format": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "{0}_{1}_{2}.bak",
-      "type": "string",
-      "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror"
-      ],
-      "display_name": "Backup file name format",
-      "description": "Format string with Powershell-style string format arguments for creating backup files. The 0 argument represents the database name, the 1 argument represents a generated time stamp and the 2 argument represents the backup contents (one of 'full' or 'log' indicating a full backup or transactional log backup). Ex: {0}_{1}_{2}.bak"
-    },
-    "db_sqlserver/server_name": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror",
-        "db_mssql::initialize_principal"
-      ],
-      "display_name": "SQL Server instance network name",
-      "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
-    },
     "db_mssql/backup_vol_snapshot_id": {
       "required": "optional",
       "calculated": false,
@@ -102,7 +57,10 @@
       "type": "string",
       "recipes": [
         "db_mssql::add_sysadmin",
-        "db_mssql::default"
+        "db_mssql::default",
+        "db_mssql::establish_mirroring_partnership",
+        "db_mssql::initialize_mirror",
+        "db_mssql::initialize_principal"
       ],
       "display_name": "SQL Server instance network name",
       "description": "The network name of the SQL Server instance used by recipes. Ex: 'localhost\\SQLEXPRESS' for SQL EXPRESS or 'localhost' for SQL STANDARD"
@@ -174,20 +132,6 @@
       ],
       "display_name": "SQL Mirroring S3 Bucket",
       "description": "An S3 bucket used to exchange data between partners in a mirroring relationship"
-    },
-    "db_sqlserver/backup/backups_to_keep": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initialize_mirror"
-      ],
-      "display_name": "Old backups to keep",
-      "description": "Defines the number of old backups to keep. Ex: 30"
     },
     "db_mssql/backup_vol_size_in_gb": {
       "required": "required",
