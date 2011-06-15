@@ -23,7 +23,7 @@ $conn_string = "server=$server_network_name;database=master;trusted_connection=t
 $server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
 $server.Open()
 
-$count = Sql-ExecuteScalar $server "SELECT count(*) FROM sys.key_encryptions"
+$count = Sql-ExecuteScalar $server "SELECT count(*) FROM sys.symmetric_keys WHERE name = '##MS_DatabaseMasterKey##'"
 if($count -gt 0)
 {
   if($overwrite)
