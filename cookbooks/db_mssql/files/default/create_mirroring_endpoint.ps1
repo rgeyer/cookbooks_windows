@@ -18,7 +18,7 @@ else
 
 # TODO: We're not really doing any error handling... And that's bad...
 
-$conn_string = "server=$server_network_name;database=master;trusted_connection=true;"
+$conn_string = "server=$env:SERVER;database=master;trusted_connection=true;"
 $server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
 $server.Open()
 $count = Sql-ExecuteScalar $server "SELECT COUNT(*) FROM master.sys.database_mirroring_endpoints"
@@ -49,6 +49,8 @@ CREATE ENDPOINT {0}
     AS TCP(LISTENER_PORT={1}, LISTENER_IP={2})
     FOR DATA_MIRRORING(ROLE=PARTNER, AUTHENTICATION=CERTIFICATE {3})
 "@ -f $env:ENDPOINT_NAME, $env:LISTEN_PORT, $env:LISTEN_IP, $env:CERT_NAME
+Write-Output "Executing the following query to create a mirroring endpoint..."
+Write-Output $query
 Sql-ExecuteNonQuery $server $query
 
 Return 0
