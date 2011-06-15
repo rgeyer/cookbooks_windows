@@ -23,13 +23,13 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
        :aws_secret_access_key => nil,
        :s3_bucket => nil do
 
-  backup_dir = ::File.join(ENV['TMP'], 'mirrorendpoint')
+  backup_dir = "#{ENV['TMP']}\\mirrorendpoint"
 
   partner_login = "#{params[:mirror_partner]}_mirror_login"
   partner_user = "#{params[:mirror_partner]}_mirror_user"
   partner_cert_name = "#{params[:mirror_partner]}_mirror_cert"
   partner_cert_filename = "#{partner_cert_name}.cer"
-  partner_cert_filepath = ::File.join(backup_dir, partner_cert_filename)
+  partner_cert_filepath = "#{backup_dir}\\#{partner_cert_filename}"
 
   directory backup_dir do
     recursive true
@@ -63,7 +63,6 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
     import_on_create true
     username partner_user
     filename partner_cert_filepath
-    notifies :delete, resources(:directory => backup_dir), :immediately
     action :create
   end
 

@@ -57,7 +57,7 @@ attribute "db_mssql/server_name",
 attribute "db_mssql/nickname",
   :display_name => "SQL Server nickname",
   :description => "A unique memorable name for this mssql server.  Used for activities like mirroring etc, where actions must be performed on more than one sql server.",
-  :recipes => ["db_mssql::default", "db_mssql::sql_backup"],
+  :recipes => ["db_mssql::default", "db_mssql::sql_backup","db_mssql::establish_mirroring_partnership","db_mssql::initialize_mirror","db_mssql::initialize_principal"],
   :required => "required"
 
 attribute "db_mssql/database_name",

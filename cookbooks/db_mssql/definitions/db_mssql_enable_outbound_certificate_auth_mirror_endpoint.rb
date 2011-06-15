@@ -24,13 +24,13 @@ define :db_mssql_enable_outbound_certificate_auth_mirror_endpoint,
        :s3_bucket => nil,
        :mirror_listen_port => nil,
        :mirror_listen_ip => nil do
-  backup_dir = ::File.join(ENV['TMP'], 'mirrorendpoint')
+  backup_dir = "#{ENV['TMP']}\\mirrorendpoint"
   master_key_backup_filename = "#{params[:nickname]}_master_key.key"
-  master_key_backup_filepath = ::File.join(backup_dir, master_key_backup_filename)
+  master_key_backup_filepath = "#{backup_dir}\\#{master_key_backup_filename}"
 
   cert_name = "#{params[:nickname]}_mirror_cert"
   cert_filename = "#{cert_name}.cer"
-  cert_filepath = ::File.join(backup_dir, cert_filename)
+  cert_filepath = "#{backup_dir}\\#{cert_filename}"
 
   directory backup_dir do
     recursive true
@@ -81,6 +81,7 @@ define :db_mssql_enable_outbound_certificate_auth_mirror_endpoint,
       'MIRROR_PASSWORD' => params[:mirror_password]
     })
 
+    # TODO: Make this chef client compatible, using the relative path won't work unless we're in solo
     source_file_path = ::File.expand_path(::File.join(::File.dirname(__FILE__), '..', 'files', 'default', 'create_mirroring_endpoint.ps1'))
 
     source_path(source_file_path)
