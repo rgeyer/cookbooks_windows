@@ -37,6 +37,7 @@ remote_hash = {
       :mirror_partner => node[:db_mssql][:nickname],
       :mirror_partner_ip => node[:db_mssql][:my_ip_for_mirroring_partner],
       :mirror_listen_port => node[:db_mssql][:mirror_listen_port],
+      :mirror_password => node[:db_mssql][:mirror_password],
       :partner_certificate => cert_filename
     },
     :aws => {
