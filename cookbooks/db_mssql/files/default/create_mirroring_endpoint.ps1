@@ -47,7 +47,7 @@ $query = @"
 CREATE ENDPOINT {0}
     STATE=STARTED
     AS TCP(LISTENER_PORT={1}, LISTENER_IP={2})
-    FOR DATA_MIRRORING(ROLE=PARTNER, AUTHENTICATION=CERTIFICATE {3})
+    FOR DATABASE_MIRRORING(ROLE=PARTNER, AUTHENTICATION=CERTIFICATE {3})
 "@ -f $env:ENDPOINT_NAME, $env:LISTEN_PORT, $env:LISTEN_IP, $env:CERT_NAME
 Write-Output "Executing the following query to create a mirroring endpoint..."
 Write-Output $query
