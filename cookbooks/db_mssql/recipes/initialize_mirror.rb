@@ -61,7 +61,7 @@ end
 
 # TODO: This pattern (zipping and unzipping files) is repeated a lot, should probably be captured in a LWRP or a definition
 powershell "Unzip the backup file" do
-  parameters({'ZIP_FILE' => ::File.join(backup_dir, "mirror", node[:remote][:db_mssql][:mirror_backup_file]), 'DEST_DIR' => backup_dir})
+  parameters({'ZIP_FILE' => ::File.join(backup_dir, node[:remote][:db_mssql][:mirror_backup_file]), 'DEST_DIR' => backup_dir})
 
   ps_code = <<-EOF
 $command='cmd /c 7z x -y "'+$env:ZIP_FILE+'" -o"'+$env:DEST_DIR+'""'
