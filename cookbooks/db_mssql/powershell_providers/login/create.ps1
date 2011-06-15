@@ -29,12 +29,12 @@ if($count -gt 0)
 {
   if($overwrite)
   {
-    Write-Warning "Overwrite was set to true, deleting the login named ($name)..."
-    Sql-ExecuteNonQuery $server "DROP LOGIN [$name]"
+    Write-Warning "Overwrite was set to true, deleting the login named ($login)..."
+    Sql-ExecuteNonQuery $server "DROP LOGIN [$login]"
   }
   else
   {
-    Write-Output "Login with the name ($name) already exists, skipping creation.."
+    Write-Output "Login with the name ($login) already exists, skipping creation.."
     exit 0
   }
 }

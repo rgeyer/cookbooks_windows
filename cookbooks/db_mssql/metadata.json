@@ -198,8 +198,7 @@
       ],
       "type": "string",
       "recipes": [
-        "db_mssql::establish_mirroring_partnership",
-        "db_mssql::initalize_mirror"
+        "db_mssql::establish_mirroring_partnership"
       ],
       "display_name": "SQL Mirroring Password",
       "description": "A password used to create a user and certificate for the mirroring partnership"

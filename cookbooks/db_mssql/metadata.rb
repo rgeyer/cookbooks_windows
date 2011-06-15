@@ -113,7 +113,7 @@ attribute "db_mssql/mirror_bucket",
 attribute "db_mssql/mirror_password",
   :display_name => "SQL Mirroring Password",
   :description => "A password used to create a user and certificate for the mirroring partnership",
-  :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::initalize_mirror"],
+  :recipes => ["db_mssql::establish_mirroring_partnership"],
   :required => "required"
 
 #attribute "db_mssql/partner_certificate",
