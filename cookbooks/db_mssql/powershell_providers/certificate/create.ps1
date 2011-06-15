@@ -20,6 +20,7 @@ $overwrite = Get-NewResource overwrite
 $username = Get-NewResource username
 $filename = Get-NewResource filename
 $server_network_name = Get-NewResource server_network_name
+$import_on_create = Get-NewResource import_on_create
 
 $conn_string = "server=$server_network_name;database=master;trusted_connection=true;"
 $server = New-Object "System.Data.SqlClient.SqlConnection" $conn_string
@@ -50,7 +51,7 @@ if(![String]::IsNullOrEmpty($username))
 }
 
 # Import an existing certificate
-if(![String]::IsNullOrEmpty($filename))
+if(![String]::IsNullOrEmpty($filename) -and $import_on_create)
 {
   $query += " FROM FILE = '$filename'"
 }
