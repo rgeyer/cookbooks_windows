@@ -110,6 +110,7 @@ db_mssql_enable_outbound_certificate_auth_mirror_endpoint "Enable outbound mirro
 end
 
 db_mssql_enable_inbound_certificate_auth_mirror_endpoint "Enable inbound mirroring endpoint" do
+  server_name node[:db_mssql][:server_name]
   partner_certificate node[:remote][:db_mssql][:partner_certificate]
   mirror_partner node[:remote][:db_mssql][:mirror_partner]
   mirror_password node[:remote][:db_mssql][:mirror_password]
