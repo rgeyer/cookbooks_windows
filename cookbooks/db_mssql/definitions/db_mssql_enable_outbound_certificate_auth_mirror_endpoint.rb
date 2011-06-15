@@ -55,6 +55,7 @@ define :db_mssql_enable_outbound_certificate_auth_mirror_endpoint,
   end
 
   db_mssql_certificate cert_name do
+    server_network_name params[:server_name]
     import_on_create false
     overwrite false
     cert_name cert_name

@@ -16,6 +16,7 @@
 #  limitations under the License.
 
 define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
+       :server_name => nil,
        :partner_certificate => nil,
        :mirror_partner => nil,
        :mirror_password => nil,
@@ -46,18 +47,21 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
   end
 
   db_mssql_login partner_login do
+    server_network_name params[:server_name]
     password params[:mirror_password]
     overwrite true
     action :create
   end
 
   db_mssql_user partner_user do
+    server_network_name params[:server_name]
     login partner_login
     overwrite true
     action :create
   end
 
   db_mssql_certificate partner_cert_name do
+    server_network_name params[:server_name]
     cert_name partner_cert_name
     overwrite true
     import_on_create true
@@ -67,7 +71,7 @@ define :db_mssql_enable_inbound_certificate_auth_mirror_endpoint,
   end
 
   db_sqlserver_database "master" do
-    server_name node[:db_mssql][:server_name]
+    server_name params[:server_name]
     commands ["GRANT CONNECT ON ENDPOINT::mirror_endpoint TO [#{partner_user}]"]
   end
 end
