@@ -32,7 +32,7 @@ remote_hash = {
     :db_mssql => {
       :database_name => node[:remote][:db_mssql][:database_name],
       :mirror_bucket => node[:remote][:db_mssql][:mirror_bucket],
-      :mirror_partner => node[:remote][:db_mssql][:nickname],
+      :mirror_partner => node[:db_mssql][:nickname],
       :mirror_partner_ip => node[:db_mssql][:my_ip_for_mirroring_partner],
       :mirror_listen_port => node[:remote][:db_mssql][:mirror_listen_port],
       :mirror_password => node[:remote][:db_mssql][:mirror_password],
@@ -87,6 +87,9 @@ end
 #  restore_norecovery true
 #  action :restore
 #end
+
+# TODO: What to do when the DB exists, and/or is already mirroring? In the case of a failed mirroring attempt, the restored DB may exist, and have
+# a mirroring partner set, but there is no (obvious) way to detect that, running ALTER DATABASE <db> SET PARTNER OFF will break if no partner is set.
 
 db_sqlserver_database "master" do
   server_name node[:db_mssql][:server_name]
