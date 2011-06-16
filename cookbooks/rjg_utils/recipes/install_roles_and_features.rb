@@ -63,6 +63,17 @@ else
     powershell_script = <<'EOF'
     $roleAndFeatureAry = get-chefnode rjg_utils,features_and_roles_ary
     $binpath = Get-ChefNode rjg_utils, system32_dir
+    $svrmancmd = "$binpath\ServerManagerCmd.exe"
+
+    if(!(Test-Path $svrmancmd))
+    {
+      $svrmancmd32 = "$env:WINDIR\system32\ServerManagerCmd.exe"
+      if(!(Test-Path $svrmancmd32))
+      {
+        Write-Error "ServerManagerCmd.exe was not found at either ($svrmancmd) or ($svrmancmd32), can not proceed!"
+      }
+      $svrmancmd = $svrmancmd32
+    }
 
     write-output("The role and feature list was $($roleAndFeatureAry)")
     $argList = @("-install")
