@@ -30,7 +30,7 @@ if($count -gt 0)
   if($overwrite)
   {
     Write-Warning "Overwrite was set to true, setting login for user ($user) to ($login)..."
-    Sql-ExecuteNonQuery $server "ALTER USER [$user] WITH LOGIN [$login]"
+    Sql-ExecuteNonQuery $server "ALTER USER [$user] WITH LOGIN = [$login]"
     exit 0
   }
   else
