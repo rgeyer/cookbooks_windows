@@ -64,6 +64,7 @@ else
     $roleAndFeatureAry = get-chefnode rjg_utils,features_and_roles_ary
     $binpath = Get-ChefNode rjg_utils, system32_dir
     $svrmancmd = "$binpath\ServerManagerCmd.exe"
+    $logpath = "$env:TEMP\roleAndFeatureInstall.log"
 
     if(!(Test-Path $svrmancmd))
     {
@@ -78,13 +79,9 @@ else
     write-output("The role and feature list was $($roleAndFeatureAry)")
     $argList = @("-install")
     $argList += $roleAndFeatureAry
-    $argList += @("-logPath","C:\roleAndFeatureInstall.log")
-  #  $roleAndFeatureAry.Split(',') | foreach-object {
-  #    write-output ("Installing role or feature $($_)")
-      start-process -FilePath "$binpath\ServerManagerCmd.exe" -ArgumentList $argList -PassThru -Wait
-      (get-content -Path C:\roleAndFeatureInstall.log)[-1]
-      rm C:\roleAndFeatureInstall.log
-  #  }
+    $argList += @("-logPath",$logpath)
+    start-process -FilePath $svrmancmd32 -ArgumentList $argList -PassThru -Wait
+    (get-content -Path $logpath)[-1]
 EOF
     source(powershell_script)
   end
