@@ -33,7 +33,7 @@ remote_hash = {
       :database_name => node[:remote][:db_mssql][:database_name],
       :mirror_bucket => node[:remote][:db_mssql][:mirror_bucket],
       :mirror_partner => node[:db_mssql][:nickname],
-      :mirror_partner_ip => node[:db_mssql][:my_ip_for_mirroring_partner],
+      :mirror_partner_hostname => node[:db_mssql][:my_hostname_for_mirroring_partner],
       :mirror_listen_port => node[:remote][:db_mssql][:mirror_listen_port],
       :mirror_password => node[:remote][:db_mssql][:mirror_password],
       :partner_certificate => cert_filename
@@ -91,6 +91,8 @@ end
 # TODO: What to do when the DB exists, and/or is already mirroring? In the case of a failed mirroring attempt, the restored DB may exist, and have
 # a mirroring partner set, but there is no (obvious) way to detect that, running ALTER DATABASE <db> SET PARTNER OFF will break if no partner is set.
 
+# http://beyondrelational.com/blogs/sqlmaster/archive/2010/09/29/sql-server-high-availability-quick-view-of-database-mirroring-session-between-partners.aspx
+
 db_sqlserver_database "master" do
   server_name node[:db_mssql][:server_name]
   commands [
@@ -126,7 +128,7 @@ end
 # Partner up with the primary/principal server
 db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do
   server_name node[:db_mssql][:server_name]
-  commands ["ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:remote][:db_mssql][:mirror_partner_ip]}:#{node[:remote][:db_mssql][:mirror_listen_port]}'"]
+  commands ["ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:remote][:db_mssql][:mirror_partner_hostname]}:#{node[:remote][:db_mssql][:mirror_listen_port]}'"]
   action :run_command
 end
 

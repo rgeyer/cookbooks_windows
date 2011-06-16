@@ -78,9 +78,9 @@ attribute "db_mssql/mirror_partner",
 #  :recipes => [],
 #  :required => "optional"
 
-attribute "db_mssql/my_ip_for_mirroring_partner",
-  :display_name => "SQL Mirror My IP",
-  :description => "The ip address (or hostname) that partners connecting to this node should use.  This should be set to something like $env:EC2_PUBLIC_IPV4",
+attribute "db_mssql/my_hostname_for_mirroring_partner",
+  :display_name => "SQL Mirror My Hostname",
+  :description => "The hostname that partners connecting to this node should use.  This must ALWAYS be a FQDN, best to use something like $env:EC2_HOSTNAME etc.",
   :recipes => ["db_mssql::establish_mirroring_partnership","db_mssql::default"],
   :required => "required"
 

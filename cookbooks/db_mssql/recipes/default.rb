@@ -23,7 +23,7 @@ backup_lineage = "#{node[:db_mssql][:nickname]}-db-backups"
 skeme_tag "mssql_server:nickname=#{node[:db_mssql][:nickname]}" do
   action :add
 end
-skeme_tag "mssql_server:my_ip_for_mirroring_partner=#{node[:db_mssql][:my_ip_for_mirroring_partner]}" do
+skeme_tag "mssql_server:my_hostname_for_mirroring_partner=#{node[:db_mssql][:my_hostname_for_mirroring_partner]}" do
   action :add
 end
 
