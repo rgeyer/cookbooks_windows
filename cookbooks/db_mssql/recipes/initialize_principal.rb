@@ -34,8 +34,7 @@ db_sqlserver_database "master" do  # node[:db_mssql][:database_name] do
   server_name node[:db_mssql][:server_name]
   commands [
     "ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET PARTNER = N'TCP://#{node[:remote][:db_mssql][:mirror_partner_hostname]}:#{node[:remote][:db_mssql][:mirror_listen_port]}'",
-    "ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET SAFETY FULL",
-    "ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET WITNESS OFF"
+    "ALTER DATABASE #{node[:remote][:db_mssql][:database_name]} SET SAFETY FULL"
   ]
   action :run_command
 end
