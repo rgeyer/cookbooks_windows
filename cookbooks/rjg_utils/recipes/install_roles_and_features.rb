@@ -80,7 +80,7 @@ else
     $argList = @("-install")
     $argList += $roleAndFeatureAry
     $argList += @("-logPath",$logpath)
-    start-process -FilePath $svrmancmd32 -ArgumentList $argList -PassThru -Wait
+    start-process -FilePath $svrmancmd -ArgumentList $argList -PassThru -Wait
     (get-content -Path $logpath)[-1]
 EOF
     source(powershell_script)
