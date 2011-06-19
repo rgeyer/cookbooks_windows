@@ -39,11 +39,15 @@ function Create-Local-User([String]$username, [String]$password, [Array]$groups=
     $objUser = [ADSI]"WinNT://$hostname/$username, user"
   }
 
-
   $objUser.SetPassword($password)
   $objUser.SetInfo()
   $objUser.Description = $username
   $objUser.SetInfo()
+
+  $wmiuser = gwmi -class "Win32_UserAccount" -filter "name='$username'"
+  $wmiuser.PasswordExpires = $false
+  $wmiuser.PasswordChangeable = $false
+  $wmiuser.Put()
 
   foreach($group in $groups)
   {
