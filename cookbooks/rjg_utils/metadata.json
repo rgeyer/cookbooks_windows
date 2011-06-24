@@ -23,6 +23,18 @@
       "display_name": "Timezone",
       "description": "The desired timezone."
     },
+    "rl_57_chef_client/organization": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::rl_57_chef_client"
+      ],
+      "display_name": "OpsCode Organization"
+    },
     "rjg_utils/bginfo_s3_bucket": {
       "required": "optional",
       "calculated": false,
@@ -154,6 +166,18 @@
       ],
       "display_name": "Hostname",
       "description": "The desired hostname for the instance"
+    },
+    "rl_57_chef_client/validator": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::rl_57_chef_client"
+      ],
+      "display_name": "OpsCode Validation Key"
     },
     "rjg_utils/dns_suffix_list": {
       "required": "required",
@@ -288,6 +312,7 @@
   "recommendations": {
   },
   "recipes": {
+    "rjg_utils::rl_57_chef_client": "Sets up some mandatory goodies for running chef client against the RightScale sandbox, talking to OpsCode",
     "rjg_utils::determine_architecture": "Sets some node attributes based on the processor architecture of the node (x86 or x64)",
     "rjg_utils::helloworld": "A recipe which should always work, used as a control test",
     "rjg_utils::set_dns": "Sets the DNS search list ot the provided CSV list",

@@ -26,6 +26,7 @@ recipe "rjg_utils::determine_architecture", "Sets some node attributes based on 
 recipe "rjg_utils::create_users", "Creates or updates a set of users defined in a yaml file stored in an S3 bucket"
 recipe "rjg_utils::set_uac", "Enables or disables User Access Control (UAC)"
 recipe "rjg_utils::set_timezone", "Sets the computers timezone to the specified timezone"
+recipe "rjg_utils::rl_57_chef_client", "Sets up some mandatory goodies for running chef client against the RightScale sandbox, talking to OpsCode"
 
 attribute "rjg_utils/dns_list",
   :display_name => "DNS Server List",
@@ -150,3 +151,11 @@ attribute "aws/secret_access_key",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
   :recipes => ["rjg_utils::install_bginfo"],
   :required => "required"
+
+attribute "rl_57_chef_client/organization",
+  :display_name => "OpsCode Organization",
+  :recipes => ["rjg_utils::rl_57_chef_client"]
+
+attribute "rl_57_chef_client/validator",
+  :display_name => "OpsCode Validation Key",
+  :recipes => ["rjg_utils::rl_57_chef_client"]

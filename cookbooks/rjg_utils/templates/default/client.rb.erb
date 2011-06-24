@@ -1,0 +1,9 @@
+log_level   :info
+log_location    STDOUT
+chef_server_url "https://api.opscode.com/organizations/<%= node[:rl_57_chef_client][:organization] %>"
+validation_client_name "<%= node[:rl_57_chef_client][:organization] %>-validator"
+validation_key  "c:/chef/validation.pem"
+client_key  "c:/chef/client.pem"
+file_cache_path   "c:/chef/cache"
+file_backup_path  "c:/chef/backup"
+cache_options     ({:path => "c:/chef/cache/checksums", :skip_expires => true})
